@@ -1,0 +1,14 @@
+.left {
+    float: left;
+    padding: 10px;
+    margin: 10px;
+}
+
+body {
+    background-color: slategray;
+}
+
+#everything {
+    display: flex;
+    flex-direction: column;
+}
