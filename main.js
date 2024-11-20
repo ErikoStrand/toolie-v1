@@ -14,7 +14,7 @@ function createMainWindow() {
   mainWindow.loadFile("index.html");
 }
 
-function createTimerWindow() {
+function createWindow(path) {
   const timerWindow = new BrowserWindow({
     width: 400,
     height: 300,
@@ -24,13 +24,14 @@ function createTimerWindow() {
     },
   });
 
-  timerWindow.loadFile("timer.html");
+  timerWindow.loadFile(path);
 }
 
 app.whenReady().then(() => {
   createMainWindow();
 
-  ipcMain.on("open-timer", () => {
-    createTimerWindow();
+  ipcMain.on("newWindow", (event, arg) => {
+    console.log(arg);
+    createWindow(arg);
   });
 });

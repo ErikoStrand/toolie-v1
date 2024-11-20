@@ -4,14 +4,19 @@
     <title>Timer App</title>
   </head>
   <body>
-    <h1>Electron Timer App</h1>
-    <button id="openTimerBtn">Open Timer</button>
+    <h1>Desktop Toolie</h1>
+    <button id="openTimerBtn" onclick="openWindow('timer/timer.html')">
+      Open Timer
+    </button>
+    <button id="openTestBtn" onclick="openWindow('test/test.html')">
+      Open Test
+    </button>
 
     <script>
-      const { ipcRenderer } = require("electron");
-      document.getElementById("openTimerBtn").addEventListener("click", () => {
-        ipcRenderer.send("open-timer");
-      });
+      function openWindow(button) {
+        const { ipcRenderer } = require("electron");
+        ipcRenderer.send("newWindow", button);
+      }
     </script>
   </body>
 </html>
