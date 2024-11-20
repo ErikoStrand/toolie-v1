@@ -15,7 +15,11 @@ function createMainWindow() {
 }
 
 function createWindow(path) {
-  const timerWindow = new BrowserWindow({
+  const mainWindow = BrowserWindow.getAllWindows()[0]; // Get main window
+  if (mainWindow) {
+    mainWindow.hide(); // Hide instead of close to preserve app state
+  }
+  const newWindow = new BrowserWindow({
     width: 400,
     height: 300,
     webPreferences: {
@@ -24,7 +28,13 @@ function createWindow(path) {
     },
   });
 
-  timerWindow.loadFile(path);
+  newWindow.loadFile(path);
+
+  newWindow.on("closed", () => {
+    if (mainWindow) {
+      mainWindow.show();
+    }
+  });
 }
 
 app.whenReady().then(() => {
