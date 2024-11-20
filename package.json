@@ -1,21 +1,20 @@
 {
-  "name": "toolie-v1",
-  "private": true,
-  "version": "0.1.0",
-  "type": "module",
+  "name": "toolie-electron",
+  "version": "1.0.0",
+  "main": "main.js",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "tauri": "tauri"
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
-    "@tauri-apps/api": "^2",
-    "@tauri-apps/plugin-shell": "^2"
+    "electron": "^33.2.0"
   },
   "devDependencies": {
-    "@tauri-apps/cli": "^2",
-    "vite": "^5.3.1",
-    "typescript": "^5.2.2"
+    "electron-reload": "^2.0.0-alpha.1",
+    "electron-reloader": "^1.2.3"
   }
 }

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Precise Timer</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      #timer {
+        font-size: 48px;
+        margin: 20px;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 2px;
+      }
+      .button-container {
+        display: flex;
+        gap: 10px;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      button:active {
+        background-color: #3d8b40;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="timer">00:00:00.000</div>
+    <div class="button-container">
+      <button id="startBtn">Start</button>
+      <button id="stopBtn">Stop</button>
+      <button id="resetBtn">Reset</button>
+      <button id="lapBtn">Lap</button>
+    </div>
+    <div id="lapTimes"></div>
+
+    <script>
+      const timerDisplay = document.getElementById("timer");
+      const startBtn = document.getElementById("startBtn");
+      const stopBtn = document.getElementById("stopBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const lapBtn = document.getElementById("lapBtn");
+      const lapTimesContainer = document.getElementById("lapTimes");
+
+      let startTime;
+      let elapsedTime = 0;
+      let timerInterval;
+      let isRunning = false;
+      let laps = [];
+
+      function formatTime(milliseconds) {
+        const hours = Math.floor(milliseconds / 3600000);
+        const minutes = Math.floor((milliseconds % 3600000) / 60000);
+        const seconds = Math.floor((milliseconds % 60000) / 1000);
+        const ms = milliseconds % 1000;
+
+        return `${hours.toString().padStart(2, "0")}:${minutes
+          .toString()
+          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}.${ms
+          .toString()
+          .padStart(3, "0")}`;
+      }
+
+      function updateTimer() {
+        const currentTime = Date.now();
+        elapsedTime = currentTime - startTime;
+        timerDisplay.textContent = formatTime(elapsedTime);
+      }
+
+      startBtn.addEventListener("click", () => {
+        if (!isRunning) {
+          startTime = Date.now() - elapsedTime;
+          timerInterval = setInterval(updateTimer, 10);
+          isRunning = true;
+          startBtn.textContent = "Pause";
+        } else {
+          clearInterval(timerInterval);
+          isRunning = false;
+          startBtn.textContent = "Resume";
+        }
+      });
+
+      stopBtn.addEventListener("click", () => {
+        clearInterval(timerInterval);
+        isRunning = false;
+        startBtn.textContent = "Start";
+      });
+
+      resetBtn.addEventListener("click", () => {
+        clearInterval(timerInterval);
+        elapsedTime = 0;
+        isRunning = false;
+        timerDisplay.textContent = "00:00:00.000";
+        startBtn.textContent = "Start";
+        laps = [];
+        lapTimesContainer.innerHTML = "";
+      });
+
+      lapBtn.addEventListener("click", () => {
+        if (isRunning) {
+          const lapTime = formatTime(elapsedTime);
+          laps.push(lapTime);
+
+          const lapElement = document.createElement("div");
+          lapElement.textContent = `Lap ${laps.length}: ${lapTime}`;
+          lapTimesContainer.appendChild(lapElement);
+        }
+      });
+    </script>
+  </body>
+</html>
