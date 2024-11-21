@@ -14,8 +14,12 @@ function createMainWindow() {
   mainWindow.loadFile("index.html");
 }
 
-function createTimerWindow() {
-  const timerWindow = new BrowserWindow({
+function createWindow(path) {
+  const mainWindow = BrowserWindow.getAllWindows()[0]; // Get main window
+  if (mainWindow) {
+    mainWindow.hide(); // Hide instead of close to preserve app state
+  }
+  const newWindow = new BrowserWindow({
     width: 400,
     height: 300,
     webPreferences: {
@@ -24,33 +28,20 @@ function createTimerWindow() {
     },
   });
 
-  timerWindow.loadFile("timer.html");
+  newWindow.loadFile(path);
+
+  newWindow.on("closed", () => {
+    if (mainWindow) {
+      mainWindow.show();
+    }
+  });
 }
 
 app.whenReady().then(() => {
   createMainWindow();
 
-  ipcMain.on("open-timer", () => {
-    createTimerWindow();
+  ipcMain.on("newWindow", (event, arg) => {
+    console.log(arg);
+    createWindow(arg);
   });
 });
-
-function createGroupieWindow() { 
-  const win = new BrowserWindow({ 
-    width: 800, 
-    height: 600, 
-    webPreferences: { 
-      preload: path.join(__dirname, 'preload.js') 
-    } }); 
-    
-    win.loadFile('index.html'); } 
-    
-    app.on('ready', createWindow); 
-    app.on('window-all-closed', () => { 
-      if (process.platform !== 'darwin') {
-         app.quit(); } }); 
-         app.on('activate', () => {
-           if (BrowserWindow.getAllWindows().length === 0) { 
-            createGroupieWindow(); 
-          }
-        });
