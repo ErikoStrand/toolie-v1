@@ -95,7 +95,7 @@ function sortNamesIntoGroupsByMembers(names, numMembers) {
 }
 
 function getRandomGroupNames(numGroups) {
-    const groupNames = ["Eagles", "Tigers", "Sharks", "Lions", "Wolves", "Panthers", "Bears", "Hawks", "Dolphins", "Foxes"];
+    const groupNames = ["The Rizzlers", "Citizens of Ohio", "Fanum Taxers", "Russian Superhackers", "Tech Overlords of New Delhi", "Quartz Crunchers", "Fat (lol)", "Goons", "Berzerkers", "Kings GG", "These ones suck", "Sorry, Couldn't come up with anything", "Crack Consumers", "Literally Me"];
     shuffleArray(groupNames);
     return groupNames.slice(0, numGroups);
 }
