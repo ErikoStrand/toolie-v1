@@ -11,6 +11,27 @@
         <input type="text" id="nameInput" placeholder="Enter a name">
         <button type="submit">Add Name</button>
     </form>
+    <div>
+        <label for="numGroups">Number of Groups:</label>
+        <input type="number" id="numGroups" min="1" max="14" value="2">
+    </div>
+    <div>
+        <label for="numMembers">Number of Members per Group:</label>
+        <input type="number" id="numMembers" min="1" max="14">
+    </div>
+    <div>
+        <input type="checkbox" id="designateLeader">
+        <label for="designateLeader">Designate a group leader</label>
+    </div>
+    <div>
+        <input type="checkbox" id="randomGroupName">
+        <label for="randomGroupName">Give each group a random name</label>
+    </div>
+    <div>
+        <button id="saveButton">Save Names</button>
+        <input type="file" id="loadInput">
+        <button id="loadButton">Load Names</button>
+    </div>
     <button id="sortButton">Sort into Groups</button>
     <div id="groups"></div>
     <script src="renderer.js"></script>
