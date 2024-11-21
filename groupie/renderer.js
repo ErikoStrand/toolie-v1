@@ -1,4 +1,4 @@
-const { remote } = require('electron');
+const { app } = require('electron').remote;
 const fs = require('fs');
 const path = require('path');
 
@@ -42,15 +42,20 @@ sortButton.addEventListener('click', () => {
 });
 
 saveButton.addEventListener('click', () => {
-    const filePath = path.join(remote.app.getPath('desktop'), 'names.json');
-    fs.writeFile(filePath, JSON.stringify(names), (err) => {
+    window.electron.getPath('desktop').then((desktopPath) => {
+      const filePath = path.join(desktopPath, 'names.json');
+      fs.writeFile(filePath, JSON.stringify(names), (err) => {
         if (err) {
-            alert('Error saving file');
+          alert('Error saving file');
         } else {
-            alert('File saved successfully');
+          alert('File saved successfully');
         }
+      });
     });
-});
+  });
+  
+
+
 
 loadButton.addEventListener('click', () => {
     const file = loadInput.files[0];
