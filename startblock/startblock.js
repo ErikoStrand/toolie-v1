@@ -28,3 +28,5 @@ function addNewTextarea() {
   li.appendChild(textarea);
   notearea.appendChild(li);
 }
+
+function saveNotes() {}
