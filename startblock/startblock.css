@@ -1,0 +1,64 @@
+h1 {
+  text-align: center;
+}
+
+input {
+  flex-grow: 1;
+}
+
+.left {
+  float: left;
+  padding: 10px;
+  margin: 10px;
+}
+
+body {
+  background-color: slategray;
+}
+
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+textarea {
+  resize: vertical;
+  min-width: 100px;
+  min-height: 200px;
+}
+
+#everything {
+  display: flex;
+  flex-direction: column;
+}
+
+#notearea {
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#note {
+  flex-basis: 40%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#note > button {
+  float: right;
+  padding: 1px;
+  max-width: 160px;
+}
+
+#note > div {
+  display: flex;
+  /*flex-direction: row;*/
+}
+
+@media only screen and (max-width: 600px) {
+  #notearea {
+    flex-direction: column;
+  }
+}
