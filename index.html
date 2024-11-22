@@ -12,6 +12,7 @@
 
     <button id="openGroupieBtn" onclick="openWindow('groupie/groupie.html')">
       Open Grupp Slumpare
+    </button>
     <button id="openTestBtn" onclick="openWindow('test/test.html')">
       Open Test
     </button>
@@ -21,12 +22,14 @@
     <button id="openTestBtn" onclick="openWindow('Klocka/klocka.html')">
       Klocka
     </button>
-
-    <script>
-      function openWindow(button) {
-        const { ipcRenderer } = require("electron");
-        ipcRenderer.send("newWindow", button);
-      }
-    </script>
+    <button id="openTestBtn" onclick="openWindow('startblock/startblock.html')">
+      startblock
+    </button>
   </body>
 </html>
+<script>
+  function openWindow(button) {
+    const { ipcRenderer } = require("electron");
+    ipcRenderer.send("newWindow", button);
+  }
+</script>
