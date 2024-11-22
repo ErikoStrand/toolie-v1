@@ -1,4 +1,3 @@
-const { app } = require('electron').remote;
 const fs = require('fs');
 const path = require('path');
 
@@ -43,19 +42,18 @@ sortButton.addEventListener('click', () => {
 
 saveButton.addEventListener('click', () => {
     window.electron.getPath('desktop').then((desktopPath) => {
-      const filePath = path.join(desktopPath, 'names.json');
-      fs.writeFile(filePath, JSON.stringify(names), (err) => {
-        if (err) {
-          alert('Error saving file');
-        } else {
-          alert('File saved successfully');
-        }
-      });
+        const filePath = path.join(desktopPath, 'names.json');
+        fs.writeFile(filePath, JSON.stringify(names), (err) => {
+            if (err) {
+                alert('Error saving file');
+            } else {
+                alert('File saved successfully');
+            }
+        });
+    }).catch((err) => {
+        console.error('Failed to get path:', err);
     });
-  });
-  
-
-
+});
 
 loadButton.addEventListener('click', () => {
     const file = loadInput.files[0];
@@ -100,7 +98,7 @@ function sortNamesIntoGroupsByMembers(names, numMembers) {
 }
 
 function getRandomGroupNames(numGroups) {
-    const groupNames = ["The Rizzlers", "Citizens of Ohio", "Fanum Taxers", "Russian Superhackers", "Tech Overlords of New Delhi", "Quartz Crunchers", "Fat (lol)", "Goons", "Berzerkers", "Kings GG", "These ones suck", "Sorry, Couldn't come up with anything", "Crack Consumers", "Literally Me"];
+    const groupNames = ["The Rizzlers", "Citizens of Ohio", "Fanum Taxers", "Russian Superhackers", "Tech Overlords of New Delhi", "Quartz Crunchers", "Fat (lol)", "The Goons", "Cool Reference", "Kings GG", "These ones suck", "Sorry, Couldn't come up with anything", "Crack Consumers", "Literally Me"];
     shuffleArray(groupNames);
     return groupNames.slice(0, numGroups);
 }
