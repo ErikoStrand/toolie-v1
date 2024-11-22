@@ -10,6 +10,7 @@ function createMainWindow() {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
+      preload: path.join(__dirname, "preload.js"),
     },
   });
 
@@ -40,6 +41,11 @@ function createWindow(path) {
     }
   });
 }
+
+// Handle the getPath request
+ipcMain.handle('getPath', (event, name) => {
+  return app.getPath(name);
+});
 
 app.whenReady().then(() => {
   createMainWindow();

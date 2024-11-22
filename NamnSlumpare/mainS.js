@@ -1,5 +1,6 @@
 // Funktion för att slumpa namn
 function getRandomNames(names, numNames) {
+
   let shuffled = names.slice(); // Kopiera listan för att inte förändra originalet
   shuffled.sort(() => Math.random() - 0.5); // Blanda listan
   return shuffled.slice(0, numNames); // Returnera ett urval av slumpade namn
@@ -15,6 +16,7 @@ document
 
     // Kontrollera om namnlistan är tom
     if (!nameInput) {
+
       alert("Vänligen skriv in minst ett namn.");
       return;
     }
@@ -37,6 +39,7 @@ document
     // Visa resultatet
     const randomNamesList = document.getElementById("randomNamesList");
     randomNamesList.innerHTML = ""; // Rensa tidigare resultat
+
 
     randomNames.forEach((name) => {
       const listItem = document.createElement("li");
