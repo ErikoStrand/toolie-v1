@@ -2,6 +2,10 @@ h1 {
   text-align: center;
 }
 
+input {
+  flex-grow: 1;
+}
+
 .left {
   float: left;
   padding: 10px;
@@ -42,10 +46,15 @@ textarea {
   flex-direction: column;
 }
 
-#notearea > #note > button {
+#note > button {
   float: right;
   padding: 1px;
   max-width: 160px;
+}
+
+#note > div {
+  display: flex;
+  /*flex-direction: row;*/
 }
 
 @media only screen and (max-width: 600px) {
