@@ -1,8 +1,34 @@
 const notearea = document.getElementById("notearea");
+const noteNumber = document.getElementById("number");
+let nofNotes = 0;
+noteNumber.textContent = nofNotes;
 
-function expand() {}
+var number;
+
+function expand(button) {
+  const li = button.closest("li");
+  li.setAttribute("id", "noteExpand");
+
+  // Change button to "Collapse"
+  button.textContent = "Minska";
+  button.onclick = function () {
+    collapse(this);
+  };
+}
+
+function collapse(button) {
+  const li = button.closest("li"); // Get the closest 'li' element
+  li.setAttribute("id", "note");
+
+  // Change button back to "Expand"
+  button.textContent = "Expandera";
+  button.onclick = function () {
+    expand(this);
+  };
+}
 
 function addNewTextarea() {
+  //defining elements
   let li = document.createElement("li");
   let div = document.createElement("div");
   let input = document.createElement("input");
@@ -10,23 +36,34 @@ function addNewTextarea() {
   let del_button = document.createElement("button");
   let exp_button = document.createElement("button");
 
-  li.setAttribute("id", "note");
+  //setting atributes to elements
+  li.setAttribute("id", "note" + number);
   input.type = "text";
   input.setAttribute("placeholder", "Anteckning");
-  del_button.setAttribute(
-    "onclick",
-    "this.parentElement.parentElement.remove()"
-  );
-  del_button.textContent = "Radera anteckning";
-  exp_button.setAttribute("onclick", expand());
-  exp_button.textContent = "Expandera";
+  del_button.onclick = function () {
+    del(this);
+  };
 
+  del_button.textContent = "Radera anteckning";
+  exp_button.textContent = "Expandera";
+  exp_button.onclick = function () {
+    expand(this);
+  };
+
+  //putting all the elements together
   div.appendChild(input);
   div.appendChild(exp_button);
   div.appendChild(del_button);
   li.appendChild(div);
   li.appendChild(textarea);
   notearea.appendChild(li);
+
+  nofNotes += 1;
+}
+
+function del(button) {
+  const li = button.closest("li");
+  li.remove();
 }
 
 function saveNotes() {}

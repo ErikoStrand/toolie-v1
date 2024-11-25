@@ -11,15 +11,12 @@
     <div id="everything">
       <h1>Startblock</h1>
 
+      <p id="number"></p>
       <div class="noteControl">
         <button onclick="addNewTextarea()">+ ny anteckning</button>
-        <button type="submit" form="noteForm" onclick="saveNotes()">
-          Spara
-        </button>
+        <button type="submit" onclick="saveNotes()">Spara</button>
       </div>
-      <form id="noteForm">
-        <ul id="notearea"></ul>
-      </form>
+      <ul id="notearea"></ul>
     </div>
   </body>
 </html>
