@@ -2,9 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Dynamic Dropdown and List</title>
+    <title>Class Names Management</title>
     <script defer src="../KlassSkapare/klassSkapare.js"></script>
     <script defer src="mainS.js"></script>
+    <link rel="stylesheet" href="Namn.css" />
   </head>
-  <body></body>
+  <body>
+    <select id="classDropdown"></select>
+    <ul id="namesList"></ul>
+    <div class="flex-row">
+      <button class="defaultButton" onclick="slumpAName()">Slump me</button>
+      <span>
+        <input class="defaultInput" type="text" id="nameAdd" />
+        <button class="defaultButton" onclick="addName()">Addera</button>
+      </span>
+    </div>
+    <h2 id="slumpName"></h2>
+  </body>
 </html>
