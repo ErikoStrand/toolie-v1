@@ -1,7 +1,7 @@
 const fs = require("fs"); // Required for file system operations
 const path = require("path"); // To manage file paths
 
-const classesFilePath = path.join(__dirname, "classes.json");
+const classesFilePath = "classes.json";
 
 // variabler
 let currentClass = {
@@ -56,7 +56,6 @@ function getClasses() {
     const classes = JSON.parse(data);
 
     const classDetails = Object.keys(classes);
-    console.log(classDetails);
     // Returna json
     return classDetails;
   } else {
@@ -72,7 +71,6 @@ function getNames(className) {
     const classes = JSON.parse(data);
 
     const classDetails = classes[className] || [];
-    console.log(classDetails);
     // Returna json
     return classDetails; // Return the class details if found
   } else {
