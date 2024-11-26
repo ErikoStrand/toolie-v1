@@ -4,38 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sort Names</title>
+    <style> .hidden { display: none; } </style>
     <link rel="stylesheet" href="groupie.css"> 
 </head>
+
+
+
 <body>
     <div class="container">
     <h1>Grupp Skapare</h1>
-    <form id="nameForm">
-        <input type="text" id="nameInput" placeholder="Enter a name">
-        <button type="submit">Add Name</button>
-    </form>
-    <div>
-        <label for="numGroups">Number of Groups:</label>
-        <input type="number" id="numGroups" min="1" max="14" value="2">
-    </div>
-    <div>
-        <label for="numMembers">Number of Members per Group:</label>
-        <input type="number" id="numMembers" min="1" max="14">
-    </div>
-    <div>
-        <input type="checkbox" id="designateLeader">
-        <label for="designateLeader">Designate a group leader</label>
-    </div>
-    <div>
-        <input type="checkbox" id="randomGroupName">
-        <label for="randomGroupName">Give each group a random name</label>
-    </div>
     <div class="saveLoadBtn">
         <input type="file" id="loadInput">
         <button id="saveButton">Save Names</button>
         <button id="loadButton">Load Names</button>
     </div>
-    <button id="sortButton">Sort into Groups</button>
+
+    <div>
+        <form id="nameForm">
+            <label> <input type="checkbox" id="toggleInput"> Check to show input field </label> 
+            <input type="text" id="textInput" class="hidden" placeholder="Enter text here">
+            <button type="submit" id="textInput" class="">Add Name</button>
+        </form>
+    
+        <script> const toggleInput = document.getElementById('toggleInput'); 
+        const textInput = document.getElementById('textInput'); 
+        toggleInput.addEventListener('change', () => { 
+        if (toggleInput.checked) { 
+        textInput.classList.remove('hidden');
+         } else { 
+            textInput.classList.add('hidden'); } }); 
+        </script>
+    </div>
+    
+    
+    <form> 
+        <label> 
+            <input type="radio" name="groupOption" id="numGroupsOption" checked> Number of Groups 
+        </label> 
+        <input type="number" id="numGroupsInput"> 
+        <br> 
+        <label> 
+            <input type="radio" name="groupOption" id="numMembersOption"> Number of Members 
+        </label> 
+        <input type="number" id="numMembersInput" class="hidden"> 
+        <br> 
+        <label> 
+            <input type="checkbox" id="designateLeader"> Designate Leader 
+        </label> 
+        <br> 
+        <label> 
+            <input type="checkbox" id="randomGroupName"> Random Group Name 
+        </label> 
+        <br> 
+        <button type="button" id="sortButton">Sort</button> 
+    </form>
+
     <div id="groups"></div>
+
+    <script src="script.js"> </script>
+
     <script src="renderer.js"></script>
     </div>
 </body>
