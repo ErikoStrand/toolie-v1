@@ -1,7 +1,5 @@
 const notearea = document.getElementById("notearea");
 const noteNumber = document.getElementById("number");
-let nofNotes = 0;
-noteNumber.textContent = nofNotes;
 
 var number;
 
@@ -37,13 +35,12 @@ function addNewTextarea() {
   let exp_button = document.createElement("button");
 
   //setting atributes to elements
-  li.setAttribute("id", "note" + number);
+  li.setAttribute("id", "note" /*+ number*/);
   input.type = "text";
   input.setAttribute("placeholder", "Anteckning");
   del_button.onclick = function () {
     del(this);
   };
-
   del_button.textContent = "Radera anteckning";
   exp_button.textContent = "Expandera";
   exp_button.onclick = function () {
@@ -58,7 +55,12 @@ function addNewTextarea() {
   li.appendChild(textarea);
   notearea.appendChild(li);
 
-  nofNotes += 1;
+  number += 1;
+}
+
+function resizeTextarea(textarea) {
+  textarea.style.width = "auto";
+  textarea.style.height = this.scrollheight + "px";
 }
 
 function del(button) {
