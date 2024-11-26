@@ -2,11 +2,16 @@
 <html>
   <head>
     <title>Timer App</title>
+    <script defer src="utils.js"></script>
   </head>
   <body>
     <h1>Desktop Toolie</h1>
     <button id="openTimerBtn" onclick="openWindow('timer/timer.html')">
       Open Timer
+    </button>
+
+    <button id="openGroupieBtn" onclick="openWindow('groupie/groupie.html')">
+      Open Grupp Slumpare
     </button>
     <button id="openTestBtn" onclick="openWindow('test/test.html')">
       Open Test
@@ -17,18 +22,14 @@
     <button id="openTestBtn" onclick="openWindow('Klocka/klocka.html')">
       Klocka
     </button>
-    <button
-      id="openTestBtn"
-      onclick="openWindow('KlassSkapare/klassSkapare.html')"
-    >
-      KlassSkapare
+    <button id="openTestBtn" onclick="openWindow('startblock/startblock.html')">
+      startblock
     </button>
-
-    <script>
-      function openWindow(button) {
-        const { ipcRenderer } = require("electron");
-        ipcRenderer.send("newWindow", button);
-      }
-    </script>
   </body>
 </html>
+<script>
+  function openWindow(button) {
+    const { ipcRenderer } = require("electron");
+    ipcRenderer.send("newWindow", button);
+  }
+</script>

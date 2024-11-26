@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html lang="sv">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Namnslumpare</title>
-    <link rel="stylesheet" href="Namn.css">
-</head>
-<body>
+    <link rel="stylesheet" href="Namn.css" />
+    <script defer src="../utils.js"></script>
+  </head>
+  <body>
     <div class="container">
-        <h1>Namnslumpare</h1>
+      <h1>Namnslumpare</h1>
 
-        <!-- Formulär för att lägga till namn -->
-        <div class="input-group">
-            <label for="nameInput">Skriv in namn (separera med kommatecken):</label>
-            <input type="text" id="nameInput" placeholder="Ex: Anna, Erik, Johan">
-        </div>
+      <!-- Formulär för att lägga till namn -->
+      <div class="input-group">
+        <label for="nameInput">Skriv in namn (separera med kommatecken):</label>
+        <input type="text" id="nameInput" placeholder="Ex: Anna, Erik, Johan" />
+      </div>
 
-        <!-- Formulär för att välja antal namn att slumpa -->
-        <div class="input-group">
-            <label for="numNames">Antal namn att slumpa:</label>
-            <input type="number" id="numNames" value="1" min="1">
-        </div>
+      <!-- Formulär för att välja antal namn att slumpa -->
+      <div class="input-group">
+        <label for="numNames">Antal namn att slumpa:</label>
+        <input type="number" id="numNames" value="1" min="1" />
+      </div>
 
-        <!-- Slumpa-knappen -->
-        <button id="generateButton">Slumpa namn</button>
+      <!-- Slumpa-knappen -->
+      <button id="generateButton">Slumpa namn</button>
 
-        <!-- Visar det slumpade namnet -->
-        <div id="result">
-            <p><strong>Slumpade namn:</strong></p>
-            <ul id="randomNamesList"></ul>
-        </div>
+      <!-- Visar det slumpade namnet -->
+      <div id="result">
+        <p><strong>Slumpade namn:</strong></p>
+        <ul id="randomNamesList"></ul>
+      </div>
     </div>
 
     <script src="mainS.js"></script>
-</body>
+  </body>
 </html>
