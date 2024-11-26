@@ -1,0 +1,15 @@
+.grid-container {
+  display: grid;
+}
+
+.grid-buttons {
+  display: grid;
+  row-gap: 5px;
+  grid-column: 2;
+}
+
+.draggable-img {
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  cursor: move;
+}
