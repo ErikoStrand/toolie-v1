@@ -1,11 +1,15 @@
-.grid-container {
-  display: grid;
+.flex-container {
+  display: flex;
+  flex-direction: row;
 }
-
-.grid-buttons {
-  display: grid;
-  row-gap: 5px;
-  grid-column: 2;
+.button-container > * {
+  display: block;
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: 16px;
 }
 
 .draggable-img {
