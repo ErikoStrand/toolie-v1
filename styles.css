@@ -5,11 +5,22 @@
 .button-container > * {
   display: block;
 }
+
 .button-container {
   display: flex;
   flex-direction: column;
   gap: 8px;
   margin-left: 16px;
+}
+
+svg:hover:not(#exitButton) {
+  fill: #157285;
+  width: 35px;
+}
+
+#exitButton:hover {
+  fill: #681223;
+  width: 35px;
 }
 
 .draggable-img {

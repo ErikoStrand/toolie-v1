@@ -10,6 +10,7 @@ function createMainWindow() {
     alwaysOnTop: true,
     titleBarStyle: "hidden",
     transparent: true,
+    resizable: false,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
