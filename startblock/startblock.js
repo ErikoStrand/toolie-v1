@@ -81,5 +81,54 @@ function saveNotes() {
 
   const jsonString = JSON.stringify(data, null, 2);
   fs.writeFileSync("notes.json", jsonString, "utf-8");
-  console.log(data);
 }
+
+function load() {
+  const notearea = document.getElementById("notearea");
+
+  if (fs.existsSync("notes.json")) {
+    const data = fs.readFileSync("notes.json", "utf-8");
+    const notes = JSON.parse(data);
+
+    notearea.innerHTML = "";
+
+    notes.forEach((note) => {
+      const li = document.createElement("li");
+      const div = document.createElement("div");
+      const input = document.createElement("input");
+      const textarea = document.createElement("textarea");
+      const del_button = document.createElement("button");
+      const exp_button = document.createElement("button");
+
+      li.setAttribute("id", "note");
+      input.type = "text";
+      input.setAttribute("placeholder", "Anteckning");
+      input.value = note.title; // Set the title from the JSON
+      textarea.value = note.textarea; // Set the textarea content from the JSON
+
+      // Set up delete button
+      del_button.textContent = "Radera anteckning";
+      del_button.onclick = function () {
+        del(this);
+      };
+
+      exp_button.textContent = "Expandera";
+      exp_button.onclick = function () {
+        expand(this);
+      };
+
+      div.appendChild(input);
+      div.appendChild(exp_button);
+      div.appendChild(del_button);
+      li.appendChild(div);
+      li.appendChild(textarea);
+      notearea.appendChild(li);
+    });
+  } else {
+    console.error("notes.json file not found");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  load();
+});
