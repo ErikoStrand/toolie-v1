@@ -80,14 +80,14 @@ function saveNotes() {
   });
 
   const jsonString = JSON.stringify(data, null, 2);
-  fs.writeFileSync("notes.json", jsonString, "utf-8");
+  fs.writeFileSync("data/notes.json", jsonString, "utf-8");
 }
 
 function load() {
   const notearea = document.getElementById("notearea");
 
-  if (fs.existsSync("notes.json")) {
-    const data = fs.readFileSync("notes.json", "utf-8");
+  if (fs.existsSync("data/notes.json")) {
+    const data = fs.readFileSync("data/notes.json", "utf-8");
     const notes = JSON.parse(data);
 
     notearea.innerHTML = "";
