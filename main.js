@@ -4,12 +4,12 @@ const path = require("path");
 
 function createMainWindow() {
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 145,
+    height: 330,
     maximizable: false,
     alwaysOnTop: true,
-    titleBarStyle: "hidden",
     transparent: true,
+    titleBarStyle: "hidden",
     resizable: false,
     webPreferences: {
       nodeIntegration: true,
