@@ -8,6 +8,9 @@ function createMainWindow() {
     height: 600,
     maximizable: false,
     alwaysOnTop: true,
+    titleBarStyle: "hidden",
+    transparent: true,
+    resizable: false,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
