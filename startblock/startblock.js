@@ -1,7 +1,4 @@
-const notearea = document.getElementById("notearea");
-const noteNumber = document.getElementById("number");
-
-var number;
+const fs = require("fs");
 
 function expand(button) {
   const li = button.closest("li");
@@ -26,6 +23,8 @@ function collapse(button) {
 }
 
 function addNewTextarea() {
+  const notearea = document.getElementById("notearea");
+
   //defining elements
   let li = document.createElement("li");
   let div = document.createElement("div");
@@ -35,7 +34,7 @@ function addNewTextarea() {
   let exp_button = document.createElement("button");
 
   //setting atributes to elements
-  li.setAttribute("id", "note" /*+ number*/);
+  li.setAttribute("id", "note");
   input.type = "text";
   input.setAttribute("placeholder", "Anteckning");
   del_button.onclick = function () {
@@ -54,18 +53,33 @@ function addNewTextarea() {
   li.appendChild(div);
   li.appendChild(textarea);
   notearea.appendChild(li);
-
-  number += 1;
 }
 
+//functions for the buttonsd controlling it's specific note
 function resizeTextarea(textarea) {
   textarea.style.width = "auto";
   textarea.style.height = this.scrollheight + "px";
 }
-
 function del(button) {
   const li = button.closest("li");
   li.remove();
 }
 
-function saveNotes() {}
+function saveNotes() {
+  const notes = document.querySelectorAll("#note");
+
+  const data = Array.from(notes).map((note) => {
+    const input = note.querySelector("input");
+    const textarea = note.querySelector("textarea");
+
+    return {
+      title: input.value.trim(),
+
+      textarea: textarea.value.trim(),
+    };
+  });
+
+  const jsonString = JSON.stringify(data, null, 2);
+  fs.writeFileSync("notes.json", jsonString, "utf-8");
+  console.log(data);
+}

@@ -78,7 +78,6 @@ textarea {
 #noteExpand > div {
   display: flex;
 }
-
 #noteExpand > textarea {
   flex-grow: 1; /* Allows the textarea to grow within the flex container */
   flex-shrink: 1; /* Allows the textarea to shrink within the flex container */
