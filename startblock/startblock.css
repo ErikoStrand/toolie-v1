@@ -17,7 +17,6 @@ textarea {
   min-height: 200px;
 }
 
-/*customization of the buttons that that control the notes*/
 .noteControl {
   display: flex;
   justify-content: space-between;
@@ -39,7 +38,6 @@ textarea {
   flex-wrap: wrap;
 }
 
-/*customization of the note when it is in an minimized state*/
 #note {
   flex-basis: 40%;
   flex-grow: 1;
@@ -61,7 +59,6 @@ textarea {
   }
 }
 
-/*customization of the note when it is in an expanded state*/
 #noteExpand {
   width: 100vw;
   height: 100vh;
