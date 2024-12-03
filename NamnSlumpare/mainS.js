@@ -1,3 +1,5 @@
+const { ipcRenderer } = require("electron");
+
 // Get all available classes
 const classes = getClasses();
 let selectedKlass = [];
@@ -21,7 +23,9 @@ function populateDropdown() {
     getNamesFromClass();
   }
 }
-
+function exit() {
+  ipcRenderer.send("close-window");
+}
 function getNamesFromClass() {
   const selectedClass = classDropdown.value;
   namesList.innerHTML = ""; // Clear previous list
@@ -112,5 +116,17 @@ function slumpAName() {
     document.getElementById("slumpName").textContent = namePool[random];
   } else {
     document.getElementById("slumpName").textContent = "No names available";
+  }
+}
+
+function selectAll() {
+  const master = document.getElementById("mastercheckbox");
+  const checkboxes = document.querySelectorAll(
+    '#namesList input[type="checkbox"]'
+  );
+  if (master.checked) {
+    Array.from(checkboxes).map((cb) => (cb.checked = true));
+  } else {
+    Array.from(checkboxes).map((cb) => (cb.checked = false));
   }
 }

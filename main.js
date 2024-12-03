@@ -20,6 +20,22 @@ function createMainWindow() {
 
   mainWindow.loadFile("index.html");
 }
+function createNamnSlumpare(path) {
+  const newWindow = new BrowserWindow({
+    width: 600,
+    height: 800,
+    transparent: true,
+    alwaysOnTop: true,
+    maximizable: false,
+    titleBarStyle: "hidden",
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
+
+  newWindow.loadFile(path);
+}
 
 function createWindow(path) {
   const newWindow = new BrowserWindow({
@@ -47,6 +63,10 @@ app.whenReady().then(() => {
   ipcMain.on("newWindow", (event, arg) => {
     console.log(arg);
     createWindow(arg);
+  });
+  ipcMain.on("namnSlumpare", (event, arg) => {
+    console.log(arg);
+    createNamnSlumpare(arg);
   });
 });
 
