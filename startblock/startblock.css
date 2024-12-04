@@ -26,9 +26,23 @@ textarea {
   padding: 10px;
 }
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 #everything {
   display: flex;
   flex-direction: column;
+}
+
+#mover {
+  flex-grow: 1;
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: move;
 }
 
 #notearea {

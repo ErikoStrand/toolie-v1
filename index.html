@@ -27,7 +27,7 @@
     </button>
     <button
       id="openStartblock"
-      onclick="openWindow('startblock/startblock.html')"
+      onclick="openStartblock('startblock/startblock.html')"
     >
       startblock
     </button>
@@ -43,5 +43,9 @@
   function openWindow(button) {
     const { ipcRenderer } = require("electron");
     ipcRenderer.send("newWindow", button);
+  }
+  function openStartblock(button) {
+    const { ipcRenderer } = require("electron");
+    ipcRenderer.send("startblock", button);
   }
 </script>
