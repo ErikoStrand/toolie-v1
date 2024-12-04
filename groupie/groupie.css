@@ -1,51 +1,75 @@
-body {
-    background-color: #573266;
-    text-align: center;
-    position: absolute;
-    padding: 70px 0px;
-   /* margin-left: 500px;
-    margin-top: 250px; */
-
-}
-
-.container {
-    text-align: center;
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 315px;
-
-}
-
-#button-container { display: flex; justify-content: space-between; }
-
-.saveLoadBtn {
-    
-    color: rgb(0, 0, 0);
-    border: none;
-    padding: 5px 10px;
-    margin: 5px;
-    font-size: 8px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-
-button {
-    background-color: #5b1a7e;
+.defaultButton {
+    background-color: #45155b;
     color: white;
     border: none;
-    padding: 5px 10px;
-    margin: 5px;
+    padding: 10px 20px;
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-}
+  }
+  .defaultDelete {
+    background: none;
+    border: none;
+    padding: 4px 6px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
 
-
-button:hover {
-    background-color: #38104e;
-}
+  
+  select,
+  ul {
+    width: 100%;
+    padding: 4px;
+    box-sizing: border-box;
+  }
+  .defaultInput {
+    background-color: #f4f4f4;
+    color: black;
+    border: solid 2px #45155b;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  #flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  #namesList {
+    list-style-type: none;
+    padding: 0;
+    border: 1px solid #ddd;
+  }
+  #namesList li div {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+  }
+  #namesList li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 4px;
+    padding: 2px;
+    border-bottom: 1px solid #eee;
+    background-color: white;
+  }
+  #namesList li:last-child {
+    border-bottom: none;
+  }
+  
+  .add-btn:hover {
+    background-color: #472856;
+  }
+  
