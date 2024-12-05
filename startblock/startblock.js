@@ -80,7 +80,6 @@ function saveNotes() {
 function loadNote() {
   const notearea = document.getElementById("notearea");
 
-
   if (fs.existsSync("data/notes.json")) {
     const data = fs.readFileSync("data/notes.json", "utf-8");
     const notes = JSON.parse(data);

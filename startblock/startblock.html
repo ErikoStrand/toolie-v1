@@ -9,7 +9,10 @@
   </head>
   <body>
     <div class="flex-row">
-      <div id="mover">
+      <button onclick="addNewNote()">+ ny anteckning</button>
+      <button type="submit" onclick="saveNotes()">Spara</button>
+
+      <div id="mover" class="mover">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
@@ -21,7 +24,7 @@
           />
         </svg>
       </div>
-      <div id="closer" onclick="exit()">
+      <div id="closer" class="closer" onclick="exit()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 512 512"
@@ -34,12 +37,7 @@
         </svg>
       </div>
     </div>
-    
-      <div class="noteControl">
-        <button onclick="addNewNote()">+ ny anteckning</button>
-        <button type="submit" onclick="saveNotes()">Spara</button>
-      </div>
-      <ul id="notearea"></ul>
-    </div>
+
+    <ul id="notearea"></ul>
   </body>
 </html>

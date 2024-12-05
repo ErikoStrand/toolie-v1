@@ -3,9 +3,12 @@ h1 {
 }
 input {
   flex-grow: 1;
+  opacity: 0.3;
+  font-size: 1rem;
 }
-body {
-  background-color: slategray;
+input:hover,
+input:focus {
+  opacity: 1;
 }
 ul {
   margin: 0px;
@@ -15,21 +18,41 @@ textarea {
   resize: none;
   min-width: 100px;
   min-height: 200px;
+  background-color: transparent;
+  font-size: 1rem;
+  border: none;
 }
-
-.noteControl {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
+button {
+  opacity: 0.2;
+  background-color: rgb(107, 12, 107);
 }
-.noteControl > * {
-  padding: 10px;
+button:hover {
+  opacity: 1;
 }
 
 .flex-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  border-radius: 1px;
+}
+.flex-row-hidden {
+  display: hidden;
+}
+
+.mover {
+  background-color: color-mix(
+    in hsl shorter hue,
+    rgba(0, 174, 255, 0.884) 20%,
+    rgba(184, 30, 30, 0.884) 20%
+  );
+}
+.closer {
+  background-color: color-mix(
+    in hsl shorter hue,
+    rgba(0, 174, 255, 0.884) 20%,
+    rgba(184, 30, 30, 0.884) 20%
+  );
 }
 
 #everything {
@@ -80,7 +103,7 @@ textarea {
   top: 0;
   left: 0;
   z-index: 100;
-  background-color: white;
+  background-color: transparent;
   flex-basis: 40%;
   flex-grow: 1;
   display: flex;
@@ -88,6 +111,11 @@ textarea {
 }
 #noteExpand > div {
   display: flex;
+}
+#noteExpand > button {
+  float: right;
+  padding: 1px;
+  max-width: 160px;
 }
 #noteExpand > textarea {
   flex-grow: 1;
@@ -99,4 +127,7 @@ textarea {
   box-sizing: border-box;
   padding: 10px;
   overflow-y: auto;
+}
+#noteExpand > input {
+  opacity: 0.3;
 }
