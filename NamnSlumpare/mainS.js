@@ -105,7 +105,9 @@ function slumpAName() {
 
 function selectAll() {
   const master = document.getElementById("mastercheckbox");
-  const checkboxes = document.querySelectorAll();
+  const checkboxes = document.querySelectorAll(
+    '#namesList input[type="checkbox"]'
+  );
   if (master.checked) {
     Array.from(checkboxes).map((cb) => (cb.checked = true));
   } else {
