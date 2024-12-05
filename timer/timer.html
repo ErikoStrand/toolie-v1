@@ -17,6 +17,16 @@
         font-size: 48px;
         margin: 20px;
         font-variant-numeric: tabular-nums;
+        cursor: pointer;
+        border: 1px dashed transparent;
+        width: 200px;
+        text-align: center;
+        letter-spacing: 1px;
+        display: inline-block;
+      }
+      #timer:focus {
+        outline: none;
+        border-color: #007bff;
       }
       input,
       button {
@@ -27,52 +37,78 @@
     </style>
   </head>
   <body>
-    <div id="timer">00:00:00</div>
-    <input type="text" id="timeInput" placeholder="hh:mm:ss" />
-
+    <div id="timer" contenteditable="true">00:00:00</div>
     <div>
       <button id="startBtn">Start Timer</button>
       <button id="stopBtn" disabled>Stop Timer</button>
+      <button id="resetBtn">Reset Timer</button>
     </div>
 
     <script>
-      const { ipcRenderer } = require("electron");
-      const path = require("path");
-
       const timerDisplay = document.getElementById("timer");
-      const timeInput = document.getElementById("timeInput");
       const startBtn = document.getElementById("startBtn");
       const stopBtn = document.getElementById("stopBtn");
+      const resetBtn = document.getElementById("resetBtn");
 
       let timer;
       let totalSeconds = 0;
+      let isRunning = false;
 
-      // Predefined audio path in the app directory
       function getSeconds(formatTime) {
-        time = formatTime.split(":");
-        console.log(time);
-        return Number(time[0]) * 3600 + Number(time[1] * 60) + Number(time[2]);
+        const time = formatTime.split(":");
+        if (time.length === 3) {
+          return (
+            Number(time[0]) * 3600 +
+            Number(time[1]) * 60 +
+            Number(time[2])
+          );
+        }
+        return 0; // Default if invalid input
       }
+
       function playNotification() {
-        ipcRenderer.send("play-timer-sound");
+        console.log("Time's up!");
       }
 
       startBtn.addEventListener("click", () => {
-        totalSeconds = getSeconds(timeInput.value);
+        const enteredTime = timerDisplay.textContent.trim();
+        totalSeconds = getSeconds(enteredTime);
 
-        if (totalSeconds > 0) {
+        if (totalSeconds > 0 && !isRunning) {
           startTimer();
         }
       });
 
       stopBtn.addEventListener("click", () => {
         clearInterval(timer);
-        resetTimer();
+        isRunning = false;
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+        timerDisplay.setAttribute("contenteditable", "true");
+      });
+
+      resetBtn.addEventListener("click", () => {
+        clearInterval(timer);
+        totalSeconds = 0;
+        isRunning = false;
+        resetTimerDisplay();
+      });
+
+      timerDisplay.addEventListener("click", () => {
+        if (isRunning) {
+          clearInterval(timer);
+          isRunning = false;
+          startBtn.disabled = false;
+          stopBtn.disabled = true;
+          timerDisplay.setAttribute("contenteditable", "true");
+        }
       });
 
       function startTimer() {
+        isRunning = true;
         startBtn.disabled = true;
         stopBtn.disabled = false;
+        timerDisplay.setAttribute("contenteditable", "false");
 
         timer = setInterval(() => {
           if (totalSeconds > 0) {
@@ -81,7 +117,7 @@
           } else {
             clearInterval(timer);
             playNotification();
-            resetTimer();
+            resetTimerDisplay();
           }
         }, 1000);
       }
@@ -98,12 +134,77 @@
           .padStart(2, "0")}`;
       }
 
-      function resetTimer() {
+      function resetTimerDisplay() {
         startBtn.disabled = false;
         stopBtn.disabled = true;
+        timerDisplay.setAttribute("contenteditable", "true");
         timerDisplay.textContent = "00:00:00";
-        timeInput.value = "";
       }
+
+
+// Handle typing inside the timer
+timerDisplay.addEventListener("input", (event) => {
+  let content = timerDisplay.textContent.replace(/\D/g, ""); // Remove non-digit characters
+
+  // Limit to 6 digits (HHMMSS)
+  content = content.slice(0, 6).padEnd(6, "0");
+
+  // Format as HH:MM:SS
+  let hours = content.slice(0, 2);
+  let minutes = content.slice(2, 4);
+  let seconds = content.slice(4, 6);
+
+  // Ensure time doesn't exceed 99:59:59
+  if (parseInt(hours) > 99) {
+    hours = "99";
+  }
+  if (parseInt(minutes) > 59) {
+    minutes = "59";
+  }
+  if (parseInt(seconds) > 59) {
+    seconds = "59";
+  }
+
+  // Save the current caret position
+  const selection = window.getSelection();
+  const caretPos = selection.anchorOffset;
+
+  // Update the text content
+  timerDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+
+  // Restore the caret position based on the input
+  const newCaretPos = Math.min(caretPos, timerDisplay.textContent.length);
+  const range = document.createRange();
+  range.setStart(timerDisplay.lastChild, newCaretPos);
+  range.setEnd(timerDisplay.lastChild, newCaretPos);
+  
+  // Set the caret at the correct position
+  selection.removeAllRanges();
+  selection.addRange(range);
+
+  // Prevent input if the total characters exceed the limit
+  if (content.length >= 6) {
+    event.preventDefault();
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+      // Validate input on blur
+      timerDisplay.addEventListener("blur", () => {
+        const enteredTime = timerDisplay.textContent.trim();
+        if (!/^\d{2}:\d{2}:\d{2}$/.test(enteredTime)) {
+          resetTimerDisplay();
+        }
+      });
     </script>
   </body>
 </html>
