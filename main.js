@@ -81,14 +81,13 @@ app.whenReady().then(() => {
     console.log(arg);
     createWindow(arg);
   });
-
+  ipcMain.on("namnSlumpare", (event, arg) => {
+    console.log(arg);
+    createNamnSlumpare(arg);
+  });
   ipcMain.on("startblock", (event, arg) => {
     console.log(arg);
     createStartBlock(arg);
-    ipcMain.on("namnSlumpare", (event, arg) => {
-      console.log(arg);
-      createNamnSlumpare(arg);
-    });
   });
 });
 
