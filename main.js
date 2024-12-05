@@ -37,6 +37,23 @@ function createNamnSlumpare(path) {
   newWindow.loadFile(path);
 }
 
+function createStartBlock(path) {
+  const newWindow = new BrowserWindow({
+    width: 600,
+    height: 800,
+    transparent: true,
+    alwaysOnTop: true,
+    maximizable: false,
+    titleBarStyle: "hidden",
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
+
+  newWindow.loadFile(path);
+}
+
 function createWindow(path) {
   const newWindow = new BrowserWindow({
     width: 400,
@@ -67,6 +84,10 @@ app.whenReady().then(() => {
   ipcMain.on("namnSlumpare", (event, arg) => {
     console.log(arg);
     createNamnSlumpare(arg);
+  });
+  ipcMain.on("startblock", (event, arg) => {
+    console.log(arg);
+    createStartBlock(arg);
   });
 });
 
