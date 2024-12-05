@@ -1,3 +1,4 @@
+const { ipcRenderer } = require("electron");
 const fs = require("fs");
 
 function expand(button) {
@@ -129,3 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadNote();
   console.log("notes.json loaded");
 });
+
+function exit() {
+  ipcRenderer.send("close-window");
+}

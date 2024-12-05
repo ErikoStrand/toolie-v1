@@ -26,9 +26,23 @@ textarea {
   padding: 10px;
 }
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 #everything {
   display: flex;
   flex-direction: column;
+}
+
+#mover {
+  flex-grow: 1;
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: move;
 }
 
 #notearea {
@@ -76,13 +90,13 @@ textarea {
   display: flex;
 }
 #noteExpand > textarea {
-  flex-grow: 1; /* Allows the textarea to grow within the flex container */
-  flex-shrink: 1; /* Allows the textarea to shrink within the flex container */
-  min-height: 200px; /* Ensures a minimum height */
-  max-height: 100vh; /* Adjusts maximum height based on viewport */
-  width: 100%; /* Ensures it spans the full width */
-  border: 1px solid #ccc; /* Optional: for better visibility */
-  box-sizing: border-box; /* Prevents overflow from padding/border */
-  padding: 10px; /* Adds inner padding */
-  overflow-y: auto; /* Enables scroll if content exceeds height */
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-height: 200px;
+  max-height: 100vh;
+  width: 100%;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  padding: 10px;
+  overflow-y: auto;
 }
