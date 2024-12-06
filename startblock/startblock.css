@@ -1,11 +1,18 @@
-h1 {
-  text-align: center;
+body {
+  margin: 3px;
 }
 input {
+  display: flex;
+  border: none;
   flex-grow: 1;
+  opacity: 0.7;
+  font-size: 1rem;
+  background-color: black;
+  color: white;
 }
-body {
-  background-color: slategray;
+input:hover,
+input:focus {
+  opacity: 1;
 }
 ul {
   margin: 0px;
@@ -15,21 +22,29 @@ textarea {
   resize: none;
   min-width: 100px;
   min-height: 200px;
+  opacity: 0.7;
+  font-size: 1rem;
+  border: none;
+  background-color: black;
+  color: white;
 }
-
-.noteControl {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
+button {
+  border: none;
+  opacity: 0.7;
+  background-color: rgb(107, 12, 107);
+  color: azure;
 }
-.noteControl > * {
-  padding: 10px;
+button:hover {
+  opacity: 0.9;
 }
 
 .flex-row {
+  border-top: 1px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 35px;
+  color: azure;
 }
 
 #everything {
@@ -38,11 +53,26 @@ textarea {
 }
 
 #mover {
+  opacity: 0.7;
+  background-color: rgb(107, 12, 107);
   flex-grow: 1;
   -webkit-app-region: drag;
   -webkit-user-select: none;
   user-select: none;
   cursor: move;
+}
+#closer {
+  opacity: 0.7;
+  background-color: rgb(107, 12, 107);
+}
+
+#mover:hover {
+  background-color: rgb(107, 12, 107);
+  opacity: 0.9;
+}
+#closer:hover {
+  background-color: rgb(107, 12, 107);
+  opacity: 0.9;
 }
 
 #notearea {
@@ -77,10 +107,10 @@ textarea {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  top: 0;
+  top: 35px;
   left: 0;
   z-index: 100;
-  background-color: white;
+  background-color: transparent;
   flex-basis: 40%;
   flex-grow: 1;
   display: flex;
@@ -88,6 +118,11 @@ textarea {
 }
 #noteExpand > div {
   display: flex;
+}
+#noteExpand > button {
+  float: right;
+  padding: 1px;
+  max-width: 160px;
 }
 #noteExpand > textarea {
   flex-grow: 1;
@@ -99,4 +134,7 @@ textarea {
   box-sizing: border-box;
   padding: 10px;
   overflow-y: auto;
+}
+#noteExpand > input {
+  opacity: 0.3;
 }
