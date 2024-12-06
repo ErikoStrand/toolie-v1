@@ -1,3 +1,5 @@
+const { ipcRenderer } = require("electron");
+
 // Get all available classes
 const classes = getClasses();
 let selectedKlass = [];
@@ -21,17 +23,18 @@ function populateDropdown() {
     getNamesFromClass();
   }
 }
-
+function exit() {
+  ipcRenderer.send("close-window");
+}
 function getNamesFromClass() {
   const selectedClass = classDropdown.value;
-  namesList.innerHTML = ""; // Clear previous list
+  namesList.innerHTML = "";
   selectedKlass = getNames(selectedClass);
   displayNames();
 }
 // Display Names for Selected Class
 function displayNames() {
-  namesList.innerHTML = ""; // Clear previous list
-  // Get names for selected class
+  namesList.innerHTML = "";
   selectedKlass.forEach((name) => {
     const div = document.createElement("div");
     const li = document.createElement("li");
@@ -46,16 +49,10 @@ function displayNames() {
 
     // Add delete functionality
     deleteBtn.addEventListener("click", () => {
-      // Remove name from selectedKlass array
       const index = selectedKlass.indexOf(name);
       if (index > -1) {
         selectedKlass.splice(index, 1);
-        // Remove the list item from the DOM
         li.remove();
-
-        // Optional: Update backend/storage if needed
-        // For example, you might want to call a function to update the file
-        // updateClassFile(currentSelectedClass, selectedKlass);
       }
     });
 
@@ -68,7 +65,6 @@ function displayNames() {
   });
 }
 
-// Add New Name to Class
 function addName() {
   let name = document.getElementById("nameAdd");
   if (name.value === "") {
@@ -79,38 +75,42 @@ function addName() {
   name.value = "";
 }
 
-// Event Listeners
 classDropdown.addEventListener("change", getNamesFromClass);
-// Initial Setup
 populateDropdown();
 
 function slumpAName() {
-  // Get all checkboxes in the namesList
   const checkboxes = document.querySelectorAll(
     '#namesList input[type="checkbox"]'
   );
 
-  // Find selected checkboxes
   const selectedCheckboxes = Array.from(checkboxes).filter((cb) => cb.checked);
 
-  // Determine the pool of names to choose from
   let namePool;
 
   if (selectedCheckboxes.length > 0) {
-    // If some checkboxes are selected, use only those names
     namePool = selectedCheckboxes.map(
       (cb) => cb.nextElementSibling.textContent
     );
   } else {
-    // If no checkboxes are selected, use all names from selectedKlass
     namePool = selectedKlass;
   }
 
-  // Choose a random name
   if (namePool.length > 0) {
     let random = Math.floor(Math.random() * namePool.length);
     document.getElementById("slumpName").textContent = namePool[random];
   } else {
     document.getElementById("slumpName").textContent = "No names available";
+  }
+}
+
+function selectAll() {
+  const master = document.getElementById("mastercheckbox");
+  const checkboxes = document.querySelectorAll(
+    '#namesList input[type="checkbox"]'
+  );
+  if (master.checked) {
+    Array.from(checkboxes).map((cb) => (cb.checked = true));
+  } else {
+    Array.from(checkboxes).map((cb) => (cb.checked = false));
   }
 }

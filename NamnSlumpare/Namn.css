@@ -18,16 +18,21 @@
 body {
   font-family: Arial, sans-serif;
   max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
   background-color: #f4f4f4;
 }
-
+#mover {
+  flex-grow: 1;
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: move;
+}
 select,
 ul {
   width: 100%;
   padding: 4px;
   box-sizing: border-box;
+  color: #090909;
 }
 .defaultInput {
   background-color: #f4f4f4;
@@ -39,7 +44,11 @@ ul {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-#flex-row {
+#slumpName {
+  color: #090909;
+}
+.flex-row {
+  padding-top: 6px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -48,6 +57,7 @@ ul {
   list-style-type: none;
   padding: 0;
   border: 1px solid #ddd;
+  margin: 0px;
 }
 #namesList li div {
   display: flex;
