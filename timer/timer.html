@@ -18,17 +18,22 @@
         margin: 20px;
         font-variant-numeric: tabular-nums;
         cursor: pointer;
-        border: 1px dashed transparent;
-        width: 200px;
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+      }
+      .timeField {
+        width: 2ch;
+        font-size: 48px;
         text-align: center;
-        letter-spacing: 1px;
-        display: inline-block;
-      }
-      #timer:focus {
+        border: none;
+        background: transparent;
         outline: none;
-        border-color: #007bff;
+        font-family: inherit;
       }
-      input,
+      input.timeField {
+        border-bottom: 2px solid #007bff;
+      }
       button {
         margin: 10px;
         padding: 10px;
@@ -37,7 +42,11 @@
     </style>
   </head>
   <body>
-    <div id="timer" contenteditable="true">00:00:00</div>
+    <div id="timer">
+      <input type="text" id="hours" class="timeField" value="00" maxlength="2">:
+      <input type="text" id="minutes" class="timeField" value="00" maxlength="2">:
+      <input type="text" id="seconds" class="timeField" value="00" maxlength="2">
+    </div>
     <div>
       <button id="startBtn">Start Timer</button>
       <button id="stopBtn" disabled>Stop Timer</button>
@@ -45,7 +54,12 @@
     </div>
 
     <script>
-      const timerDisplay = document.getElementById("timer");
+      const { ipcRenderer } = require("electron");
+      const path = require("path");
+
+      const hoursField = document.getElementById("hours");
+      const minutesField = document.getElementById("minutes");
+      const secondsField = document.getElementById("seconds");
       const startBtn = document.getElementById("startBtn");
       const stopBtn = document.getElementById("stopBtn");
       const resetBtn = document.getElementById("resetBtn");
@@ -54,61 +68,53 @@
       let totalSeconds = 0;
       let isRunning = false;
 
-      function getSeconds(formatTime) {
-        const time = formatTime.split(":");
-        if (time.length === 3) {
-          return (
-            Number(time[0]) * 3600 +
-            Number(time[1]) * 60 +
-            Number(time[2])
-          );
-        }
-        return 0; // Default if invalid input
+      function getSecondsFromFields() { // Calculate total seconds from input fields
+        const hours = parseInt(hoursField.value) || 0;
+        const minutes = parseInt(minutesField.value) || 0;
+        const seconds = parseInt(secondsField.value) || 0;
+
+        return hours * 3600 + minutes * 60 + seconds;
       }
 
-      function playNotification() {
-        console.log("Time's up!");
+      function playNotification() { // Notification at the end of timer
+        ipcRenderer.send("play-timer-sound");
       }
 
-      startBtn.addEventListener("click", () => {
-        const enteredTime = timerDisplay.textContent.trim();
-        totalSeconds = getSeconds(enteredTime);
+      startBtn.addEventListener("click", () => { // START TIMER
+        totalSeconds = getSecondsFromFields();
 
         if (totalSeconds > 0 && !isRunning) {
           startTimer();
         }
       });
 
-      stopBtn.addEventListener("click", () => {
+      stopBtn.addEventListener("click", () => { // PAUSE TIMER
         clearInterval(timer);
         isRunning = false;
         startBtn.disabled = false;
         stopBtn.disabled = true;
-        timerDisplay.setAttribute("contenteditable", "true");
       });
 
-      resetBtn.addEventListener("click", () => {
+      resetBtn.addEventListener("click", () => { // RESET TIMER
         clearInterval(timer);
         totalSeconds = 0;
         isRunning = false;
         resetTimerDisplay();
       });
 
-      timerDisplay.addEventListener("click", () => {
+      document.getElementById("timer").addEventListener("click", () => { // PAUSE TIMER BY CLICKING TIMER
         if (isRunning) {
           clearInterval(timer);
           isRunning = false;
           startBtn.disabled = false;
           stopBtn.disabled = true;
-          timerDisplay.setAttribute("contenteditable", "true");
         }
       });
 
-      function startTimer() {
+      function startTimer() { // du kommer inte tro vad den hära gör
         isRunning = true;
         startBtn.disabled = true;
         stopBtn.disabled = false;
-        timerDisplay.setAttribute("contenteditable", "false");
 
         timer = setInterval(() => {
           if (totalSeconds > 0) {
@@ -122,89 +128,38 @@
         }, 1000);
       }
 
-      function updateTimerDisplay() {
+      function updateTimerDisplay() { // konverterar tiden till timme,minut,sekund
         const hours = Math.floor(totalSeconds / 3600);
         const minutes = Math.floor((totalSeconds % 3600) / 60);
         const seconds = totalSeconds % 60;
 
-        timerDisplay.textContent = `${hours
-          .toString()
-          .padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds
-          .toString()
-          .padStart(2, "0")}`;
+        hoursField.value = hours.toString().padStart(2, "0");
+        minutesField.value = minutes.toString().padStart(2, "0");
+        secondsField.value = seconds.toString().padStart(2, "0");
       }
 
-      function resetTimerDisplay() {
+      function resetTimerDisplay() { // Reset fields
         startBtn.disabled = false;
         stopBtn.disabled = true;
-        timerDisplay.setAttribute("contenteditable", "true");
-        timerDisplay.textContent = "00:00:00";
+        hoursField.value = "00";
+        minutesField.value = "00";
+        secondsField.value = "00";
       }
 
+      function validateFieldInput(field) { // kollar så det finns bara Int
+        let value = field.value.replace(/\D/g, ""); // bara int
+        if (value.length > 2) value = value.slice(0, 2);
+        const num = Math.min(parseInt(value || "0", 10), field.id === "hours" ? 99 : 59); // Limit
+        field.value = num.toString().padStart(2, "0");
+      }
 
-// Handle typing inside the timer
-timerDisplay.addEventListener("input", (event) => {
-  let content = timerDisplay.textContent.replace(/\D/g, ""); // Remove non-digit characters
-
-  // Limit to 6 digits (HHMMSS)
-  content = content.slice(0, 6).padEnd(6, "0");
-
-  // Format as HH:MM:SS
-  let hours = content.slice(0, 2);
-  let minutes = content.slice(2, 4);
-  let seconds = content.slice(4, 6);
-
-  // Ensure time doesn't exceed 99:59:59
-  if (parseInt(hours) > 99) {
-    hours = "99";
-  }
-  if (parseInt(minutes) > 59) {
-    minutes = "59";
-  }
-  if (parseInt(seconds) > 59) {
-    seconds = "59";
-  }
-
-  // Save the current caret position
-  const selection = window.getSelection();
-  const caretPos = selection.anchorOffset;
-
-  // Update the text content
-  timerDisplay.textContent = `${hours}:${minutes}:${seconds}`;
-
-  // Restore the caret position based on the input
-  const newCaretPos = Math.min(caretPos, timerDisplay.textContent.length);
-  const range = document.createRange();
-  range.setStart(timerDisplay.lastChild, newCaretPos);
-  range.setEnd(timerDisplay.lastChild, newCaretPos);
-  
-  // Set the caret at the correct position
-  selection.removeAllRanges();
-  selection.addRange(range);
-
-  // Prevent input if the total characters exceed the limit
-  if (content.length >= 6) {
-    event.preventDefault();
-  }
-});
-
-
-
-
-
-
-
-
-
-
-
-      // Validate input on blur
-      timerDisplay.addEventListener("blur", () => {
-        const enteredTime = timerDisplay.textContent.trim();
-        if (!/^\d{2}:\d{2}:\d{2}$/.test(enteredTime)) {
-          resetTimerDisplay();
-        }
+      // Blir tomt när man klickar på number
+      [hoursField, minutesField, secondsField].forEach((field) => {
+        field.addEventListener("focus", () => {
+          field.value = "";  // Clear
+        });
       });
+
     </script>
   </body>
 </html>
