@@ -1,6 +1,12 @@
 // Get all available classes
 const classes = getClasses();
 let selectedKlass = [];
+let groups = [];
+let settings = {
+  useRandomNames: false,
+  randomLeader: false
+};
+
 
 // DOM Elements
 const classDropdown = document.getElementById("classDropdown");
@@ -11,6 +17,7 @@ const sortButton = document.getElementById("sortButton");
 const groupsDiv = document.getElementById("groups");
 const randomGroupNameCheckbox = document.getElementById("randomGroupName");
 const randomLeaderCheckbox = document.getElementById("randomLeader");
+const saveGroupsBtn = document.getElementById("saveGroupsBtn");
 
 // Populate Dropdown with Classes
 function populateDropdown() {
@@ -58,9 +65,7 @@ function displayNames() {
         // Remove the list item from the DOM
         li.remove();
 
-        // Optional: Update backend/storage if needed
-        // For example, you might want to call a function to update the file
-        // updateClassFile(currentSelectedClass, selectedKlass);
+
       }
     });
 
@@ -89,32 +94,23 @@ function sortNamesIntoGroups() {
   if (numGroups <= 1) return; // Ensure there are at least 2 groups
 
   const shuffledNames = shuffleArray(selectedKlass.slice());
-  const groups = Array.from({ length: numGroups }, () => []);
+  groups = Array.from({ length: numGroups }, () => []);
+  settings.useRandomNames = randomGroupNameCheckbox.checked;
+  settings.randomLeader = randomLeaderCheckbox.checked;
 
   // Distribute names among groups
   shuffledNames.forEach((name, index) => {
     groups[index % numGroups].push(name);
   });
 
-  // Ensure no group has only one member
-  for (let i = 0; i < groups.length; i++) {
-    if (groups[i].length === 1) {
-      const nameToMove = groups[i].pop();
-      const targetGroup = groups.find(group => group.length > 1);
-      if (targetGroup) {
-        targetGroup.push(nameToMove);
-      }
-    }
-  }
-
   displayGroups(groups);
 }
 
+  
 // Display Groups
 function displayGroups(groups) {
   groupsDiv.innerHTML = ''; // Clear previous groups 
-  const useRandomNames = randomGroupNameCheckbox.checked;
-  const randomLeader = randomLeaderCheckbox.checked;
+  const { useRandomNames, randomLeader } = settings;
   const groupNames = useRandomNames ? getRandomGroupNames(groups.length) : [];
   
   groups.forEach((group, index) => { 
@@ -128,13 +124,12 @@ function displayGroups(groups) {
 
 // Get Random Group Names
 function getRandomGroupNames(numGroups) {
-  const groupNames = [
-    "The Rizzlers", "Citizens of Ohio", "Fanum Taxers", 
-    "Russian Superhackers", "Tech Overlords of New Delhi", 
-    "Quartz Crunchers", "Fat (lol)", "Goons", 
+  const groupNames = [ 
+    "Russian Superhackers",  
+    "Quartz Crunchers",  "Goons", 
     "Kings GG", "These ones suck", 
     "Sorry, Couldn't come up with anything", 
-    "Crack Consumers", "Literally Me"
+    "Literally Me"
   ];
   shuffleArray(groupNames);
   return groupNames.slice(0, numGroups);
@@ -149,10 +144,29 @@ function shuffleArray(array) {
   return array;
 }
 
+// Save Groups as JSON
+function saveGroupsAsJSON() {
+  if (groups.length === 0) {
+    alert("Groups are not yet created. Please sort names into groups first.");
+    return;
+  }
+
+  const data = { groups, settings };
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; 
+  a.download = 'groups.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 // Event Listeners
 classDropdown.addEventListener("change", getNamesFromClass);
 addNameBtn.addEventListener("click", addName);
 sortButton.addEventListener("click", sortNamesIntoGroups);
+saveGroupsBtn.addEventListener("click", saveGroupsAsJSON);
 
 // Initial Setup
 populateDropdown();

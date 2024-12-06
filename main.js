@@ -54,6 +54,22 @@ function createStartBlock(path) {
   newWindow.loadFile(path);
 }
 
+function createGroupie(path) {
+  const newWindow = new BrowserWindow({
+    width: 720,
+    height: 1280,
+    transparent: true,
+    alwaysOnTop: true,
+    maximizable: false,
+    titleBarStyle: "hidden",
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
+
+  newWindow.loadFile(path);
+}
 function createWindow(path) {
   const newWindow = new BrowserWindow({
     width: 400,
@@ -89,6 +105,9 @@ app.whenReady().then(() => {
     console.log(arg);
     createStartBlock(arg);
   });
+  ipcMain.on("groupie", (event, arg) => {
+    console.log(arg);
+    createGroupie(arg);
   ipcMain.on("namnSlumpare", (event, arg) => {
     console.log(arg);
     createNamnSlumpare(arg);
