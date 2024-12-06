@@ -1,31 +1,52 @@
+const { ipcRenderer } = require("electron");
 const fs = require("fs");
+const addButton = document.getElementById("add");
+const saveButton = document.getElementById("save");
 
 function expand(button) {
   const li = button.closest("li");
   li.setAttribute("id", "noteExpand");
+  addButton.style.display = "none";
+  saveButton.style.display = "none";
 
-  // Change button to "Collapse"
+  // Select all <li> elements with id "note"
+  const allNotes = document.querySelectorAll("#note");
+
+  // Filter out the closest <li> element
+  const filteredNotes = Array.from(allNotes).filter((note) => note !== li);
+
+  filteredNotes.forEach((note) => {
+    note.style.visibility = "hidden";
+  });
+
+  console.log(filteredNotes);
+
   button.textContent = "Minska";
   button.onclick = function () {
     collapse(this);
   };
 }
-
 function collapse(button) {
-  const li = button.closest("li"); // Get the closest 'li' element
+  const li = button.closest("li");
   li.setAttribute("id", "note");
+  addButton.style.display = "initial";
+  saveButton.style.display = "initial";
 
-  // Change button back to "Expand"
+  const allNotes = document.querySelectorAll("#note");
+
+  allNotes.forEach((note) => {
+    note.style.visibility = "visible";
+  });
+
   button.textContent = "Expandera";
   button.onclick = function () {
     expand(this);
   };
 }
 
-function addNewTextarea() {
+function addNewNote() {
   const notearea = document.getElementById("notearea");
 
-  //defining elements
   let li = document.createElement("li");
   let div = document.createElement("div");
   let input = document.createElement("input");
@@ -33,7 +54,6 @@ function addNewTextarea() {
   let del_button = document.createElement("button");
   let exp_button = document.createElement("button");
 
-  //setting atributes to elements
   li.setAttribute("id", "note");
   input.type = "text";
   input.setAttribute("placeholder", "Anteckning");
@@ -46,7 +66,6 @@ function addNewTextarea() {
     expand(this);
   };
 
-  //putting all the elements together
   div.appendChild(input);
   div.appendChild(exp_button);
   div.appendChild(del_button);
@@ -55,7 +74,6 @@ function addNewTextarea() {
   notearea.appendChild(li);
 }
 
-//functions for the buttonsd controlling it's specific note
 function resizeTextarea(textarea) {
   textarea.style.width = "auto";
   textarea.style.height = this.scrollheight + "px";
@@ -68,13 +86,13 @@ function del(button) {
 function saveNotes() {
   const notes = document.querySelectorAll("#note");
 
+  //goes through all the elements in the notes object
   const data = Array.from(notes).map((note) => {
     const input = note.querySelector("input");
     const textarea = note.querySelector("textarea");
 
     return {
       title: input.value.trim(),
-
       textarea: textarea.value.trim(),
     };
   });
@@ -83,7 +101,7 @@ function saveNotes() {
   fs.writeFileSync("data/notes.json", jsonString, "utf-8");
 }
 
-function load() {
+function loadNote() {
   const notearea = document.getElementById("notearea");
 
   if (fs.existsSync("data/notes.json")) {
@@ -92,6 +110,7 @@ function load() {
 
     notearea.innerHTML = "";
 
+    //iterates for every note that is in the json file
     notes.forEach((note) => {
       const li = document.createElement("li");
       const div = document.createElement("div");
@@ -100,13 +119,14 @@ function load() {
       const del_button = document.createElement("button");
       const exp_button = document.createElement("button");
 
+      //setting the attributes to the elements and their respective values taken from the json file
       li.setAttribute("id", "note");
       input.type = "text";
       input.setAttribute("placeholder", "Anteckning");
-      input.value = note.title; // Set the title from the JSON
-      textarea.value = note.textarea; // Set the textarea content from the JSON
+      input.value = note.title;
+      textarea.value = note.textarea;
+      textarea.setAttribute("spellcheck", "false");
 
-      // Set up delete button
       del_button.textContent = "Radera anteckning";
       del_button.onclick = function () {
         del(this);
@@ -129,6 +149,16 @@ function load() {
   }
 }
 
+//loads in the notes when the html file has been loaded in/read through
 document.addEventListener("DOMContentLoaded", () => {
-  load();
+  loadNote();
+  console.log("notes.json loaded");
 });
+
+function exit() {
+  ipcRenderer.send("close-window");
+}
+
+function test() {
+  console.log("a test for testing");
+}
