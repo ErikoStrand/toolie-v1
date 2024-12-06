@@ -108,9 +108,10 @@ app.whenReady().then(() => {
   ipcMain.on("groupie", (event, arg) => {
     console.log(arg);
     createGroupie(arg);
-  ipcMain.on("namnSlumpare", (event, arg) => {
-    console.log(arg);
-    createNamnSlumpare(arg);
+    ipcMain.on("namnSlumpare", (event, arg) => {
+      console.log(arg);
+      createNamnSlumpare(arg);
+    });
   });
 });
 
