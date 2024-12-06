@@ -85,10 +85,10 @@ app.whenReady().then(() => {
   ipcMain.on("startblock", (event, arg) => {
     console.log(arg);
     createStartBlock(arg);
-    ipcMain.on("namnSlumpare", (event, arg) => {
-      console.log(arg);
-      createNamnSlumpare(arg);
-    });
+  });
+  ipcMain.on("namnSlumpare", (event, arg) => {
+    console.log(arg);
+    createNamnSlumpare(arg);
   });
 });
 

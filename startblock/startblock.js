@@ -1,9 +1,25 @@
 const { ipcRenderer } = require("electron");
 const fs = require("fs");
+const addButton = document.getElementById("add");
+const saveButton = document.getElementById("save");
 
 function expand(button) {
   const li = button.closest("li");
   li.setAttribute("id", "noteExpand");
+  addButton.style.display = "none";
+  saveButton.style.display = "none";
+
+  // Select all <li> elements with id "note"
+  const allNotes = document.querySelectorAll("#note");
+
+  // Filter out the closest <li> element
+  const filteredNotes = Array.from(allNotes).filter((note) => note !== li);
+
+  filteredNotes.forEach((note) => {
+    note.style.visibility = "hidden";
+  });
+
+  console.log(filteredNotes);
 
   button.textContent = "Minska";
   button.onclick = function () {
@@ -13,6 +29,14 @@ function expand(button) {
 function collapse(button) {
   const li = button.closest("li");
   li.setAttribute("id", "note");
+  addButton.style.display = "initial";
+  saveButton.style.display = "initial";
+
+  const allNotes = document.querySelectorAll("#note");
+
+  allNotes.forEach((note) => {
+    note.style.visibility = "visible";
+  });
 
   button.textContent = "Expandera";
   button.onclick = function () {
@@ -101,6 +125,7 @@ function loadNote() {
       input.setAttribute("placeholder", "Anteckning");
       input.value = note.title;
       textarea.value = note.textarea;
+      textarea.setAttribute("spellcheck", "false");
 
       del_button.textContent = "Radera anteckning";
       del_button.onclick = function () {
@@ -132,4 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function exit() {
   ipcRenderer.send("close-window");
+}
+
+function test() {
+  console.log("a test for testing");
 }

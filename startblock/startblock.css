@@ -1,10 +1,15 @@
-h1 {
-  text-align: center;
+body {
+  margin: 3px;
 }
+
 input {
+  display: flex;
+  border: none;
   flex-grow: 1;
-  opacity: 0.3;
+  opacity: 0.7;
   font-size: 1rem;
+  background-color: black;
+  color: white;
 }
 input:hover,
 input:focus {
@@ -18,41 +23,39 @@ textarea {
   resize: none;
   min-width: 100px;
   min-height: 200px;
-  background-color: transparent;
+  opacity: 0.7;
   font-size: 1rem;
   border: none;
+  background-color: black;
+  color: white;
 }
 button {
-  opacity: 0.2;
+  border: none;
+  opacity: 0.7;
   background-color: rgb(107, 12, 107);
+  color: azure;
 }
 button:hover {
   opacity: 1;
 }
 
 .flex-row {
+  border-top: 1px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-radius: 1px;
-}
-.flex-row-hidden {
-  display: hidden;
+  height: 35px;
+  color: azure;
+  background-color: rgb(107, 12, 107) 50%;
 }
 
-.mover {
-  background-color: color-mix(
-    in hsl shorter hue,
-    rgba(0, 174, 255, 0.884) 20%,
-    rgba(184, 30, 30, 0.884) 20%
-  );
+#mover:hover {
+  background-color: rgb(107, 12, 107);
+  opacity: 0.9;
 }
-.closer {
-  background-color: color-mix(
-    in hsl shorter hue,
-    rgba(0, 174, 255, 0.884) 20%,
-    rgba(184, 30, 30, 0.884) 20%
-  );
+#closer:hover {
+  background-color: rgb(107, 12, 107);
+  opacity: 0.9;
 }
 
 #everything {
@@ -61,6 +64,7 @@ button:hover {
 }
 
 #mover {
+  float: left;
   flex-grow: 1;
   -webkit-app-region: drag;
   -webkit-user-select: none;
@@ -100,7 +104,7 @@ button:hover {
   width: 100vw;
   height: 100vh;
   position: fixed;
-  top: 0;
+  top: 35px;
   left: 0;
   z-index: 100;
   background-color: transparent;
