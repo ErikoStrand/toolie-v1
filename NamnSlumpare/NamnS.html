@@ -50,4 +50,11 @@
     </div>
     <ul id="namesList"></ul>
   </body>
+  <script>
+    function exit() {
+      const { ipcRenderer } = require("electron");
+
+      ipcRenderer.send("close-window");
+    }
+  </script>
 </html>
