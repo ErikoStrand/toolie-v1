@@ -1,13 +1,4 @@
-.defaultButton {
-    background-color: #45155b;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
+
   .defaultDelete {
     background: none;
     border: none;
@@ -23,8 +14,14 @@
     background-color: #f4f4f4;
   }
   
+button {
+  background-color: #45155b;
+  color: #f4f4f4;
+  padding: 4px;
+}
 
-  
+
+
   select,
   ul {
     width: 100%;
@@ -68,8 +65,3 @@
   #namesList li:last-child {
     border-bottom: none;
   }
-  
-  .add-btn:hover {
-    background-color: #472856;
-  }
-  
