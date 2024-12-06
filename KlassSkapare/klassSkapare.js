@@ -78,3 +78,71 @@ function getNames(className) {
     return null;
   }
 }
+
+const classDropdown = document.getElementById("classDropdown");
+const namesList = document.getElementById("namesList");
+const classes02 = getClasses();
+
+// Populate Dropdown with Classes
+function populateDropdown() {
+  const classDropdown = document.getElementById("classDropdown");
+
+  // Clear and populate dropdown
+  classDropdown.innerHTML = '<option value="">--Välj en klass--</option>';
+  classes02.forEach((className) => {
+    const option = document.createElement("option");
+    option.value = className;
+    option.textContent = className;
+    classDropdown.appendChild(option);
+  });
+}
+
+function getNamesFromClass() {
+  const selectedClass = classDropdown.value;
+  namesList.innerHTML = ""; // Clear previous list
+  selectedKlass = getNames(selectedClass);
+  displayNames();
+}
+
+// Display Names for Selected Class
+function displayNames() {
+  namesList.innerHTML = ""; // Clear previous list
+  // Get names for selected class
+  selectedKlass.forEach((name) => {
+    const li = document.createElement("li");
+    const div = document.createElement("div");
+    const p = document.createElement("p");
+    const deleteBtn = document.createElement("button");
+
+    p.textContent = name;
+    deleteBtn.textContent = "🗑️";
+    deleteBtn.classList.add("defaultDelete");
+
+    // Add delete functionality
+    deleteBtn.addEventListener("click", () => {
+      // Remove name from selectedKlass array
+      const index = selectedKlass.indexOf(name);
+      if (index > -1) {
+        selectedKlass.splice(index, 1);
+        // Remove the list item from the DOM
+        li.remove();
+
+        // Optional: Update backend/storage if needed
+        // For example, you might want to call a function to update the file
+        // updateClassFile(currentSelectedClass, selectedKlass);
+      }
+    });
+
+    namesList.appendChild(li);
+
+    div.appendChild(p);
+    li.appendChild(div);
+    li.appendChild(deleteBtn);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  populateDropdown();
+});
+
+classDropdown.addEventListener("change", getNamesFromClass);
