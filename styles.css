@@ -13,16 +13,17 @@
   margin-left: 16px;
 }
 
-svg:hover:not(.exitButton) {
+.normalButton:hover {
   fill: #a62883;
-  transition: ease-in-out 0.2s;
+  background-color: #e3dae0;
+  transition: ease-in-out 0.4s;
 }
 .exitButton {
   height: 18px;
   border-radius: 20px;
   padding: 6px 4px;
   background-color: #db0e00;
-  fill: #e3dae0;
+  fill: #faf8f7;
 }
 .exitButton:hover {
   fill: #681223;
@@ -41,5 +42,5 @@ svg:hover:not(.exitButton) {
   border-radius: 20px;
   padding: 6px 4px;
   background-color: #a62883;
-  fill: #e3dae0;
+  fill: #faf8f7;
 }
