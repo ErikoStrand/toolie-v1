@@ -1,38 +1,60 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Namnslumpare</title>
+    <title>Class Names Management</title>
+    <script defer src="../KlassSkapare/klassSkapare.js"></script>
+    <script defer src="mainS.js"></script>
     <link rel="stylesheet" href="Namn.css" />
-    <script defer src="../utils.js"></script>
   </head>
   <body>
-    <div class="container">
-      <h1>Namnslumpare</h1>
-
-      <!-- Formulär för att lägga till namn -->
-      <div class="input-group">
-        <label for="nameInput">Skriv in namn (separera med kommatecken):</label>
-        <input type="text" id="nameInput" placeholder="Ex: Anna, Erik, Johan" />
+    <div class="flex-row">
+      <div id="mover">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+          width="20px"
+        >
+          <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+          <path
+            d="M128 136c0-22.1-17.9-40-40-40L40 96C17.9 96 0 113.9 0 136l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm0 192c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm32-192l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40zM288 328c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm32-192l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40zM448 328c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48z"
+          />
+        </svg>
       </div>
-
-      <!-- Formulär för att välja antal namn att slumpa -->
-      <div class="input-group">
-        <label for="numNames">Antal namn att slumpa:</label>
-        <input type="number" id="numNames" value="1" min="1" />
-      </div>
-
-      <!-- Slumpa-knappen -->
-      <button id="generateButton">Slumpa namn</button>
-
-      <!-- Visar det slumpade namnet -->
-      <div id="result">
-        <p><strong>Slumpade namn:</strong></p>
-        <ul id="randomNamesList"></ul>
+      <div id="closer" onclick="exit()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+          width="20px"
+        >
+          <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+          <path
+            d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"
+          />
+        </svg>
       </div>
     </div>
-
-    <script src="mainS.js"></script>
+    <select id="classDropdown"></select>
+    <div class="flex-row">
+      <button class="defaultButton" onclick="slumpAName()">Slump me</button>
+      <span>
+        <input class="defaultInput" type="text" id="nameAdd" />
+        <button class="defaultButton" onclick="addName()">Addera</button>
+      </span>
+    </div>
+    <h2 id="slumpName"></h2>
+    <div>
+      <input type="checkbox" id="mastercheckbox" onclick="selectAll()" /><span
+        >Välj All</span
+      >
+    </div>
+    <ul id="namesList"></ul>
   </body>
+  <script>
+    function exit() {
+      const { ipcRenderer } = require("electron");
+
+      ipcRenderer.send("close-window");
+    }
+  </script>
 </html>

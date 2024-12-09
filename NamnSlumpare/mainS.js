@@ -1,49 +1,113 @@
-// Funktion för att slumpa namn
-function getRandomNames(names, numNames) {
+const { ipcRenderer } = require("electron");
 
-  let shuffled = names.slice(); // Kopiera listan för att inte förändra originalet
-  shuffled.sort(() => Math.random() - 0.5); // Blanda listan
-  return shuffled.slice(0, numNames); // Returnera ett urval av slumpade namn
+// Get all available classes
+const classes = getClasses();
+let selectedKlass = [];
+// DOM Elements
+
+// Populate Dropdown with Classes
+function populateDropdown() {
+  classes.forEach((classKey) => {
+    const option = document.createElement("option");
+    option.value = classKey;
+    option.textContent = classKey;
+    classDropdown.appendChild(option);
+  });
+
+  // Select first class by default
+  if (classes.length > 0) {
+    classDropdown.value = classes[0];
+    getNamesFromClass();
+  }
+}
+function exit() {
+  ipcRenderer.send("close-window");
+}
+function getNamesFromClass() {
+  const selectedClass = classDropdown.value;
+  namesList.innerHTML = "";
+  selectedKlass = getNames(selectedClass);
+  displayNames();
+}
+// Display Names for Selected Class
+function displayNames() {
+  namesList.innerHTML = "";
+  selectedKlass.forEach((name) => {
+    const div = document.createElement("div");
+    const li = document.createElement("li");
+    const checkbox = document.createElement("input");
+    const p = document.createElement("p");
+    const deleteBtn = document.createElement("button");
+
+    checkbox.type = "checkbox";
+    p.textContent = name;
+    deleteBtn.textContent = "🗑️";
+    deleteBtn.classList.add("defaultDelete");
+
+    // Add delete functionality
+    deleteBtn.addEventListener("click", () => {
+      const index = selectedKlass.indexOf(name);
+      if (index > -1) {
+        selectedKlass.splice(index, 1);
+        li.remove();
+      }
+    });
+
+    namesList.appendChild(li);
+
+    div.appendChild(checkbox);
+    div.appendChild(p);
+    li.appendChild(div);
+    li.appendChild(deleteBtn);
+  });
 }
 
-// Eventlyssnare för när knappen trycks
-document
-  .getElementById("generateButton")
-  .addEventListener("click", function () {
-    // Hämta användarens namn och antal namn att slumpa
-    const nameInput = document.getElementById("nameInput").value.trim();
-    const numNames = parseInt(document.getElementById("numNames").value, 10);
+function addName() {
+  let name = document.getElementById("nameAdd");
+  if (name.value === "") {
+    return;
+  }
+  selectedKlass.push(name.value);
+  displayNames();
+  name.value = "";
+}
 
-    // Kontrollera om namnlistan är tom
-    if (!nameInput) {
+classDropdown.addEventListener("change", getNamesFromClass);
+populateDropdown();
 
-      alert("Vänligen skriv in minst ett namn.");
-      return;
-    }
+function slumpAName() {
+  const checkboxes = document.querySelectorAll(
+    '#namesList input[type="checkbox"]'
+  );
 
-    // Dela upp namnsträngen i en array
-    const names = nameInput
-      .split(",")
-      .map((name) => name.trim())
-      .filter((name) => name !== "");
+  const selectedCheckboxes = Array.from(checkboxes).filter((cb) => cb.checked);
 
-    // Kontrollera att vi har tillräckligt med namn
-    if (names.length < numNames) {
-      alert("Det finns inte tillräckligt med namn i listan.");
-      return;
-    }
+  let namePool;
 
-    // Slumpa namnen
-    const randomNames = getRandomNames(names, numNames);
+  if (selectedCheckboxes.length > 0) {
+    namePool = selectedCheckboxes.map(
+      (cb) => cb.nextElementSibling.textContent
+    );
+  } else {
+    namePool = selectedKlass;
+  }
 
-    // Visa resultatet
-    const randomNamesList = document.getElementById("randomNamesList");
-    randomNamesList.innerHTML = ""; // Rensa tidigare resultat
+  if (namePool.length > 0) {
+    let random = Math.floor(Math.random() * namePool.length);
+    document.getElementById("slumpName").textContent = namePool[random];
+  } else {
+    document.getElementById("slumpName").textContent = "No names available";
+  }
+}
 
-
-    randomNames.forEach((name) => {
-      const listItem = document.createElement("li");
-      listItem.textContent = name;
-      randomNamesList.appendChild(listItem);
-    });
-  });
+function selectAll() {
+  const master = document.getElementById("mastercheckbox");
+  const checkboxes = document.querySelectorAll(
+    '#namesList input[type="checkbox"]'
+  );
+  if (master.checked) {
+    Array.from(checkboxes).map((cb) => (cb.checked = true));
+  } else {
+    Array.from(checkboxes).map((cb) => (cb.checked = false));
+  }
+}

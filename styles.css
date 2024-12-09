@@ -14,17 +14,26 @@
 }
 
 svg:hover:not(#exitButton) {
-  fill: #157285;
-  width: 35px;
+  fill: #a62883;
+  transition: ease-in-out 0.2s;
 }
 
 #exitButton:hover {
   fill: #681223;
-  width: 35px;
+  transition: ease-in-out 0.2s;
 }
 
 .draggable-img {
   -webkit-app-region: drag;
   -webkit-user-select: none;
+  user-select: none;
   cursor: move;
+}
+
+.normalButton {
+  height: 18px;
+  border-radius: 20px;
+  padding: 6px 4px;
+  background-color: #a62883;
+  fill: #e3dae0;
 }

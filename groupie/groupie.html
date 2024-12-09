@@ -2,68 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sort Names</title>
-    <style> .hidden { display: none; } </style>
+    <script defer src="../KlassSkapare/klassSkapare.js"></script>
+    <script defer src="rendererS.js"></script>
+    
+    <title>Group Sorter</title>
     <link rel="stylesheet" href="groupie.css"> 
-</head>
-
-
-
 <body>
-    <div class="container">
-    <h1>Grupp Skapare</h1>
-    <div class="saveLoadBtn">
-        <input type="file" id="loadInput">
-        <button id="saveButton">Save Names</button>
-        <button id="loadButton">Load Names</button>
-    </div>
+    <div class="flex-row">
+        <div id="mover">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+            width="20px"
+          >
+            <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path
+              d="M128 136c0-22.1-17.9-40-40-40L40 96C17.9 96 0 113.9 0 136l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm0 192c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm32-192l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40zM288 328c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm32-192l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40zM448 328c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48z"
+            />
+          </svg>
+        </div>
+        <div id="closer" onclick="exit()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+            width="20px"
+          >
+            <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path
+              d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"
+            />
+          </svg>
+        </div>
+      </div>
 
-    <div>
-        <form id="nameForm">
-            <label> <input type="checkbox" id="toggleInput"> Check to show input field </label> 
-            <input type="text" id="textInput" class="hidden" placeholder="Enter text here">
-            <button type="submit" id="textInput" class="">Add Name</button>
+
+
+
+    <div class="ui">
+        <form>
+            <label for="classDropdown">Select Class:</label>
+            <select id="classDropdown"></select>
+            <br>
+            <label for="nameAdd">Add Name:</label>
+            <input type="text" id="nameAdd">
+            <button type="button" id="addNameBtn">Add Name</button>
+            <br>
+            <label for="randomGroupName">Randomize Group Names</label>
+            <input type="checkbox" id="randomGroupName">
+            <br>
+            <label for="groupLeader">Randomize a Group Leader</label>
+            <input type="checkbox" id="randomLeader">
+            <br>
+            <label for="numGroupsInput">Number of Groups:</label>
+            <input type="number" id="numGroupsInput">
+            <button type="button" id="sortButton">Sort</button>
         </form>
-    
-        <script> const toggleInput = document.getElementById('toggleInput'); 
-        const textInput = document.getElementById('textInput'); 
-        toggleInput.addEventListener('change', () => { 
-        if (toggleInput.checked) { 
-        textInput.classList.remove('hidden');
-         } else { 
-            textInput.classList.add('hidden'); } }); 
-        </script>
     </div>
-    
-    
-    <form> 
-        <label> 
-            <input type="radio" name="groupOption" id="numGroupsOption" checked> Number of Groups 
-        </label> 
-        <input type="number" id="numGroupsInput"> 
-        <br> 
-        <label> 
-            <input type="radio" name="groupOption" id="numMembersOption"> Number of Members 
-        </label> 
-        <input type="number" id="numMembersInput" class="hidden"> 
-        <br> 
-        <label> 
-            <input type="checkbox" id="designateLeader"> Designate Leader 
-        </label> 
-        <br> 
-        <label> 
-            <input type="checkbox" id="randomGroupName"> Random Group Name 
-        </label> 
-        <br> 
-        <button type="button" id="sortButton">Sort</button> 
-    </form>
 
+    <ul id="namesList"></ul> <!-- Display added names -->
     <div id="groups"></div>
+    <button id="saveGroupsBtn">Save Group</button>
 
-    <script src="script.js"> </script>
-
-    <script src="renderer.js"></script>
-    </div>
 </body>
 </html>

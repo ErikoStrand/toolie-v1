@@ -1,76 +1,82 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.defaultButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
-
+.defaultDelete {
+  background: none;
+  border: none;
+  padding: 4px 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  background-color: #f4f4f4;
 }
-
-.container {
-    text-align: center;
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+#mover {
+  flex-grow: 1;
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: move;
 }
-
-h1 {
-    margin-bottom: 20px;
-}
-
-.input-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 14px;
-}
-
-input[type="text"],
-input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-#result {
-    margin-top: 20px;
-}
-
+select,
 ul {
-    list-style-type: none;
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+  color: #090909;
+}
+.defaultInput {
+  background-color: #f4f4f4;
+  color: black;
+  border: solid 2px #45a049;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#slumpName {
+  color: #090909;
+}
+.flex-row {
+  padding-top: 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#namesList {
+  list-style-type: none;
+  padding: 0;
+  border: 1px solid #ddd;
+  margin: 0px;
+}
+#namesList li div {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+#namesList li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 2px;
+  border-bottom: 1px solid #eee;
+  background-color: white;
+}
+#namesList li:last-child {
+  border-bottom: none;
 }
 
-li {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 5px 0;
+.add-btn:hover {
+  background-color: #45a049;
 }

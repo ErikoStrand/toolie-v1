@@ -3,48 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Class Manager</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-      }
-      .form-group {
-        margin-bottom: 15px;
-      }
-      input,
-      button {
-        padding: 10px;
-        font-size: 16px;
-      }
-      button {
-        cursor: pointer;
-      }
-      ul {
-        list-style-type: none;
-        padding: 0;
-      }
-      li {
-        margin: 5px 0;
-      }
-    </style>
+    <title>Klass Creator</title>
+    <script defer src="klassSkapare.js"></script>
+    <link rel="stylesheet" href="klassSkapare.css" />
   </head>
   <body>
-    <h1>Class Manager</h1>
-    <div>
-      <div class="form-group">
-        <label for="className">Class Name:</label><br />
-        <input type="text" id="className" placeholder="Enter class name" />
+    <div class="flex-row">
+      <div id="mover">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+          width="20px"
+        >
+          <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com/ License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+          <path
+            d="M128 136c0-22.1-17.9-40-40-40L40 96C17.9 96 0 113.9 0 136l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm0 192c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm32-192l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40zM288 328c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48zm32-192l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40zM448 328c0-22.1-17.9-40-40-40l-48 0c-22.1 0-40 17.9-40 40l0 48c0 22.1 17.9 40 40 40l48 0c22.1 0 40-17.9 40-40l0-48z"
+          />
+        </svg>
       </div>
-      <div class="form-group">
-        <label for="studentName">Add Student:</label><br />
-        <input type="text" id="studentName" placeholder="Enter student name" />
-        <button onclick="addStudent()">Add</button>
+      <div id="closer" onclick="exit()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+          width="20px"
+        >
+          <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com/ License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+          <path
+            d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"
+          />
+        </svg>
       </div>
-      <ul id="studentList"></ul>
-      <button onclick="saveClass()">Save Class</button>
     </div>
 
     <script src="klassSkapare.js"></script>
+    <h1>Klass Creator</h1>
+    <div>
+      <div class="form-group">
+        <label for="className">Klass namn:</label><br />
+        <input type="text" id="className" placeholder="Skriv Class Name" />
+      </div>
+      <div class="form-group">
+        <label for="studentName">Lägg Student:</label><br />
+        <input type="text" id="studentName" placeholder="Enter Elev Name" />
+        <button onclick="addStudent()">Add</button>
+      </div>
+      <ul id="studentList"></ul>
+      <button onclick="saveClass()">Spara Klass</button>
+    </div>
+    <select id="classDropdown"></select>
+
+    <ul id="namesList"></ul>
   </body>
 </html>
+<script>
+  function exit() {
+    ipcRenderer.send("close-window");
+  }
+</script>

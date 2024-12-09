@@ -4,12 +4,12 @@ const path = require("path");
 
 function createMainWindow() {
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 170,
+    height: 400,
     maximizable: false,
     alwaysOnTop: true,
-    titleBarStyle: "hidden",
     transparent: true,
+    titleBarStyle: "hidden",
     resizable: false,
     webPreferences: {
       nodeIntegration: true,
@@ -20,12 +20,57 @@ function createMainWindow() {
 
   mainWindow.loadFile("index.html");
 }
+function createNamnSlumpare(path) {
+  const newWindow = new BrowserWindow({
+    width: 600,
+    height: 800,
+    transparent: true,
+    alwaysOnTop: true,
+    maximizable: false,
+    titleBarStyle: "hidden",
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
 
+  newWindow.loadFile(path);
+}
+
+function createStartBlock(path) {
+  const newWindow = new BrowserWindow({
+    width: 600,
+    height: 800,
+    transparent: true,
+    alwaysOnTop: true,
+    maximizable: false,
+    titleBarStyle: "hidden",
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
+
+  newWindow.loadFile(path);
+}
+
+function createGroupie(path) {
+  const newWindow = new BrowserWindow({
+    width: 720,
+    height: 1280,
+    transparent: true,
+    alwaysOnTop: true,
+    maximizable: false,
+    titleBarStyle: "hidden",
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
+
+  newWindow.loadFile(path);
+}
 function createWindow(path) {
-  const mainWindow = BrowserWindow.getAllWindows()[0]; // Get main window
-  if (mainWindow) {
-    mainWindow.hide(); // Hide instead of close to preserve app state
-  }
   const newWindow = new BrowserWindow({
     width: 400,
     height: 300,
@@ -38,12 +83,6 @@ function createWindow(path) {
   });
 
   newWindow.loadFile(path);
-
-  newWindow.on("closed", () => {
-    if (mainWindow) {
-      mainWindow.show();
-    }
-  });
 }
 
 // Handle the getPath request
@@ -57,6 +96,22 @@ app.whenReady().then(() => {
   ipcMain.on("newWindow", (event, arg) => {
     console.log(arg);
     createWindow(arg);
+  });
+  ipcMain.on("namnSlumpare", (event, arg) => {
+    console.log(arg);
+    createNamnSlumpare(arg);
+  });
+  ipcMain.on("startblock", (event, arg) => {
+    console.log(arg);
+    createStartBlock(arg);
+  });
+  ipcMain.on("groupie", (event, arg) => {
+    console.log(arg);
+    createGroupie(arg);
+    ipcMain.on("namnSlumpare", (event, arg) => {
+      console.log(arg);
+      createNamnSlumpare(arg);
+    });
   });
 });
 
