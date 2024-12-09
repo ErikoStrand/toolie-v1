@@ -131,9 +131,9 @@
   function openStartblock(button) {
     const { ipcRenderer } = require("electron");
     ipcRenderer.send("startblock", button);
-    function openNamnSlumpare(button) {
-      const { ipcRenderer } = require("electron");
-      ipcRenderer.send("namnSlumpare", button);
-    }
+  }
+  function openNamnSlumpare(button) {
+    const { ipcRenderer } = require("electron");
+    ipcRenderer.send("namnSlumpare", button);
   }
 </script>
