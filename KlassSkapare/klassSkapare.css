@@ -58,3 +58,22 @@ ul {
   user-select: none;
   cursor: move;
 }
+
+.editable-name {
+  min-width: 50px;
+  padding: 2px 5px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.editable-name:hover {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+}
+
+.editable-name:focus {
+  outline: none;
+  background-color: #fff;
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
