@@ -79,8 +79,6 @@ function getNames(className) {
   }
 }
 
-const classDropdown = document.getElementById("classDropdown");
-const namesList = document.getElementById("namesList");
 const classes02 = getClasses();
 
 // Populate Dropdown with Classes
@@ -140,7 +138,8 @@ function displayNames() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const classDropdown = document.getElementById("classDropdown");
+  const namesList = document.getElementById("namesList");
+  classDropdown.addEventListener("change", getNamesFromClass);
   populateDropdown();
 });
-
-classDropdown.addEventListener("change", getNamesFromClass);
