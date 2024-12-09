@@ -79,14 +79,10 @@ function getNames(className) {
   }
 }
 
-const classDropdown = document.getElementById("classDropdown");
-const namesList = document.getElementById("namesList");
 const classes02 = getClasses();
 
 // Populate Dropdown with Classes
 function populateDropdown() {
-  const classDropdown = document.getElementById("classDropdown");
-
   // Clear and populate dropdown
   classDropdown.innerHTML = '<option value="">--Välj en klass--</option>';
   classes02.forEach((className) => {
@@ -142,7 +138,8 @@ function displayNames() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const classDropdown = document.getElementById("classDropdown");
+  const namesList = document.getElementById("namesList");
+  classDropdown.addEventListener("change", getNamesFromClass);
   populateDropdown();
 });
-
-classDropdown.addEventListener("change", getNamesFromClass);

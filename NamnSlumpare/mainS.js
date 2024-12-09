@@ -1,12 +1,7 @@
-const { ipcRenderer } = require("electron");
-
 // Get all available classes
 const classes = getClasses();
 let selectedKlass = [];
 // DOM Elements
-const classDropdown = document.getElementById("classDropdown");
-const namesList = document.getElementById("namesList");
-const addNameBtn = document.getElementById("addNameBtn");
 
 // Populate Dropdown with Classes
 function populateDropdown() {
