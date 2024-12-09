@@ -3,14 +3,15 @@ const { exec } = require("child_process");
 const path = require("path");
 
 function createMainWindow() {
+  //Första main Window med alla knappar
   const mainWindow = new BrowserWindow({
-    width: 145,
-    height: 330,
+    width: 170,
+    height: 400,
     maximizable: false,
     alwaysOnTop: true,
     transparent: true,
     titleBarStyle: "hidden",
-    resizable: false,
+    resizable: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -20,14 +21,16 @@ function createMainWindow() {
 
   mainWindow.loadFile("index.html");
 }
-function createNamnSlumpare(path) {
+
+function createWindow(path, width, height) {
   const newWindow = new BrowserWindow({
-    width: 600,
-    height: 800,
+    width: width,
+    height: height,
+    maximizable: false,
+    alwaysOnTop: true,
     transparent: true,
-    alwaysOnTop: true,
-    maximizable: false,
     titleBarStyle: "hidden",
+    resizable: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -37,37 +40,7 @@ function createNamnSlumpare(path) {
   newWindow.loadFile(path);
 }
 
-function createStartBlock(path) {
-  const newWindow = new BrowserWindow({
-    width: 600,
-    height: 800,
-    transparent: true,
-    alwaysOnTop: true,
-    maximizable: false,
-    titleBarStyle: "hidden",
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
-    },
-  });
-
-  newWindow.loadFile(path);
-}
-
-function createWindow(path) {
-  const newWindow = new BrowserWindow({
-    width: 400,
-    height: 300,
-    alwaysOnTop: true,
-    maximizable: false,
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
-    },
-  });
-
-  newWindow.loadFile(path);
-}
+//////////////////////////////////////////////
 
 // Handle the getPath request
 ipcMain.handle("getPath", (event, name) => {
@@ -77,21 +50,9 @@ ipcMain.handle("getPath", (event, name) => {
 app.whenReady().then(() => {
   createMainWindow();
 
-  ipcMain.on("newWindow", (event, arg) => {
+  ipcMain.on("newWindow", (event, arg, width, height) => {
     console.log(arg);
-    createWindow(arg);
-  });
-  ipcMain.on("namnSlumpare", (event, arg) => {
-    console.log(arg);
-    createNamnSlumpare(arg);
-  });
-  ipcMain.on("startblock", (event, arg) => {
-    console.log(arg);
-    createStartBlock(arg);
-  });
-  ipcMain.on("namnSlumpare", (event, arg) => {
-    console.log(arg);
-    createNamnSlumpare(arg);
+    createWindow(arg, width, height);
   });
 });
 

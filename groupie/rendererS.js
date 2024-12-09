@@ -1,6 +1,12 @@
 // Get all available classes
 const classes = getClasses();
 let selectedKlass = [];
+let groups = [];
+let settings = {
+  useRandomNames: false,
+  randomLeader: false
+};
+
 
 // DOM Elements
 const classDropdown = document.getElementById("classDropdown");
@@ -11,6 +17,7 @@ const sortButton = document.getElementById("sortButton");
 const groupsDiv = document.getElementById("groups");
 const randomGroupNameCheckbox = document.getElementById("randomGroupName");
 const randomLeaderCheckbox = document.getElementById("randomLeader");
+const saveGroupsBtn = document.getElementById("saveGroupsBtn");
 
 // Populate Dropdown with Classes
 function populateDropdown() {
@@ -58,9 +65,7 @@ function displayNames() {
         // Remove the list item from the DOM
         li.remove();
 
-        // Optional: Update backend/storage if needed
-        // For example, you might want to call a function to update the file
-        // updateClassFile(currentSelectedClass, selectedKlass);
+
       }
     });
 
@@ -85,11 +90,16 @@ function addName() {
 
 // Sort Names into Groups
 function sortNamesIntoGroups() {
-  const numGroups = Math.min(parseInt(numGroupsInput.value) || 0, selectedKlass.length);
+  const numGroups = Math.min(
+    parseInt(numGroupsInput.value) || 0,
+    selectedKlass.length
+  );
   if (numGroups <= 1) return; // Ensure there are at least 2 groups
 
   const shuffledNames = shuffleArray(selectedKlass.slice());
-  const groups = Array.from({ length: numGroups }, () => []);
+  groups = Array.from({ length: numGroups }, () => []);
+  settings.useRandomNames = randomGroupNameCheckbox.checked;
+  settings.randomLeader = randomLeaderCheckbox.checked;
 
   // Distribute names among groups
   shuffledNames.forEach((name, index) => {
@@ -100,7 +110,7 @@ function sortNamesIntoGroups() {
   for (let i = 0; i < groups.length; i++) {
     if (groups[i].length === 1) {
       const nameToMove = groups[i].pop();
-      const targetGroup = groups.find(group => group.length > 1);
+      const targetGroup = groups.find((group) => group.length > 1);
       if (targetGroup) {
         targetGroup.push(nameToMove);
       }
@@ -110,31 +120,44 @@ function sortNamesIntoGroups() {
   displayGroups(groups);
 }
 
+  
 // Display Groups
 function displayGroups(groups) {
+
   groupsDiv.innerHTML = ''; // Clear previous groups 
-  const useRandomNames = randomGroupNameCheckbox.checked;
-  const randomLeader = randomLeaderCheckbox.checked;
+  const { useRandomNames, randomLeader } = settings;
   const groupNames = useRandomNames ? getRandomGroupNames(groups.length) : [];
-  
-  groups.forEach((group, index) => { 
+
+  groups.forEach((group, index) => {
     const groupName = useRandomNames ? groupNames[index] : `Group ${index + 1}`;
-    const leaderIndex = randomLeader ? Math.floor(Math.random() * group.length) : -1;
-    
-    const groupDiv = document.createElement('div'); 
-    groupDiv.innerHTML = `<h2>${groupName}</h2><ul>${group.map((name, i) => `<li>${name}${i === leaderIndex ? ' <svg xmlns="http://www.w3.org/2000/svg" height="12" width="15" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#B197FC" d="M372.2 52c0 20.9-12.4 39-30.2 47.2L448 192l104.4-20.9c-5.3-7.7-8.4-17.1-8.4-27.1c0-26.5 21.5-48 48-48s48 21.5 48 48c0 26-20.6 47.1-46.4 48L481 442.3c-10.3 23-33.2 37.7-58.4 37.7l-205.2 0c-25.2 0-48-14.8-58.4-37.7L46.4 192C20.6 191.1 0 170 0 144c0-26.5 21.5-48 48-48s48 21.5 48 48c0 10.1-3.1 19.4-8.4 27.1L192 192 298.1 99.1c-17.7-8.3-30-26.3-30-47.1c0-28.7 23.3-52 52-52s52 23.3 52 52z"/></svg>' : ''}</li>`).join('')}</ul>`; 
-    groupsDiv.appendChild(groupDiv); });
+    const leaderIndex = randomLeader
+      ? Math.floor(Math.random() * group.length)
+      : -1;
+
+    const groupDiv = document.createElement("div");
+    groupDiv.innerHTML = `<h2>${groupName}</h2><ul>${group
+      .map(
+        (name, i) =>
+          `<li>${name}${
+            i === leaderIndex
+              ? ' <svg xmlns="http://www.w3.org/2000/svg" height="12" width="15" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#B197FC" d="M372.2 52c0 20.9-12.4 39-30.2 47.2L448 192l104.4-20.9c-5.3-7.7-8.4-17.1-8.4-27.1c0-26.5 21.5-48 48-48s48 21.5 48 48c0 26-20.6 47.1-46.4 48L481 442.3c-10.3 23-33.2 37.7-58.4 37.7l-205.2 0c-25.2 0-48-14.8-58.4-37.7L46.4 192C20.6 191.1 0 170 0 144c0-26.5 21.5-48 48-48s48 21.5 48 48c0 10.1-3.1 19.4-8.4 27.1L192 192 298.1 99.1c-17.7-8.3-30-26.3-30-47.1c0-28.7 23.3-52 52-52s52 23.3 52 52z"/></svg>'
+              : ""
+          }</li>`
+      )
+      .join("")}</ul>`;
+    groupsDiv.appendChild(groupDiv);
+  });
 }
 
 // Get Random Group Names
 function getRandomGroupNames(numGroups) {
-  const groupNames = [
-    "The Rizzlers", "Citizens of Ohio", "Fanum Taxers", 
-    "Russian Superhackers", "Tech Overlords of New Delhi", 
-    "Quartz Crunchers", "Fat (lol)", "Goons", 
+
+  const groupNames = [ 
+    "Russian Superhackers",  
+    "Quartz Crunchers",  "Goons", 
     "Kings GG", "These ones suck", 
     "Sorry, Couldn't come up with anything", 
-    "Crack Consumers", "Literally Me"
+    "Literally Me"
   ];
   shuffleArray(groupNames);
   return groupNames.slice(0, numGroups);
@@ -149,10 +172,29 @@ function shuffleArray(array) {
   return array;
 }
 
+// Save Groups as JSON
+function saveGroupsAsJSON() {
+  if (groups.length === 0) {
+    alert("Groups are not yet created. Please sort names into groups first.");
+    return;
+  }
+
+  const data = { groups, settings };
+  const json = JSON.stringify(data, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; 
+  a.download = 'groups.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 // Event Listeners
 classDropdown.addEventListener("change", getNamesFromClass);
 addNameBtn.addEventListener("click", addName);
 sortButton.addEventListener("click", sortNamesIntoGroups);
+saveGroupsBtn.addEventListener("click", saveGroupsAsJSON);
 
 // Initial Setup
 populateDropdown();
