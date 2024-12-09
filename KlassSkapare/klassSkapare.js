@@ -85,8 +85,6 @@ const classes02 = getClasses();
 
 // Populate Dropdown with Classes
 function populateDropdown() {
-  const classDropdown = document.getElementById("classDropdown");
-
   // Clear and populate dropdown
   classDropdown.innerHTML = '<option value="">--Välj en klass--</option>';
   classes02.forEach((className) => {
