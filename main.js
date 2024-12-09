@@ -70,11 +70,10 @@ function createGroupie(path) {
 
   newWindow.loadFile(path);
 }
-function createWindow(path, widht, height) {
+function createWindow(path) {
   const newWindow = new BrowserWindow({
-    width: width,
-    height: height,
-    titleBarStyle: "hidden",
+    width: 400,
+    height: 300,
     alwaysOnTop: true,
     maximizable: false,
     webPreferences: {
