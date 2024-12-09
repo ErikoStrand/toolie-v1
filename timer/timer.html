@@ -2,30 +2,28 @@
 <html>
   <head>
     <title>Customizable Timer</title>
+    <script src="../utils.js"></script>
+    <link rel="stylesheet" href="../styles.css" />
     <style>
       body {
-        text-align: center;
-        font-family: Arial, sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .center-container {
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100vh;
-        background-color: #f0f0f0;
+        flex-direction: column;
       }
       #timer {
         font-size: 48px;
         margin: 20px;
         font-variant-numeric: tabular-nums;
         cursor: pointer;
-        display: flex;
-        justify-content: center;
         gap: 5px;
       }
       .timeField {
         width: 2ch;
         font-size: 48px;
-        text-align: center;
         border: none;
         background: transparent;
         outline: none;
@@ -35,40 +33,104 @@
         border-bottom: 2px solid #007bff;
       }
       button {
-        margin: 10px;
-        padding: 10px;
-        font-size: 16px;
+        border: none;
+        background-color: transparent;
+      }
+      .startButton {
+        height: 24px;
+        border-radius: 20px;
+        padding: 10px 10px;
+        background-color: #a62883;
+        fill: #faf8f7;
+      }
+      .resetButton {
+        height: 24px;
+        border-radius: 20px;
+        padding: 10px 10px;
+        background-color: #a62883;
+        fill: #faf8f7;
       }
     </style>
   </head>
   <body>
-    <div id="timer">
-      <input type="text" id="hours" class="timeField" value="00" maxlength="2">:
-      <input type="text" id="minutes" class="timeField" value="00" maxlength="2">:
-      <input type="text" id="seconds" class="timeField" value="00" maxlength="2">
+    <div class="flex-row">
+      <div class="mover">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+          class="moverButton"
+        >
+          <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+          <path
+            d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"
+          />
+        </svg>
+      </div>
+      <svg
+        onclick="exit()"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 384 512"
+        class="exitButton"
+      >
+        <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+        <path
+          d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+        />
+      </svg>
     </div>
-    <div>
-      <button id="startBtn">Start Timer</button>
-      <button id="stopBtn" disabled>Stop Timer</button>
-      <button id="resetBtn">Reset Timer</button>
+    <div class="center-container">
+      <div id="timer">
+        <input
+          type="text"
+          id="hours"
+          class="timeField"
+          value="00"
+          maxlength="2"
+        />:
+        <input
+          type="text"
+          id="minutes"
+          class="timeField"
+          value="00"
+          maxlength="2"
+        />:
+        <input
+          type="text"
+          id="seconds"
+          class="timeField"
+          value="00"
+          maxlength="2"
+        />
+      </div>
+      <div>
+        <button id="startNpause"></button>
+        <button id="resetBtn">Reset Timer</button>
+      </div>
     </div>
 
     <script>
-      const { ipcRenderer } = require("electron");
+      const stopSVG =
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="25px" class="startButton"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80L0 432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>';
+      const startSVG =
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="25px" class="startButton"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112L0 400c0 26.5 21.5 48 48 48l32 0c26.5 0 48-21.5 48-48l0-288c0-26.5-21.5-48-48-48L48 64zm192 0c-26.5 0-48 21.5-48 48l0 288c0 26.5 21.5 48 48 48l32 0c26.5 0 48-21.5 48-48l0-288c0-26.5-21.5-48-48-48l-32 0z"/></svg>';
+      const resetSVG =
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="25px" class="resetButton"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M125.7 160l50.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L48 224c-17.7 0-32-14.3-32-32L16 64c0-17.7 14.3-32 32-32s32 14.3 32 32l0 51.2L97.6 97.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0L125.7 160z"/></svg>';
       const path = require("path");
 
       const hoursField = document.getElementById("hours");
       const minutesField = document.getElementById("minutes");
       const secondsField = document.getElementById("seconds");
-      const startBtn = document.getElementById("startBtn");
-      const stopBtn = document.getElementById("stopBtn");
+      const startBtn = document.getElementById("startNpause");
       const resetBtn = document.getElementById("resetBtn");
+      startBtn.innerHTML = stopSVG;
+      resetBtn.innerHTML = resetSVG;
 
       let timer;
       let totalSeconds = 0;
       let isRunning = false;
 
-      function getSecondsFromFields() { // Calculate total seconds from input fields
+      function getSecondsFromFields() {
+        // Calculate total seconds from input fields
         const hours = parseInt(hoursField.value) || 0;
         const minutes = parseInt(minutesField.value) || 0;
         const seconds = parseInt(secondsField.value) || 0;
@@ -76,45 +138,51 @@
         return hours * 3600 + minutes * 60 + seconds;
       }
 
-      function playNotification() { // Notification at the end of timer
+      function playNotification() {
+        // Notification at the end of timer
         ipcRenderer.send("play-timer-sound");
       }
 
-      startBtn.addEventListener("click", () => { // START TIMER
-        totalSeconds = getSecondsFromFields();
+      startBtn.addEventListener("click", () => {
+        // START TIMER
+        console.log("i swear ill kill her but before");
 
-        if (totalSeconds > 0 && !isRunning) {
-          startTimer();
+        if (!isRunning) {
+          totalSeconds = getSecondsFromFields();
+
+          if (totalSeconds > 0 && !isRunning) {
+            startTimer();
+            startBtn.innerHTML = startSVG;
+          }
+        } else if (isRunning) {
+          console.log("i swear ill kill her");
+          // PAUSE TIMER
+          startBtn.innerHTML = stopSVG;
+          clearInterval(timer);
+          isRunning = false;
         }
       });
 
-      stopBtn.addEventListener("click", () => { // PAUSE TIMER
-        clearInterval(timer);
-        isRunning = false;
-        startBtn.disabled = false;
-        stopBtn.disabled = true;
-      });
-
-      resetBtn.addEventListener("click", () => { // RESET TIMER
+      resetBtn.addEventListener("click", () => {
+        // RESET TIMER
+        startBtn.innerHTML = stopSVG;
         clearInterval(timer);
         totalSeconds = 0;
         isRunning = false;
         resetTimerDisplay();
       });
 
-      document.getElementById("timer").addEventListener("click", () => { // PAUSE TIMER BY CLICKING TIMER
+      document.getElementById("timer").addEventListener("click", () => {
+        // PAUSE TIMER BY CLICKING TIMER
         if (isRunning) {
           clearInterval(timer);
           isRunning = false;
-          startBtn.disabled = false;
-          stopBtn.disabled = true;
         }
       });
 
-      function startTimer() { // du kommer inte tro vad den hära gör
+      function startTimer() {
+        // du kommer inte tro vad den hära gör
         isRunning = true;
-        startBtn.disabled = true;
-        stopBtn.disabled = false;
 
         timer = setInterval(() => {
           if (totalSeconds > 0) {
@@ -128,7 +196,8 @@
         }, 1000);
       }
 
-      function updateTimerDisplay() { // konverterar tiden till timme,minut,sekund
+      function updateTimerDisplay() {
+        // konverterar tiden till timme,minut,sekund
         const hours = Math.floor(totalSeconds / 3600);
         const minutes = Math.floor((totalSeconds % 3600) / 60);
         const seconds = totalSeconds % 60;
@@ -138,28 +207,30 @@
         secondsField.value = seconds.toString().padStart(2, "0");
       }
 
-      function resetTimerDisplay() { // Reset fields
-        startBtn.disabled = false;
-        stopBtn.disabled = true;
+      function resetTimerDisplay() {
+        // Reset fields
         hoursField.value = "00";
         minutesField.value = "00";
         secondsField.value = "00";
       }
 
-      function validateFieldInput(field) { // kollar så det finns bara Int
+      function validateFieldInput(field) {
+        // kollar så det finns bara Int
         let value = field.value.replace(/\D/g, ""); // bara int
         if (value.length > 2) value = value.slice(0, 2);
-        const num = Math.min(parseInt(value || "0", 10), field.id === "hours" ? 99 : 59); // Limit
+        const num = Math.min(
+          parseInt(value || "0", 10),
+          field.id === "hours" ? 99 : 59
+        ); // Limit
         field.value = num.toString().padStart(2, "0");
       }
 
       // Blir tomt när man klickar på number
       [hoursField, minutesField, secondsField].forEach((field) => {
         field.addEventListener("focus", () => {
-          field.value = "";  // Clear
+          field.value = ""; // Clear
         });
       });
-
     </script>
   </body>
 </html>
