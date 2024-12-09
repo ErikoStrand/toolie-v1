@@ -1,4 +1,5 @@
-const { ipcRenderer } = require("electron");
+const { ipcRenderer, remote } = require("electron");
+
 let clickCount = 0;
 let closeTimeout;
 let lastClickTime = 0;
@@ -43,4 +44,17 @@ window.addEventListener("click", (e) => {
 document.addEventListener("dblclick", (e) => {
   e.preventDefault();
   return false;
+});
+
+// Enable click-through window
+let elementArray = document.querySelectorAll(".hover-container");
+
+elementArray.forEach(function (elem) {
+  elem.addEventListener("mouseenter", () => {
+    console.log("Mouse has entered!");
+  });
+
+  elem.addEventListener("mouseleave", () => {
+    console.log("Mouse has left!");
+  });
 });
