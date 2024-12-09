@@ -104,9 +104,6 @@
   </body>
 </html>
 <script>
-  function exit() {
-    ipcRenderer.send("close-window");
-  }
   function openWindow(button) {
     const { ipcRenderer } = require("electron");
     ipcRenderer.send("newWindow", button);

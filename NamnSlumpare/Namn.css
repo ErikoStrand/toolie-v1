@@ -20,13 +20,7 @@ body {
   max-width: 600px;
   background-color: #f4f4f4;
 }
-#mover {
-  flex-grow: 1;
-  -webkit-app-region: drag;
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: move;
-}
+
 select,
 ul {
   width: 100%;
@@ -47,12 +41,7 @@ ul {
 #slumpName {
   color: #090909;
 }
-.flex-row {
-  padding-top: 6px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+
 #namesList {
   list-style-type: none;
   padding: 0;

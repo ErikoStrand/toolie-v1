@@ -6,6 +6,26 @@
   display: block;
   cursor: pointer;
 }
+.moverButton {
+  align-self: flex-start;
+  height: 22px;
+  border-radius: 20px;
+  padding: 4px 6px;
+  background-color: #a62883;
+  fill: #faf8f7;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.mover {
+  flex-grow: 1;
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: move;
+}
 
 .button-container {
   display: flex;
@@ -22,7 +42,7 @@
 .exitButton {
   height: 18px;
   border-radius: 20px;
-  padding: 6px 4px;
+  padding: 6px 8px;
   background-color: #db0e00;
   fill: #faf8f7;
 }
@@ -41,7 +61,7 @@
 .normalButton {
   height: 18px;
   border-radius: 20px;
-  padding: 6px 4px;
+  padding: 6px 6px;
   background-color: #a62883;
   fill: #faf8f7;
 }
