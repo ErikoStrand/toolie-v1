@@ -5,8 +5,8 @@ const path = require("path");
 function createMainWindow() {
   //Första main Window med alla knappar
   const mainWindow = new BrowserWindow({
-    width: 170,
-    height: 400,
+    width: 150,
+    height: 340,
     maximizable: false,
     alwaysOnTop: true,
     transparent: true,
