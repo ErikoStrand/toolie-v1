@@ -2,7 +2,7 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const { exec } = require("child_process");
 const path = require("path");
 
-function createMainWindow() {
+function createMainWindow() { //Första main Window med alla knappar
   const mainWindow = new BrowserWindow({
     width: 145,
     height: 330,
@@ -10,7 +10,7 @@ function createMainWindow() {
     alwaysOnTop: true,
     transparent: true,
     titleBarStyle: "hidden",
-    resizable: false,
+    resizable: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -20,10 +20,10 @@ function createMainWindow() {
 
   mainWindow.loadFile("index.html");
 }
-function createNamnSlumpare(path) {
+function createNamnSlumpare(path, width, height) {
   const newWindow = new BrowserWindow({
-    width: 600,
-    height: 800,
+    width: width,
+    height: height,
     transparent: true,
     alwaysOnTop: true,
     maximizable: false,
@@ -37,10 +37,27 @@ function createNamnSlumpare(path) {
   newWindow.loadFile(path);
 }
 
-function createStartBlock(path) {
+function createStartBlock(path, width, height) {
   const newWindow = new BrowserWindow({
-    width: 600,
-    height: 800,
+    width: width,
+    height: height,
+    transparent: true,
+    alwaysOnTop: true,
+    maximizable: false,
+    titleBarStyle: "hidden",
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
+
+  newWindow.loadFile(path, width, height);
+}
+
+function createGroupie(path, width, height) {
+  const newWindow = new BrowserWindow({
+    width: width,
+    height: height,
     transparent: true,
     alwaysOnTop: true,
     maximizable: false,
@@ -53,27 +70,10 @@ function createStartBlock(path) {
 
   newWindow.loadFile(path);
 }
-
-function createGroupie(path) {
+function createWindow(path, width, height) {
   const newWindow = new BrowserWindow({
-    width: 720,
-    height: 1280,
-    transparent: true,
-    alwaysOnTop: true,
-    maximizable: false,
-    titleBarStyle: "hidden",
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
-    },
-  });
-
-  newWindow.loadFile(path);
-}
-function createWindow(path) {
-  const newWindow = new BrowserWindow({
-    width: 400,
-    height: 300,
+    width: width,
+    height: height,
     alwaysOnTop: true,
     maximizable: false,
     webPreferences: {
@@ -84,6 +84,8 @@ function createWindow(path) {
 
   newWindow.loadFile(path);
 }
+
+//////////////////////////////////////////////
 
 // Handle the getPath request
 ipcMain.handle("getPath", (event, name) => {
@@ -93,24 +95,26 @@ ipcMain.handle("getPath", (event, name) => {
 app.whenReady().then(() => {
   createMainWindow();
 
-  ipcMain.on("newWindow", (event, arg) => {
+  ipcMain.on("newWindow", (event, arg, width, height) => {
     console.log(arg);
-    createWindow(arg);
+    createWindow(arg, width, height);
   });
-  ipcMain.on("namnSlumpare", (event, arg) => {
+
+  ipcMain.on("namnSlumpare", (event, arg, width, height) => {
     console.log(arg);
-    createNamnSlumpare(arg);
+    createNamnSlumpare(arg, width, height);
   });
-  ipcMain.on("startblock", (event, arg) => {
+
+  ipcMain.on("startblock", (event, arg, width, height) => {
     console.log(arg);
-    createStartBlock(arg);
+    createStartBlock(arg, width, height);
   });
-  ipcMain.on("groupie", (event, arg) => {
+  ipcMain.on("groupie", (event, arg, width, height) => {
     console.log(arg);
-    createGroupie(arg);
-    ipcMain.on("namnSlumpare", (event, arg) => {
+    createGroupie(arg, width, height);
+    ipcMain.on("namnSlumpare", (event, arg, width, height) => {
       console.log(arg);
-      createNamnSlumpare(arg);
+      createNamnSlumpare(arg, width, height);
     });
   });
 });
