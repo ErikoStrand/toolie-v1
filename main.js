@@ -5,8 +5,8 @@ const path = require("path");
 function createMainWindow() {
   //Första main Window med alla knappar
   const mainWindow = new BrowserWindow({
-    width: 170,
-    height: 400,
+    width: 150,
+    height: 380,
     maximizable: false,
     alwaysOnTop: true,
     transparent: true,
@@ -15,7 +15,6 @@ function createMainWindow() {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      preload: path.join(__dirname, "preload.js"),
     },
   });
 
