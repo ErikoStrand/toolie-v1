@@ -76,12 +76,12 @@ function addNewNote() {
   exp_button.onclick = function () {
     expand(this);
   };
+  textarea.setAttribute("spellcheck", "false");
 
   div.appendChild(input);
   div.appendChild(exp_button);
   div.appendChild(del_button);
   li.appendChild(div);
-  selectTextareaLine(textarea, 3);
   li.appendChild(textarea);
   notearea.appendChild(li);
 }
@@ -105,6 +105,7 @@ function saveNotes() {
 
     return {
       title: input.value.trim(),
+
       textarea: textarea.value.trim(),
     };
   });
@@ -181,45 +182,4 @@ function exit() {
 
 function test() {
   console.log("a test for testing");
-}
-
-function selectTextareaLine(tarea, lineNum) {
-  lineNum--; // array starts at 0
-  var lines = tarea.value.split("\n");
-
-  // calculate start/end
-  var startPos = 0,
-    endPos = tarea.value.length;
-  for (var x = 0; x < lines.length; x++) {
-    if (x == lineNum) {
-      break;
-    }
-    startPos += lines[x].length + 1;
-  }
-
-  var endPos = lines[lineNum].length + startPos;
-
-  // do selection
-  // Chrome / Firefox
-
-  if (typeof tarea.selectionStart != "undefined") {
-    tarea.focus();
-    tarea.selectionStart = startPos;
-    tarea.selectionEnd = endPos;
-    return true;
-  }
-
-  // IE
-  if (document.selection && document.selection.createRange) {
-    tarea.focus();
-    tarea.select();
-    var range = document.selection.createRange();
-    range.collapse(true);
-    range.moveEnd("character", endPos);
-    range.moveStart("character", startPos);
-    range.select();
-    return true;
-  }
-
-  return false;
 }
