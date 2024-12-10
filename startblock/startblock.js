@@ -76,6 +76,7 @@ function addNewNote() {
   exp_button.onclick = function () {
     expand(this);
   };
+  textarea.setAttribute("spellcheck", "false");
 
   div.appendChild(input);
   div.appendChild(exp_button);
@@ -104,6 +105,7 @@ function saveNotes() {
 
     return {
       title: input.value.trim(),
+
       textarea: textarea.value.trim(),
     };
   });
