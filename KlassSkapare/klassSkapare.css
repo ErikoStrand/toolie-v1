@@ -1,0 +1,61 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #faf8f7;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+input,
+button {
+  padding: 10px;
+  font-size: 16px;
+}
+button {
+  cursor: pointer;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  margin: 5px 0;
+}
+
+#namesList {
+  list-style-type: none;
+  padding: 0;
+  border: 1px solid #ddd;
+}
+#namesList li div {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+#namesList li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 2px;
+  border-bottom: 1px solid #eee;
+  background-color: white;
+}
+#namesList li:last-child {
+  border-bottom: none;
+}
+
+select,
+ul {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+#mover {
+  flex-grow: 1;
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: move;
+}

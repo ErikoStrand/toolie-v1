@@ -1,46 +1,70 @@
-const { ipcRenderer } = require("electron");
-let clickCount = 0;
-let closeTimeout;
-let lastClickTime = 0;
+const fs = require("fs");
+const { ipcRenderer, remote } = require("electron");
+const classesFilePath = "data/classes.json";
 
-window.addEventListener("click", (e) => {
-  // Prevent buttons from triggering close
-  if (e.target.tagName === "BUTTON" || e.target.tagName === "INPUT") {
-    console.log("blicked not clicable close thing");
-    return;
-  }
+function exit() {
+  ipcRenderer.send("close-window");
+}
 
-  const currentTime = Date.now();
+// Enable click-through window
+let elementArray = document.querySelectorAll(".hover-container");
 
-  // Check if clicks are close together
-  if (currentTime - lastClickTime > 200) {
-    clickCount = 0;
-  }
+elementArray.forEach(function (elem) {
+  elem.addEventListener("mouseenter", () => {
+    console.log("Mouse has entered!");
+  });
 
-  clickCount++;
-  lastClickTime = currentTime;
-
-  console.log("Clicked", clickCount);
-
-  // Clear previous timeout
-  if (closeTimeout) clearTimeout(closeTimeout);
-
-  // Reset click count if not 3 clicks within 200ms
-  closeTimeout = setTimeout(() => {
-    clickCount = 0;
-  }, 200);
-
-  // Close window on 3 clicks
-  if (clickCount === 3) {
-    ipcRenderer.send("close-window");
-  }
-
-  // Prevent default double-click behavior
-  e.preventDefault();
+  elem.addEventListener("mouseleave", () => {
+    console.log("Mouse has left!");
+  });
 });
 
-// Prevent default double-click maximize
-document.addEventListener("dblclick", (e) => {
-  e.preventDefault();
-  return false;
-});
+function getEntireClasses() {
+  if (fs.existsSync(classesFilePath)) {
+    const data = fs.readFileSync(classesFilePath, "utf-8");
+    const classes = JSON.parse(data);
+    return classes;
+  }
+}
+// Förr att få alla namn och klasser...
+function getNames(className) {
+  if (fs.existsSync(classesFilePath)) {
+    const data = fs.readFileSync(classesFilePath, "utf-8");
+    const classes = JSON.parse(data);
+
+    const classDetails = classes[className] || [];
+    // Returna json
+    return classDetails; // Return the class details if found
+  } else {
+    console.warn("No classes found. The file does not exist yet.");
+    return null;
+  }
+}
+
+// För att få alla klasser
+function getClasses() {
+  if (fs.existsSync(classesFilePath)) {
+    // Läsa json fil
+    const data = fs.readFileSync(classesFilePath, "utf-8");
+    const classes = JSON.parse(data);
+
+    const classDetails = Object.keys(classes);
+    // Returna json
+    return classDetails;
+  } else {
+    console.warn("Inga klasser hittade!");
+    return [];
+  }
+}
+function displayTime() {
+  var currentDate = new Date();
+  var hours = currentDate.getHours();
+  var minutes = currentDate.getMinutes();
+  var seconds = currentDate.getSeconds();
+  hours = hours < 10 ? "0" + hours : hours;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  seconds = seconds < 10 ? "0" + seconds : seconds;
+  var timeString = hours + ":" + minutes + ":" + seconds;
+  document.getElementById("clock").innerHTML = timeString;
+}
+setInterval(displayTime, 1000);

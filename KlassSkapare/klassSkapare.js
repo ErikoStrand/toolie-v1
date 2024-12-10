@@ -48,33 +48,67 @@ function saveClass() {
   document.getElementById("studentList").innerHTML = "";
 }
 
-// För att få alla klasser
-function getClasses() {
-  if (fs.existsSync(classesFilePath)) {
-    // Läsa json fil
-    const data = fs.readFileSync(classesFilePath, "utf-8");
-    const classes = JSON.parse(data);
+const classes02 = getClasses();
 
-    const classDetails = Object.keys(classes);
-    // Returna json
-    return classDetails;
-  } else {
-    console.warn("Inga klasser hittade!");
-    return [];
-  }
+// Populate Dropdown with Classes
+function populateDropdown() {
+  // Clear and populate dropdown
+  classDropdown.innerHTML = '<option value="">--Välj en klass--</option>';
+  classes02.forEach((className) => {
+    const option = document.createElement("option");
+    option.value = className;
+    option.textContent = className;
+    classDropdown.appendChild(option);
+  });
 }
 
-// Förr att få alla namn och klasser...
-function getNames(className) {
-  if (fs.existsSync(classesFilePath)) {
-    const data = fs.readFileSync(classesFilePath, "utf-8");
-    const classes = JSON.parse(data);
-
-    const classDetails = classes[className] || [];
-    // Returna json
-    return classDetails; // Return the class details if found
-  } else {
-    console.warn("No classes found. The file does not exist yet.");
-    return null;
-  }
+function getNamesFromClass() {
+  const selectedClass = classDropdown.value;
+  namesList.innerHTML = ""; // Clear previous list
+  selectedKlass = getNames(selectedClass);
+  displayNames();
 }
+
+// Display Names for Selected Class
+function displayNames() {
+  namesList.innerHTML = ""; // Clear previous list
+  // Get names for selected class
+  selectedKlass.forEach((name) => {
+    const li = document.createElement("li");
+    const div = document.createElement("div");
+    const p = document.createElement("p");
+    const deleteBtn = document.createElement("button");
+
+    p.textContent = name;
+    deleteBtn.textContent = "🗑️";
+    deleteBtn.classList.add("defaultDelete");
+
+    // Add delete functionality
+    deleteBtn.addEventListener("click", () => {
+      // Remove name from selectedKlass array
+      const index = selectedKlass.indexOf(name);
+      if (index > -1) {
+        selectedKlass.splice(index, 1);
+        // Remove the list item from the DOM
+        li.remove();
+
+        // Optional: Update backend/storage if needed
+        // For example, you might want to call a function to update the file
+        // updateClassFile(currentSelectedClass, selectedKlass);
+      }
+    });
+
+    namesList.appendChild(li);
+
+    div.appendChild(p);
+    li.appendChild(div);
+    li.appendChild(deleteBtn);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const classDropdown = document.getElementById("classDropdown");
+  const namesList = document.getElementById("namesList");
+  classDropdown.addEventListener("change", getNamesFromClass);
+  populateDropdown();
+});
