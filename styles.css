@@ -19,6 +19,10 @@
   flex-direction: column;
   gap: 8px;
 }
+.nofuck {
+  margin: 0px;
+  padding: 0px;
+}
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -56,6 +60,7 @@
   fill: #1c1c1b;
 }
 .flerp {
+  margin-bottom: -4px;
   width: 35px;
   height: 18px;
   padding: 4px;
