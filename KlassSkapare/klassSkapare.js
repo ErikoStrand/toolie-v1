@@ -1,8 +1,3 @@
-const fs = require("fs"); // Required for file system operations
-const path = require("path"); // To manage file paths
-
-const classesFilePath = "data/classes.json";
-
 // variabler
 let currentClass = {
   className: "",

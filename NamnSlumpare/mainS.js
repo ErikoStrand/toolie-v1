@@ -18,9 +18,7 @@ function populateDropdown() {
     getNamesFromClass();
   }
 }
-function exit() {
-  ipcRenderer.send("close-window");
-}
+
 function getNamesFromClass() {
   const selectedClass = classDropdown.value;
   namesList.innerHTML = "";
