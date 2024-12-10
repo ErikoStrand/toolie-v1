@@ -34,7 +34,6 @@
 #clockContainer {
   display: flex;
   flex-direction: column;
-
 }
 .gradientBackground {
   background: rgb(97, 39, 123);
@@ -45,12 +44,30 @@
     rgba(168, 39, 131, 1) 100%
   );
 }
+.default-background {
+  background-color: #faf8f7;
+}
+.flerp-move {
+  background-color: #faf8f7;
+  fill: #1c1c1b;
+}
+.flerp-close {
+  background-color: #faf8f7;
+  fill: #1c1c1b;
+}
+.flerp {
+  width: 35px;
+  height: 18px;
+  padding: 4px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
 .exitClock {
   width: 35px;
   height: 18px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  background-color: #61277B;
+  background-color: #61277b;
   fill: #faf8f7;
 }
 
@@ -115,4 +132,3 @@
   font-weight: 500;
   font-family: Arial, Helvetica, sans-serif;
 }
-
