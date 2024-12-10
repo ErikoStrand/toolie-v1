@@ -121,13 +121,13 @@ function displayGroups(groups, groupNames = [], leaders = []) {
 
 function getRandomGroupNames(numGroups) {
   const groupNames = [
-    "Russian Superhackers",
+    "Speed Freaks",
     "Quartz Crunchers",
-    "Goons",
-    "Kings GG",
-    "These ones suck",
-    "Sorry, Couldn't come up with anything",
-    "Literally Me"
+    "The Goons",
+    "The Sloths",
+    "Swag",
+    "The Cool Ones (I guess)",
+    "The Drivers"
   ];
 
   shuffleArray(groupNames); // Shuffle the group names
