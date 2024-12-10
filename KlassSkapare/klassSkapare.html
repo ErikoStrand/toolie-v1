@@ -37,7 +37,7 @@
     </div>
 
     <script src="klassSkapare.js"></script>
-    <h1>Klass Creator</h1>
+    <h1>Klass Skapare</h1>
     <div>
       <div class="form-group">
         <label for="className">Klass namn:</label><br />
@@ -51,9 +51,17 @@
       <ul id="studentList"></ul>
       <button onclick="saveClass()">Spara Klass</button>
     </div>
+
+    <h1>Klass Redigerare</h1>
+
     <select id="classDropdown"></select>
 
     <ul id="namesList"></ul>
+    <span>
+      <input class="defaultInput" type="text" id="nameAdd" />
+      <button class="defaultButton" onclick="addName()">Addera</button>
+    </span>
+    <button onclick="saveEditedClass()">Spara Redigerad Klass</button>
   </body>
 </html>
 <script>
