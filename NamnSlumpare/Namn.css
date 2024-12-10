@@ -1,10 +1,41 @@
 .defaultButton {
-  background-color: #4caf50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(97, 39, 123);
+  background: linear-gradient(
+    183deg,
+    rgba(97, 39, 123, 1) 0%,
+    rgba(97, 39, 123, 1) 17%,
+    rgba(168, 39, 131, 1) 100%
+  );
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 6px 8px;
   font-size: 16px;
-  border-radius: 5px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.defaultButton2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(97, 39, 123);
+  background: linear-gradient(
+    183deg,
+    rgba(97, 39, 123, 1) 0%,
+    rgba(97, 39, 123, 1) 17%,
+    rgba(168, 39, 131, 1) 100%
+  );
+  color: white;
+  border: none;
+  padding: 6px 8px;
+  font-size: 16px;
+  border-radius: 10px;
+
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -17,9 +48,34 @@
 }
 body {
   font-family: Arial, sans-serif;
-  max-width: 600px;
+  max-width: 200px;
 }
-
+#classDropdown {
+  border: none;
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(97, 39, 123);
+  background: linear-gradient(
+    183deg,
+    rgba(97, 39, 123, 1) 0%,
+    rgba(97, 39, 123, 1) 17%,
+    rgba(168, 39, 131, 1) 100%
+  );
+  border-radius: 3px;
+}
+::-webkit-scrollbar-track-piece {
+  background: #f4f4f4;
+}
+#slumpName {
+  color: #f4f4f4;
+  text-align: center;
+  font-size: x-large;
+  font-weight: 700;
+  border-radius: 15px;
+}
 select,
 ul {
   width: 100%;
@@ -30,22 +86,22 @@ ul {
 .defaultInput {
   background-color: #f4f4f4;
   color: black;
-  border: solid 2px #45a049;
-  padding: 10px 20px;
+  border: solid 2px rgba(97, 39, 123, 1);
+  padding: 4px;
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-}
-#slumpName {
-  color: #090909;
+  max-width: 150px;
 }
 
 #namesList {
   list-style-type: none;
-  padding: 0;
+  padding: 0px;
   border: 1px solid #ddd;
   margin: 0px;
+  max-height: 600px;
+  overflow-y: auto;
 }
 #namesList li div {
   display: flex;
@@ -67,4 +123,13 @@ ul {
 
 .add-btn:hover {
   background-color: #45a049;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.checkbox {
+  padding: 2px;
 }
