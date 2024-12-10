@@ -17,7 +17,8 @@ function createMainWindow() {
       contextIsolation: false,
     },
   });
-
+  mainWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+  mainWindow.setAlwaysOnTop(true, "screen-saver", 1);
   mainWindow.loadFile("index.html");
 }
 
@@ -35,7 +36,8 @@ function createWindow(path, width, height) {
       contextIsolation: false,
     },
   });
-
+  newWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+  newWindow.setAlwaysOnTop(true, "screen-saver", 1);
   newWindow.loadFile(path);
 }
 
