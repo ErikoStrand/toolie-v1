@@ -11,11 +11,11 @@
   </head>
   <body>
     <div class="flex-row">
-      <div class="mover">
+      <div class="nofuck mover">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
-          class="moverButton"
+          class="flerp flerp-move"
         >
           <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
           <path
@@ -27,7 +27,7 @@
         onclick="exit()"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 384 512"
-        class="exitButton"
+        class="flerp flerp-close"
       >
         <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
         <path
@@ -36,31 +36,29 @@
       </svg>
     </div>
 
-    <h1>Klass Skapare</h1>
-    <div>
-      <div class="form-group">
-        <label for="className">Klass namn:</label><br />
-        <input type="text" id="className" placeholder="Skriv Class Name" />
+    <section class="default-background padding">
+      <div>
+        <div class="form-group">
+          <label for="className">Klass namn:</label><br />
+          <input type="text" id="className" placeholder="Skriv Class Name" />
+        </div>
+        <div class="form-group">
+          <label for="studentName">Lägg Student:</label><br />
+          <input type="text" id="studentName" placeholder="Enter Elev Name" />
+          <button onclick="addStudent()">Add</button>
+        </div>
+        <ul id="studentList"></ul>
+        <button onclick="saveClass()">Spara Klass</button>
       </div>
-      <div class="form-group">
-        <label for="studentName">Lägg Student:</label><br />
-        <input type="text" id="studentName" placeholder="Enter Elev Name" />
-        <button onclick="addStudent()">Add</button>
-      </div>
-      <ul id="studentList"></ul>
-      <button onclick="saveClass()">Spara Klass</button>
-    </div>
-
-    <h1>Klass Redigerare</h1>
-
-    <select id="classDropdown"></select>
-
-    <ul id="namesList"></ul>
-    <span>
-      <input class="defaultInput" type="text" id="nameAdd" />
-      <button class="defaultButton" onclick="addName()">Addera</button>
-    </span>
-    <button onclick="saveEditedClass()">Spara Redigerad Klass</button>
+      <h1>Klass Redigerare</h1>
+      <select id="classDropdown"></select>
+      <ul id="namesList"></ul>
+      <span>
+        <input class="defaultInput" type="text" id="nameAdd" />
+        <button class="defaultButton" onclick="addName()">Addera</button>
+      </span>
+      <button onclick="saveEditedClass()">Spara Redigerad Klass</button>
+    </section>
   </body>
 </html>
 <script>
