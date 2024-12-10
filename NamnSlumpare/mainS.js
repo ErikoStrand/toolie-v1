@@ -1,5 +1,3 @@
-const { ipcRenderer } = require("electron");
-
 // Get all available classes
 const classes = getClasses();
 let selectedKlass = [];
