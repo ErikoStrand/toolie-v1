@@ -56,6 +56,7 @@ function getClasses() {
     return [];
   }
 }
+displayTime();
 function displayTime() {
   if (document.getElementById("clock")) {
     var currentDate = new Date();
