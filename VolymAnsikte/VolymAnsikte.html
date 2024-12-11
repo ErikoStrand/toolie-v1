@@ -1,43 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VolymAnsikte</title>
-    <link rel="stylesheet" href="../styles.css"/>
-    <script defer src="VolymAnsikte.js"></script>
-
-    <style> 
-      .pids-wrapper{
-        width: 100%;
-      }
-      .pid{
-        width: calc(10% - 10px);
-        height: 10px;
-        display: inline-block;
-        margin: 5px;
-      }
-      </style>
-  </head>
-
-  <body>
-    <h3>VU meter from mic input (getUserMedia API)</h3>
-    <button onclick="startr();" title="click start needed as security in browser increased and voice mic can only be started from a gesture on page">Start</button>
-    <canvas id="canvas" width="150" height="300" style='background:blue'></canvas>
-    CLICK START
-
-
-    <div class="pids-wrapper">
-        <div class="pid"></div>
-        <div class="pid"></div>
-        <div class="pid"></div>
-        <div class="pid"></div>
-        <div class="pid"></div>
-        <div class="pid"></div>
-        <div class="pid"></div>
-        <div class="pid"></div>
-        <div class="pid"></div>
-        <div class="pid"></div>
-      </div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VolymAnsikte</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <script defer src="VolymAnsikte.js"></script>
+  <style> 
+    .pids-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+    }
+    .pid {
+      width: 20px;
+      height: 50px;
+      background-color: #e6e7e8;
+      border-radius: 3px;
+      transition: background-color 0.2s;
+    }
+  </style>
+</head>
+<body>
+  <h1>Volume Level Indicator</h1>
+  <div class="pids-wrapper">
+    <div class="pid"></div>
+    <div class="pid"></div>
+    <div class="pid"></div>
+    <div class="pid"></div>
+    <div class="pid"></div>
+    <div class="pid"></div>
+    <div class="pid"></div>
+    <div class="pid"></div>
+    <div class="pid"></div>
+    <div class="pid"></div>
+  </div>
+</body>
 </html>
