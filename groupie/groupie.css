@@ -1,22 +1,21 @@
+.defaultDelete {
+  background: none;
+  border: none;
+  padding: 4px 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-  .defaultDelete {
-    background: none;
-    border: none;
-    padding: 4px 6px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  body {
-    font-family: soleto, sans-serif;
-    font-style: normal;
-    font-weight: 200;
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #eee;
-    color: #222222;
-  }
-  
+main {
+  font-family: soleto, sans-serif;
+  font-style: normal;
+  font-weight: 200;
+  max-width: 600px;
+  padding: 20px;
+  color: #222222;
+  background: #eee;
+}
+
 button {
   background: rgb(97, 39, 123);
   background: linear-gradient(
@@ -30,96 +29,89 @@ button {
   border-radius: 7px;
 }
 
-#loadGroups button
-  {
-    margin-left: 60px;
-  }
+#loadGroups button {
+  margin-left: 60px;
+}
 
-  select
-  {
-    width: 50%;
-    padding: 4px;
-    margin: 2px;
-    box-sizing: border-box;
-  }
+select {
+  width: 50%;
+  padding: 4px;
+  margin: 2px;
+  box-sizing: border-box;
+}
 
-  ul {
-    width: 100%;
-    padding: 7px;
-    box-sizing: border-box;
-  }
-  .defaultInput {
-    background-color: #f4f4f4;
-    color: black;
-    border: solid 2px #45155b;
-    padding: 5px 10px;
-    font-size: 16px;
-    font-family: soleto, sans-serif;
-    font-style: normal;
-    font-weight: 200;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  #flex-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  #namesList {
-    list-style-type: none;
-    padding: 0;
-    border: 1px solid #ddd;
-  }
-  #namesList li div {
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
-  }
-  #namesList li {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 4px;
-    padding: 2px;
-    border-bottom: 1px solid #eee;
-    background: #f4f4f4
-  }
-  #namesList li:last-child {
-    border-bottom: none;
-  }
+ul {
+  width: 100%;
+  padding: 7px;
+  box-sizing: border-box;
+}
+.defaultInput {
+  background-color: #f4f4f4;
+  color: black;
+  border: solid 2px #45155b;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-family: soleto, sans-serif;
+  font-style: normal;
+  font-weight: 200;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#namesList {
+  list-style-type: none;
+  padding: 0;
+  border: 1px solid #ddd;
+}
+#namesList li div {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+#namesList li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 2px;
+  border-bottom: 1px solid #eee;
+  background: #f4f4f4;
+}
+#namesList li:last-child {
+  border-bottom: none;
+}
 
+#groups {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  text-align: center;
+  gap: 5px;
+  padding: 15px;
+}
 
-  #groups
-  {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    text-align: center;
-    padding: 15px;
-    
-  }
-  
-  #groups li
-  {
-    
-    list-style: none;
-    border: 1px solid rgb(97, 39, 123);
-    border: linear-gradient(
-      183deg,
-      rgba(97, 39, 123, 1) 0%,
-      rgba(97, 39, 123, 1) 17%,
-      rgba(168, 39, 131, 1) 100%
-    );
-    padding: 3px;
-    font-family: soleto, sans-serif;
-    font-style: normal;
-    font-weight: 200;
-  }
+#groups ul {
+  border-radius: 15px;
+  list-style: none;
+  border: 5px solid rgb(97, 39, 123);
+  border: linear-gradient(
+    183deg,
+    rgba(97, 39, 123, 1) 0%,
+    rgba(97, 39, 123, 1) 17%,
+    rgba(168, 39, 131, 1) 100%
+  );
+  padding: 3px;
+  font-family: soleto, sans-serif;
+  font-style: normal;
+  font-weight: 200;
+}
 
-  form
-  {
-    border: 1px solid #45155b;
-    padding: 2px;
-    text-align: center;
-  }
-
+form {
+  border: 1px solid #45155b;
+  padding: 2px;
+  text-align: center;
+}
