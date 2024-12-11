@@ -38,6 +38,16 @@
 
     <section class="default-background padding">
       <div>
+        <h1>Importera Klasser</h1>
+        <input
+          class="padding-down"
+          type="file"
+          id="avatar"
+          name="avatar"
+          accept=".json"
+        />
+
+        <h1>Skapa Klasser</h1>
         <div class="form-group">
           <label for="className">Klass namn:</label><br />
           <input type="text" id="className" placeholder="Skriv Class Name" />
@@ -48,9 +58,9 @@
           <button onclick="addStudent()">Add</button>
         </div>
         <ul id="studentList"></ul>
-        <button onclick="saveClass()">Spara Klass</button>
+        <button class="padding-down" onclick="saveClass()">Spara Klass</button>
       </div>
-      <h1>Klass Redigerare</h1>
+      <h1>Redigera Klasser</h1>
       <select id="classDropdown"></select>
       <ul id="namesList"></ul>
       <span>
