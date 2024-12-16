@@ -1,15 +1,12 @@
 const { ipcRenderer } = require("electron");
 const fs = require("fs");
-const addButton = document.getElementById("add");
-const saveButton = document.getElementById("save");
 const addsaveNav = document.getElementById("addnsaveNav");
 
 function expand(button) {
   const li = button.closest("li");
   li.setAttribute("id", "noteExpand");
   addsaveNav.style.display = "none";
-  addButton.style.display = "none";
-  saveButton.style.display = "none";
+
   const allNotes = document.querySelectorAll("#note");
   const filteredNotes = Array.from(allNotes).filter((note) => note !== li);
   filteredNotes.forEach((note) => {
@@ -32,8 +29,6 @@ function collapse(button) {
   const li = button.closest("li");
   li.setAttribute("id", "note");
   addsaveNav.style.display = "flex";
-  addButton.style.display = "initial";
-  saveButton.style.display = "initial";
 
   const allNotes = document.querySelectorAll("#note");
   allNotes.forEach((note) => {
