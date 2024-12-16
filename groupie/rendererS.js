@@ -91,7 +91,7 @@ function sortNamesIntoGroups() {
     groups[index % numGroups].push(name);
   });
 
-  const groupNames = settings.useRandomNames ? getRandomGroupNames(groups.length) : groups.map((_, index) => `Group ${index + 1}`);
+  const groupNames = settings.useRandomNames ? getRandomGroupNames(groups.length) : groups.map((_, index) => `Grupp ${index + 1}`);
   const leaders = settings.randomLeader ? groups.map(group => Math.floor(Math.random() * group.length)) : groups.map(() => -1);
 
   // Store group names and leaders globally to use them when saving
@@ -106,11 +106,11 @@ function displayGroups(groups, groupNames = [], leaders = []) {
   const { randomLeader } = settings;
 
   if (groupNames.length === 0) {
-    groupNames = groups.map((_, index) => `Group ${index + 1}`);
+    groupNames = groups.map((_, index) => `Grupp ${index + 1}`);
   }
 
   groups.forEach((group, index) => {
-    const groupName = groupNames[index] || `Group ${index + 1}`;
+    const groupName = groupNames[index] || `Grupp ${index + 1}`;
     const leaderIndex = leaders[index];
 
     const groupDiv = document.createElement('div');
@@ -123,10 +123,10 @@ function getRandomGroupNames(numGroups) {
   const groupNames = [
     "Speed Freaks",
     "Quartz Crunchers",
-    "The Goons",
+    "Evil :)",
     "The Sloths",
     "Swag",
-    "The Cool Ones (I guess)",
+    "The Cool Ones",
     "The Drivers"
   ];
 
@@ -149,7 +149,7 @@ function saveGroupsAsJSON() {
   }
 
   // Use globally stored group names and leaders
-  const groupNames = window.groupNames || groups.map((_, index) => `Group ${index + 1}`);
+  const groupNames = window.groupNames || groups.map((_, index) => `Grupp ${index + 1}`);
   const leaders = window.leaders || groups.map(() => -1);
 
   const data = { groups, settings, groupNames, leaders };
@@ -163,6 +163,12 @@ function saveGroupsAsJSON() {
   URL.revokeObjectURL(url);
 }
 
+document.getElementById('loadGroups').addEventListener('click', () => {
+  document.getElementById('fileInput').click();
+});
+
+document.getElementById('fileInput').addEventListener('change', loadGroups);
+
 function loadGroups() {
   const fileInput = document.getElementById('fileInput');
   const file = fileInput.files[0];
@@ -174,7 +180,7 @@ function loadGroups() {
       const data = JSON.parse(e.target.result);
       groups = data.groups || [];
       settings = data.settings || {};
-      const groupNames = data.groupNames || groups.map((_, index) => `Group ${index + 1}`);
+      const groupNames = data.groupNames || groups.map((_, index) => `Grupp ${index + 1}`);
       const leaders = data.leaders || groups.map(() => -1);
 
       // Store group names and leaders globally

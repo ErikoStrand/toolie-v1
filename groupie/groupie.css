@@ -11,6 +11,7 @@ main {
   font-style: normal;
   font-weight: 200;
   max-width: 600px;
+  max-height: 1000px;
   padding: 20px;
   color: #222222;
   background: #eee;
@@ -65,8 +66,11 @@ ul {
 }
 #namesList {
   list-style-type: none;
-  padding: 0;
+  padding: 0px;
   border: 1px solid #ddd;
+  margin: 0px;
+  max-height: 600px;
+  overflow-y: auto;
 }
 #namesList li div {
   display: flex;
@@ -80,7 +84,7 @@ ul {
   gap: 4px;
   padding: 2px;
   border-bottom: 1px solid #eee;
-  background: #f4f4f4;
+  background-color: white;
 }
 #namesList li:last-child {
   border-bottom: none;
@@ -88,7 +92,7 @@ ul {
 
 #groups {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
   text-align: center;
   gap: 5px;
   padding: 15px;
@@ -104,6 +108,7 @@ ul {
     rgba(97, 39, 123, 1) 17%,
     rgba(168, 39, 131, 1) 100%
   );
+  background: #ffffff;
   padding: 3px;
   font-family: soleto, sans-serif;
   font-style: normal;
@@ -115,3 +120,24 @@ form {
   padding: 2px;
   text-align: center;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(97, 39, 123);
+  background: linear-gradient(
+    183deg,
+    rgba(97, 39, 123, 1) 0%,
+    rgba(97, 39, 123, 1) 17%,
+    rgba(168, 39, 131, 1) 100%
+  );
+  border-radius: 3px;
+  
+}
+::-webkit-scrollbar-track-piece {
+  background: #f4f4f4;
+}
+
+.svg { vertical-align: middle;}
+

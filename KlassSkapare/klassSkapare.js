@@ -169,9 +169,34 @@ function saveEditedClass() {
   displayNames();
 }
 
+function importClass() {
+  const fileInput = document.getElementById("avatar");
+
+  const file = fileInput.files[0];
+
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const importedData = event.target.result;
+
+    //const fs = require("fs");
+    const classesFilePath = "data/classes.json";
+
+    fs.writeFileSync(classesFilePath, importedData, "utf-8"); //RITA
+
+    alert("Class imported and file overwritten successfully!");
+  };
+
+  reader.readAsText(file);
+}
+
+// Add event listener to handle file import
+
 document.addEventListener("DOMContentLoaded", () => {
   const classDropdown = document.getElementById("classDropdown");
   const namesList = document.getElementById("namesList");
+  const inputThing = document.getElementById("avatar");
   classDropdown.addEventListener("change", getNamesFromClass);
+  inputThing.addEventListener("change", importClass);
+
   populateDropdown();
 });
