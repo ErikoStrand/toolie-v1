@@ -1,6 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
+const fs = require("fs");
 const { exec } = require("child_process");
 const path = require("path");
+const { start } = require("repl");
 
 function createMainWindow() {
   //Första main Window med alla knappar
@@ -22,10 +24,14 @@ function createMainWindow() {
   mainWindow.loadFile("index.html");
 }
 
-function createWindow(path, width, height) {
+function createWindow(which, width, height) {
+  const location = loadLocation(which);
+  const size = loadSize(which);
   const newWindow = new BrowserWindow({
-    width: width,
-    height: height,
+    x: location[0],
+    y: location[1],
+    width: size[0],
+    height: size[1],
     maximizable: false,
     alwaysOnTop: true,
     transparent: true,
@@ -38,7 +44,7 @@ function createWindow(path, width, height) {
   });
   newWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   newWindow.setAlwaysOnTop(true, "screen-saver", 1);
-  newWindow.loadFile(path);
+  newWindow.loadFile(loadPath(which));
 }
 
 //////////////////////////////////////////////
@@ -57,8 +63,12 @@ app.whenReady().then(() => {
   });
 });
 
-ipcMain.on("close-window", () => {
+ipcMain.on("close-window", (event, which) => {
   const win = BrowserWindow.getFocusedWindow();
+  const position = win.getPosition();
+
+  console.log(position, which);
+  saveLocation(which, position);
   if (win) win.close();
 });
 
@@ -96,4 +106,28 @@ ipcMain.on("play-timer-sound", () => {
 
 function handlePlaybackError(error) {
   if (error) console.error(`Audio playback error: ${error}`);
+}
+
+function saveLocation(which, position) {
+  const response = fs.readFileSync("data/startup.json", "utf-8");
+  let startup = JSON.parse(response);
+  startup[which]["position"] = position;
+  fs.writeFileSync("data/startup.json", JSON.stringify(startup), "utf8");
+}
+
+function loadLocation(which) {
+  const response = fs.readFileSync("data/startup.json", "utf-8");
+  let startup = JSON.parse(response);
+  return startup[which]["position"];
+}
+
+function loadPath(which) {
+  const response = fs.readFileSync("data/startup.json", "utf-8");
+  let startup = JSON.parse(response);
+  return startup[which]["filepath"];
+}
+function loadSize(which) {
+  const response = fs.readFileSync("data/startup.json", "utf-8");
+  let startup = JSON.parse(response);
+  return startup[which]["size"];
 }

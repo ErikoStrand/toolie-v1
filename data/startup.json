@@ -1,0 +1,32 @@
+{
+  "klocka": {
+    "position": [1472, 454],
+    "size": [500, 120],
+    "filepath": "Klocka/klocka.html"
+  },
+  "timer": {
+    "position": [1408, 210],
+    "size": [300, 220],
+    "filepath": "timer/timer.html"
+  },
+  "startblock": {
+    "position": [],
+    "size": [600, 400],
+    "filepath": "startblock/startblock.html"
+  },
+  "groupie": {
+    "position": [],
+    "size": [600, 600],
+    "filepath": "groupie/groupie.html"
+  },
+  "namnSlumpare": {
+    "position": [],
+    "size": [250, 900],
+    "filepath": "namnSlumpare/Namns.html"
+  },
+  "klassSkapare": {
+    "position": [],
+    "size": [600, 800],
+    "filepath": "klassSkapare/klassSkapare.html"
+  }
+}
