@@ -149,7 +149,7 @@ function saveGroupsAsJSON() {
   }
 
   // Use globally stored group names and leaders
-  const groupNames = window.groupNames || groups.map((_, index) => `Group ${index + 1}`);
+  const groupNames = window.groupNames || groups.map((_, index) => `Grupp ${index + 1}`);
   const leaders = window.leaders || groups.map(() => -1);
 
   const data = { groups, settings, groupNames, leaders };
@@ -163,6 +163,12 @@ function saveGroupsAsJSON() {
   URL.revokeObjectURL(url);
 }
 
+document.getElementById('loadGroups').addEventListener('click', () => {
+  document.getElementById('fileInput').click();
+});
+
+document.getElementById('fileInput').addEventListener('change', loadGroups);
+
 function loadGroups() {
   const fileInput = document.getElementById('fileInput');
   const file = fileInput.files[0];
@@ -174,7 +180,7 @@ function loadGroups() {
       const data = JSON.parse(e.target.result);
       groups = data.groups || [];
       settings = data.settings || {};
-      const groupNames = data.groupNames || groups.map((_, index) => `Group ${index + 1}`);
+      const groupNames = data.groupNames || groups.map((_, index) => `Grupp ${index + 1}`);
       const leaders = data.leaders || groups.map(() => -1);
 
       // Store group names and leaders globally
