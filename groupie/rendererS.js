@@ -120,19 +120,77 @@ function displayGroups(groups, groupNames = [], leaders = []) {
 }
 
 function getRandomGroupNames(numGroups) {
-  const groupNames = [
-    "Speed Freaks",
-    "Quartz Crunchers",
-    "Evil :)",
-    "The Sloths",
-    "Swag",
-    "The Cool Ones",
-    "The Drivers"
+  const adjectives = [
+    
+    "The Agile",
+    
+    "The Busy",
+    "The Critical",
+    
+    "The Dopey",
+    "The Dutiful",
+  
+    "The Exotic",
+    "The French",
+    
+    "The Gentle",
+    "The Greedy",
+    "The Hilarious",
+    "The Harmless",
+    
+    
+    "The Jovial",
+    "The Jumpy",
+    "The Kooky",
+    "The Keen",
+    "The Lucky",
+    "The Loud",
+    "The Meek",
+    "The Majestic",
+    "The Naughty",
+    "The Nimble",
+  
+    "The Phony",
+    "The Powerful",
+    "The Radiant",
+    "The Silly",
+    "The Trusty",
+    "The Zany",
+    "The Wonder",
   ];
 
-  shuffleArray(groupNames); // Shuffle the group names
-  return groupNames.slice(0, numGroups); // Return the required number of group names
+  const nouns = [
+    "Heroes",
+    "Villains",
+    "Sloths",
+    "Ones",
+    "Drivers",
+    "Explorers",
+    "Goons",
+    "Axolotls",
+    "Capybaras",
+    "Geese",
+    "Gorillas",
+    "Clerks",
+    "Jokers",
+    "Imposters",
+    "Tourists",
+    "Team",
+
+  ];
+
+  const combinedNames = [];
+
+  for (let i = 0; i < adjectives.length; i++) {
+    for (let j = 0; j < nouns.length; j++) {
+      combinedNames.push(`${adjectives[i]} ${nouns[j]}`);
+    }
+  }
+
+  shuffleArray(combinedNames); // Shuffle the combined names
+  return combinedNames.slice(0, numGroups); // Return the required number of group names
 }
+
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
