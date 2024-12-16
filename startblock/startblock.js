@@ -1,18 +1,14 @@
-const { ipcRenderer } = require("electron");
-const fs = require("fs");
-const addButton = document.getElementById("add");
-const saveButton = document.getElementById("save");
+const addsaveNav = document.getElementById("addnsaveNav");
 
 function expand(button) {
   const li = button.closest("li");
   li.setAttribute("id", "noteExpand");
-  addButton.style.display = "none";
-  saveButton.style.display = "none";
+  addsaveNav.style.display = "none";
 
   const allNotes = document.querySelectorAll("#note");
   const filteredNotes = Array.from(allNotes).filter((note) => note !== li);
   filteredNotes.forEach((note) => {
-    note.style.visibility = "hidden";
+    note.style.display = "none";
   });
 
   console.log(filteredNotes);
@@ -26,15 +22,15 @@ function expand(button) {
     collapse(this);
   };
 }
+
 function collapse(button) {
   const li = button.closest("li");
   li.setAttribute("id", "note");
-  addButton.style.display = "initial";
-  saveButton.style.display = "initial";
+  addsaveNav.style.display = "flex";
 
   const allNotes = document.querySelectorAll("#note");
   allNotes.forEach((note) => {
-    note.style.visibility = "visible";
+    note.style.display = "flex";
   });
 
   button.innerHTML = `
@@ -51,15 +47,42 @@ function addNewNote() {
   const notearea = document.getElementById("notearea");
 
   let li = document.createElement("li");
-  let div = document.createElement("div");
+  let textdiv = document.createElement("div");
+  let buttondiv = document.createElement("div");
   let input = document.createElement("input");
   let textarea = document.createElement("textarea");
   let del_button = document.createElement("button");
   let exp_button = document.createElement("button");
 
+  input.style.fontSize = "1rem";
+  textarea.style.fontSize = "1rem";
+
+  li.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowUp" && event.ctrlKey) {
+      let inputFontSize = parseFloat(window.getComputedStyle(input).fontSize);
+      let textFontSize = parseFloat(window.getComputedStyle(textarea).fontSize);
+      input.style.fontSize = `${inputFontSize + 1}px`;
+      textarea.style.fontSize = `${textFontSize + 1}px`;
+
+      console.log("Ctrl + ArrowUp pressed: Font size increased");
+      event.preventDefault();
+    } else if (event.key === "ArrowDown" && event.ctrlKey) {
+      let inputFontSize = parseFloat(window.getComputedStyle(input).fontSize);
+      let textFontSize = parseFloat(window.getComputedStyle(textarea).fontSize);
+
+      input.style.fontSize = `${inputFontSize - 1}px`;
+      textarea.style.fontSize = `${textFontSize - 1}px`;
+
+      console.log("Ctrl + ArrowUp pressed: Font size increased");
+      event.preventDefault();
+    }
+  });
+
   li.setAttribute("id", "note");
   input.type = "text";
   input.setAttribute("placeholder", "Anteckning");
+  buttondiv.setAttribute("class", "side-flerp");
+  textdiv.setAttribute("class", "textdiv");
   del_button.onclick = function () {
     del(this);
   };
@@ -76,13 +99,13 @@ function addNewNote() {
   exp_button.onclick = function () {
     expand(this);
   };
-  textarea.setAttribute("spellcheck", "false");
 
-  div.appendChild(input);
-  div.appendChild(exp_button);
-  div.appendChild(del_button);
-  li.appendChild(div);
-  li.appendChild(textarea);
+  buttondiv.appendChild(exp_button);
+  buttondiv.appendChild(del_button);
+  textdiv.appendChild(input);
+  textdiv.appendChild(textarea);
+  li.appendChild(textdiv);
+  li.appendChild(buttondiv);
   notearea.appendChild(li);
 }
 
@@ -126,19 +149,53 @@ function loadNote() {
     //iterates for every note that is in the json file
     notes.forEach((note) => {
       const li = document.createElement("li");
-      const div = document.createElement("div");
+      const textdiv = document.createElement("div");
+      const buttondiv = document.createElement("div");
       const input = document.createElement("input");
       const textarea = document.createElement("textarea");
       const del_button = document.createElement("button");
       const exp_button = document.createElement("button");
 
-      //setting the attributes to the elements and their respective values taken from the json file
+      input.style.fontSize = "1rem";
+      textarea.style.fontSize = "1rem";
+
+      li.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowUp" && event.ctrlKey) {
+          let inputFontSize = parseFloat(
+            window.getComputedStyle(input).fontSize
+          );
+          let textFontSize = parseFloat(
+            window.getComputedStyle(textarea).fontSize
+          );
+
+          input.style.fontSize = `${inputFontSize + 1}px`;
+          textarea.style.fontSize = `${textFontSize + 1}px`;
+
+          console.log("Ctrl + ArrowUp pressed: Font size increased");
+          event.preventDefault();
+        } else if (event.key === "ArrowDown" && event.ctrlKey) {
+          let inputFontSize = parseFloat(
+            window.getComputedStyle(input).fontSize
+          );
+          let textFontSize = parseFloat(
+            window.getComputedStyle(textarea).fontSize
+          );
+
+          input.style.fontSize = `${inputFontSize - 1}px`;
+          textarea.style.fontSize = `${textFontSize - 1}px`;
+
+          console.log("Ctrl + ArrowUp pressed: Font size increased");
+          event.preventDefault();
+        }
+      });
+
       li.setAttribute("id", "note");
       input.type = "text";
       input.setAttribute("placeholder", "Anteckning");
       input.value = note.title;
       textarea.value = note.textarea;
-      textarea.setAttribute("spellcheck", "false");
+      buttondiv.setAttribute("class", "side-flerp");
+      textdiv.setAttribute("class", "textdiv");
 
       del_button.innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="16" height="16">
@@ -158,11 +215,12 @@ function loadNote() {
         expand(this);
       };
 
-      div.appendChild(input);
-      div.appendChild(exp_button);
-      div.appendChild(del_button);
-      li.appendChild(div);
-      li.appendChild(textarea);
+      buttondiv.appendChild(exp_button);
+      buttondiv.appendChild(del_button);
+      textdiv.appendChild(input);
+      textdiv.appendChild(textarea);
+      li.appendChild(textdiv);
+      li.appendChild(buttondiv);
       notearea.appendChild(li);
     });
   } else {
@@ -175,11 +233,3 @@ document.addEventListener("DOMContentLoaded", () => {
   loadNote();
   console.log("notes.json loaded");
 });
-
-function exit() {
-  ipcRenderer.send("close-window");
-}
-
-function test() {
-  console.log("a test for testing");
-}

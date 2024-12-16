@@ -2,8 +2,8 @@ const fs = require("fs");
 const { ipcRenderer, remote } = require("electron");
 const classesFilePath = "data/classes.json";
 
-function exit() {
-  ipcRenderer.send("close-window");
+function exit(which) {
+  ipcRenderer.send("close-window", which);
 }
 
 // Enable click-through window

@@ -24,7 +24,7 @@
       </svg>
     </div>
     <svg
-      onclick="exit()"
+      onclick="exit('groupie')"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 384 512"
       class="flerp flerp-close"
@@ -68,20 +68,14 @@
           </form>
       </div>
       <br>
-      <button id="saveGroupsBtn" >        <svg
-        fill="white"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 550 512"
-        width="20px"
-
-      >
+      <button id="saveGroupsBtn" style="position: absolute; top: 34%; left: 46%; transform: translate(-50%, -50%);"> <svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 512" width="20px">
         <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
         <path
           d="M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-288-128 0c-17.7 0-32-14.3-32-32L224 0 64 0zM256 0l0 128 128 0L256 0zM216 232l0 102.1 31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31L168 232c0-13.3 10.7-24 24-24s24 10.7 24 24z"
         />
       </svg></button>
       <br>
-      <button id="loadGroups"  onclick="loadGroups()"><svg xmlns="http://www.w3.org/2000/svg" width="20" fill="white" viewBox="0 0 550 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M128 64c0-35.3 28.7-64 64-64L352 0l0 128c0 17.7 14.3 32 32 32l128 0 0 288c0 35.3-28.7 64-64 64l-256 0c-35.3 0-64-28.7-64-64l0-112 174.1 0-39 39c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l39 39L128 288l0-224zm0 224l0 48L24 336c-13.3 0-24-10.7-24-24s10.7-24 24-24l104 0zM512 128l-128 0L384 0 512 128z"/></svg></button>
+      <button id="loadGroups"  onclick="loadGroups()" style="position: absolute; top: 34%; left: 54%; transform: translate(-50%, -50%);"><svg xmlns="http://www.w3.org/2000/svg" width="20" fill="white" viewBox="0 0 550 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M128 64c0-35.3 28.7-64 64-64L352 0l0 128c0 17.7 14.3 32 32 32l128 0 0 288c0 35.3-28.7 64-64 64l-256 0c-35.3 0-64-28.7-64-64l0-112 174.1 0-39 39c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l39 39L128 288l0-224zm0 224l0 48L24 336c-13.3 0-24-10.7-24-24s10.7-24 24-24l104 0zM512 128l-128 0L384 0 512 128z"/></svg></button>
       <input type="file" id="fileInput" style="display: none;" />
       <div id="groups"></div>
       <ul id="namesList"></ul> <!-- Display added names -->
