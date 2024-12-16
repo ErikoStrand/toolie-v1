@@ -88,8 +88,14 @@ function getNamesFromClass() {
   displayNames();
 }
 
+function editClassName() {
+  console.log("document.getElementsByClassNam");
+  document.getElementById("class-name").textContent = classDropdown.value;
+}
+
 // Display Names for Selected Class
 function displayNames() {
+  editClassName();
   namesList.innerHTML = ""; // Clear previous list
   selectedKlass.forEach((name, index) => {
     const li = document.createElement("li");
@@ -189,6 +195,39 @@ function importClass() {
   reader.readAsText(file);
 }
 
+function deleteClass() {
+  const selectedClass = classDropdown.value;
+
+  if (!selectedClass) {
+    alert("Välj en klass att radera.");
+    return;
+  }
+
+  // Läs in den befintliga JSON-filen
+  let classes = {};
+  if (fs.existsSync(classesFilePath)) {
+    const data = fs.readFileSync(classesFilePath, "utf-8");
+    classes = JSON.parse(data);
+  }
+
+  // Ta bort den valda klassen från objektet
+  if (selectedClass in classes) {
+    delete classes[selectedClass];
+  } else {
+    alert("Kunde inte hitta den valda klassen.");
+    return;
+  }
+
+  // Skriv tillbaka den uppdaterade datan till JSON-filen
+  fs.writeFileSync(classesFilePath, JSON.stringify(classes, null, 2), "utf-8");
+
+  alert(`Gruppen "${selectedClass}" har raderats.`);
+
+  // Uppdatera dropdown och namnlista
+  classes02 = getClasses(); // Update the classes02 variable
+  populateDropdown();
+  namesList.innerHTML = ""; // Clear the names list
+}
 // Add event listener to handle file import
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -197,6 +236,5 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputThing = document.getElementById("avatar");
   classDropdown.addEventListener("change", getNamesFromClass);
   inputThing.addEventListener("change", importClass);
-
   populateDropdown();
 });
