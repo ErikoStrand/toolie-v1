@@ -102,6 +102,7 @@ ul {
   margin: 0px;
   max-height: 600px;
   overflow-y: auto;
+  opacity: 0.9;
 }
 #namesList li div {
   display: flex;
