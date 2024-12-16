@@ -4,11 +4,15 @@ const { exec } = require("child_process");
 const path = require("path");
 const { start } = require("repl");
 
-function createMainWindow() {
+function createMainWindow(which) {
   //Första main Window med alla knappar
+  const location = loadLocation(which);
+  const size = loadSize(which);
   const mainWindow = new BrowserWindow({
-    width: 150,
-    height: 380,
+    x: location[0],
+    y: location[1],
+    width: size[0],
+    height: size[1],
     maximizable: false,
     alwaysOnTop: true,
     transparent: true,
@@ -21,7 +25,7 @@ function createMainWindow() {
   });
   mainWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   mainWindow.setAlwaysOnTop(true, "screen-saver", 1);
-  mainWindow.loadFile("index.html");
+  mainWindow.loadFile(loadPath(which));
 }
 
 function createWindow(which, width, height) {
@@ -55,7 +59,7 @@ ipcMain.handle("getPath", (event, name) => {
 });
 
 app.whenReady().then(() => {
-  createMainWindow();
+  createMainWindow("main");
 
   ipcMain.on("newWindow", (event, arg, width, height) => {
     console.log(arg);
