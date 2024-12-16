@@ -3,21 +3,31 @@ let currentClass = {
   className: "",
   students: [],
 };
+let classes02 = getClasses();
 
-// Funktion för add lägga till elev
-function addStudent() {
-  const studentName = document.getElementById("studentName").value.trim();
+function addStudent(student) {
   const studentList = document.getElementById("studentList");
 
-  currentClass.students.push(studentName);
+  currentClass.students.push(student);
 
   // Lägger till i html (Den synliga listan)
   const listItem = document.createElement("li");
-  listItem.textContent = studentName;
+  listItem.textContent = student;
   studentList.appendChild(listItem);
 
   // Tar bort från input fielden efter den är sparad
   document.getElementById("studentName").value = "";
+}
+
+// Funktion för add lägga till elev
+function addStudents() {
+  const studentName = document.getElementById("studentName").value;
+  multipleStudent = studentName.split("  ");
+  console.log(multipleStudent);
+
+  multipleStudent.forEach((student) => {
+    addStudent(student);
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -28,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.key === "Enter") {
       const studentName = studentNameInput.value.trim();
       if (studentName) {
-        addStudent();
+        addStudents();
       }
     }
   });
@@ -55,9 +65,9 @@ function saveClass() {
   currentClass = { className: "", students: [] };
   document.getElementById("className").value = "";
   document.getElementById("studentList").innerHTML = "";
+  classes02 = getClasses();
+  populateDropdown();
 }
-
-const classes02 = getClasses();
 
 // Populate Dropdown with Classes
 function populateDropdown() {
