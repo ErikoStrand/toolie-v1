@@ -1,26 +1,24 @@
 body {
   margin: 0px;
   scrollbar-width: none;
-  overflow-x: hidden;
+  overflow: hidden;
+  min-width: 210px;
 }
+
 input {
-  display: flex;
   border: none;
-  flex-grow: 1;
   opacity: 0.85;
   font-size: 1rem;
   background-color: #faf8f7;
   color: black;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 input:hover,
 input:focus {
   opacity: 1;
 }
-ul {
-  margin: 0px;
-  padding: 0px;
-}
+
 textarea {
   resize: none;
   min-width: 100px;
@@ -32,14 +30,17 @@ textarea {
   color: black;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 button {
   border: none;
   opacity: 0.85;
   background-color: rgb(107, 12, 107);
 }
+
 button:hover {
   opacity: 1;
 }
+
 svg {
   display: block;
   text-align: center;
@@ -47,15 +48,35 @@ svg {
   height: inherit;
 }
 
+.textdiv {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-flerp {
+  background-color: rgb(107, 12, 107);
+  padding: 4px 1px;
+  border-bottom-left-radius: 10px;
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+  position: absolute;
+  right: 0px;
+}
+
 ::-webkit-scrollbar {
   width: 9px;
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgb(100, 96, 96);
   border-radius: 3px;
 }
 
-.flex-row {
+.flex-row-nav {
+  margin-top: 4px;
+  background-color: rgb(107, 12, 107);
   border-top: 1px;
   display: flex;
   flex-direction: row;
@@ -70,68 +91,55 @@ svg {
   flex-direction: column;
 }
 
-#mover {
+.mover,
+.flerp-close {
   opacity: 0.85;
-  background-color: rgb(107, 12, 107);
-  flex-grow: 1;
-  -webkit-app-region: drag;
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: move;
-}
-#closer {
-  opacity: 0.85;
-  background-color: rgb(107, 12, 107);
 }
 
-#mover:hover {
-  background-color: rgb(107, 12, 107);
-  opacity: 01;
-}
-#closer:hover {
+.flerp-close:hover {
   background-color: rgb(107, 12, 107);
   opacity: 1;
 }
 
 #notearea {
+  margin: 0px;
+  padding: 0px;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
-  gap: 20px;
+  gap: 1rem;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
 #note {
-  flex-basis: 40%;
   flex-grow: 1;
+  flex-basis: 40%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  position: relative;
 }
+
 #note > div {
   display: flex;
 }
 
-@media only screen and (max-width: 600px) {
-  #notearea {
-    flex-direction: column;
-  }
-}
-
 #noteExpand {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 35px;
-  left: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
   z-index: 100;
   background-color: transparent;
-  flex-basis: 40%;
-  flex-grow: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  margin-top: 4px;
 }
+
 #noteExpand > div {
   display: flex;
 }
+
 #noteExpand > textarea {
   flex-grow: 1;
   flex-shrink: 1;
