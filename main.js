@@ -4,11 +4,6 @@ const { exec } = require("child_process");
 const path = require("path");
 const { start } = require("repl");
 
-// Build/Installer stuff ----------------------------
-if (require("electron-squirrel-startup")) {
-  app.quit();
-}
-
 function createMainWindow(which) {
   //Första main Window med alla knappar
   const location = loadLocation(which);
