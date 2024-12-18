@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../styles.css" />
     <style>
       body {
+        background-color: #faf8f7;
         font-family: Arial, Helvetica, sans-serif;
       }
       .center-container {
@@ -13,9 +14,6 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        padding-bottom: 16px;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
       }
       #timer {
         font-size: 48px;
@@ -57,11 +55,11 @@
   </head>
   <body>
     <div class="flex-row">
-      <div class="nofuck mover">
+      <div class="mover">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
-          class="flerp flerp-move"
+          class="moverButton"
         >
           <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
           <path
@@ -70,10 +68,10 @@
         </svg>
       </div>
       <svg
-        onclick="exit('timer')"
+        onclick="exit()"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 384 512"
-        class="flerp flerp-close"
+        class="exitButton"
       >
         <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
         <path
@@ -81,7 +79,7 @@
         />
       </svg>
     </div>
-    <div class="center-container default-background">
+    <div class="center-container">
       <div id="timer">
         <input
           type="text"

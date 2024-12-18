@@ -1,5 +1,6 @@
 body {
   font-family: Arial, sans-serif;
+  margin: 20px;
 }
 .form-group {
   margin-bottom: 15px;
@@ -19,21 +20,12 @@ ul {
 li {
   margin: 5px 0;
 }
-h1 {
-  margin: 0px;
-}
-.padding {
-  padding: 8px;
-}
+
 #namesList {
   list-style-type: none;
-  padding: 0px;
+  padding: 0;
   border: 1px solid #ddd;
-  margin: 0px;
-  max-height: 340px;
-  overflow-y: auto;
 }
-
 #namesList li div {
   display: flex;
   flex-direction: row;
@@ -65,30 +57,4 @@ ul {
   -webkit-user-select: none;
   user-select: none;
   cursor: move;
-}
-
-.editable-name {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0px;
-  min-width: 50px;
-  border: 1px solid transparent;
-  border-radius: 3px;
-}
-
-.editable-name:hover {
-  background-color: #f0f0f0;
-  border-color: #ccc;
-}
-
-.editable-name:focus {
-  outline: none;
-  background-color: #fff;
-  border-color: #007bff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-.padding-down {
-  margin-bottom: 35px;
 }

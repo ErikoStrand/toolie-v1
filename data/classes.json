@@ -1,12 +1,14 @@
 {
   "T4": [
-    "Alexander",
+    "Alex",
     "Erik",
     "Matti",
     "Leonard",
     "Sten",
     "Oli",
-    "Magd",
+    "Magd"
+  ],
+  "4T": [
     "Kire",
     "Xela",
     "Ittam",
@@ -15,11 +17,31 @@
     "Ilo",
     "Dgam"
   ],
-  "4T": ["Kire", "Xela", "Ittam", "Dranoel", "Nets", "Ilo", "Dgam"],
   "Lärare": [
-    "Odd-Rune Jdwadwadaacobsen",
-    "Tobias Lindberbigghbgbg",
-    "Mikael Sandandnanwdndell",
-    "dwadwa"
-  ]
+    "Odd-Rune Jacobsen",
+    "Tobias Lindberg",
+    "Mikael Sandell"
+  ],
+  "Möte": [
+    "Leonard",
+    "Erik",
+    "Matti",
+    "Tobias",
+    "Oliwier",
+    "Sten",
+    "Odd-rune",
+    "Alexander (Hatad)"
+  ],
+  "dwa": [
+    "efs",
+    "fse",
+    "awd",
+    "fes"
+  ],
+  "T22": [
+    "Alenn",
+    "Sebastian",
+    "Joseph"
+  ],
+  "": []
 }
