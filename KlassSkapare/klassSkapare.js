@@ -1,29 +1,48 @@
-const fs = require("fs"); // Required for file system operations
-const path = require("path"); // To manage file paths
-
-const classesFilePath = "data/classes.json";
-
 // variabler
 let currentClass = {
   className: "",
   students: [],
 };
+let classes02 = getClasses();
 
-// Funktion för add lägga till elev
-function addStudent() {
-  const studentName = document.getElementById("studentName").value.trim();
+function addStudent(student) {
   const studentList = document.getElementById("studentList");
 
-  currentClass.students.push(studentName);
+  currentClass.students.push(student);
 
   // Lägger till i html (Den synliga listan)
   const listItem = document.createElement("li");
-  listItem.textContent = studentName;
+  listItem.textContent = student;
   studentList.appendChild(listItem);
 
   // Tar bort från input fielden efter den är sparad
   document.getElementById("studentName").value = "";
 }
+
+// Funktion för add lägga till elev
+function addStudents() {
+  const studentName = document.getElementById("studentName").value;
+  multipleStudent = studentName.split("  ");
+  console.log(multipleStudent);
+
+  multipleStudent.forEach((student) => {
+    addStudent(student);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const studentNameInput = document.getElementById("studentName");
+
+  // Add event listener for the Enter key
+  studentNameInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      const studentName = studentNameInput.value.trim();
+      if (studentName) {
+        addStudents();
+      }
+    }
+  });
+});
 
 // För att spara klasser
 function saveClass() {
@@ -46,40 +65,9 @@ function saveClass() {
   currentClass = { className: "", students: [] };
   document.getElementById("className").value = "";
   document.getElementById("studentList").innerHTML = "";
+  classes02 = getClasses();
+  populateDropdown();
 }
-
-// För att få alla klasser
-function getClasses() {
-  if (fs.existsSync(classesFilePath)) {
-    // Läsa json fil
-    const data = fs.readFileSync(classesFilePath, "utf-8");
-    const classes = JSON.parse(data);
-
-    const classDetails = Object.keys(classes);
-    // Returna json
-    return classDetails;
-  } else {
-    console.warn("Inga klasser hittade!");
-    return [];
-  }
-}
-
-// Förr att få alla namn och klasser...
-function getNames(className) {
-  if (fs.existsSync(classesFilePath)) {
-    const data = fs.readFileSync(classesFilePath, "utf-8");
-    const classes = JSON.parse(data);
-
-    const classDetails = classes[className] || [];
-    // Returna json
-    return classDetails; // Return the class details if found
-  } else {
-    console.warn("No classes found. The file does not exist yet.");
-    return null;
-  }
-}
-
-const classes02 = getClasses();
 
 // Populate Dropdown with Classes
 function populateDropdown() {
@@ -100,46 +88,153 @@ function getNamesFromClass() {
   displayNames();
 }
 
+function editClassName() {
+  console.log("document.getElementsByClassNam");
+  document.getElementById("class-name").textContent = classDropdown.value;
+}
+
 // Display Names for Selected Class
 function displayNames() {
+  editClassName();
   namesList.innerHTML = ""; // Clear previous list
-  // Get names for selected class
-  selectedKlass.forEach((name) => {
+  selectedKlass.forEach((name, index) => {
     const li = document.createElement("li");
     const div = document.createElement("div");
     const p = document.createElement("p");
     const deleteBtn = document.createElement("button");
 
     p.textContent = name;
+    p.contentEditable = true; // Gör texten redigerbar
+    p.classList.add("editable-name");
     deleteBtn.textContent = "🗑️";
     deleteBtn.classList.add("defaultDelete");
 
-    // Add delete functionality
-    deleteBtn.addEventListener("click", () => {
-      // Remove name from selectedKlass array
-      const index = selectedKlass.indexOf(name);
-      if (index > -1) {
-        selectedKlass.splice(index, 1);
-        // Remove the list item from the DOM
-        li.remove();
-
-        // Optional: Update backend/storage if needed
-        // For example, you might want to call a function to update the file
-        // updateClassFile(currentSelectedClass, selectedKlass);
+    // Lägg till eventlistener för att spara ändringar när man klickar utanför
+    p.addEventListener("blur", () => {
+      const newName = p.textContent.trim();
+      if (newName && newName !== name) {
+        selectedKlass[index] = newName;
       }
     });
 
-    namesList.appendChild(li);
+    // Lägg till eventlistener för Enter-tangenten
+    p.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        p.blur();
+      }
+    });
+
+    // Delete functionality (oförändrad)
+    deleteBtn.addEventListener("click", () => {
+      selectedKlass.splice(index, 1);
+      displayNames();
+    });
 
     div.appendChild(p);
     li.appendChild(div);
     li.appendChild(deleteBtn);
+    namesList.appendChild(li);
   });
 }
+
+function addName() {
+  let name = document.getElementById("nameAdd");
+  if (name.value === "") {
+    return;
+  }
+  selectedKlass.push(name.value);
+  displayNames();
+  name.value = "";
+}
+
+function saveEditedClass() {
+  const selectedClass = classDropdown.value;
+  if (!selectedClass) {
+    alert("Välj en klass att spara först.");
+    return;
+  }
+
+  // Läs in den befintliga JSON-filen
+  let classes = {};
+  if (fs.existsSync(classesFilePath)) {
+    const data = fs.readFileSync(classesFilePath, "utf-8");
+    classes = JSON.parse(data);
+  }
+
+  // Uppdatera klassen med de redigerade eleverna
+  classes[selectedClass] = selectedKlass;
+
+  // Skriv tillbaka den uppdaterade datan till JSON-filen
+  fs.writeFileSync(classesFilePath, JSON.stringify(classes, null, 2), "utf-8");
+
+  //alert("Klassen har sparats med de redigerade ändringarna.");
+
+  // Uppdatera dropdown och namnlista för att reflektera ändringarna
+  populateDropdown();
+  displayNames();
+}
+
+function importClass() {
+  const fileInput = document.getElementById("avatar");
+
+  const file = fileInput.files[0];
+
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const importedData = event.target.result;
+
+    //const fs = require("fs");
+    const classesFilePath = "data/classes.json";
+
+    fs.writeFileSync(classesFilePath, importedData, "utf-8"); //RITA
+
+    alert("Class imported and file overwritten successfully!");
+  };
+
+  reader.readAsText(file);
+}
+
+function deleteClass() {
+  const selectedClass = classDropdown.value;
+
+  if (!selectedClass) {
+    alert("Välj en klass att radera.");
+    return;
+  }
+
+  // Läs in den befintliga JSON-filen
+  let classes = {};
+  if (fs.existsSync(classesFilePath)) {
+    const data = fs.readFileSync(classesFilePath, "utf-8");
+    classes = JSON.parse(data);
+  }
+
+  // Ta bort den valda klassen från objektet
+  if (selectedClass in classes) {
+    delete classes[selectedClass];
+  } else {
+    alert("Kunde inte hitta den valda klassen.");
+    return;
+  }
+
+  // Skriv tillbaka den uppdaterade datan till JSON-filen
+  fs.writeFileSync(classesFilePath, JSON.stringify(classes, null, 2), "utf-8");
+
+  alert(`Gruppen "${selectedClass}" har raderats.`);
+
+  // Uppdatera dropdown och namnlista
+  classes02 = getClasses(); // Update the classes02 variable
+  populateDropdown();
+  namesList.innerHTML = ""; // Clear the names list
+}
+// Add event listener to handle file import
 
 document.addEventListener("DOMContentLoaded", () => {
   const classDropdown = document.getElementById("classDropdown");
   const namesList = document.getElementById("namesList");
+  const inputThing = document.getElementById("avatar");
   classDropdown.addEventListener("change", getNamesFromClass);
+  inputThing.addEventListener("change", importClass);
   populateDropdown();
 });
