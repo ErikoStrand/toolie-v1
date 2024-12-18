@@ -1,0 +1,67 @@
+
+  .defaultDelete {
+    background: none;
+    border: none;
+    padding: 4px 6px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+button {
+  background-color: #45155b;
+  color: #f4f4f4;
+  padding: 4px;
+}
+
+
+
+  select,
+  ul {
+    width: 100%;
+    padding: 4px;
+    box-sizing: border-box;
+  }
+  .defaultInput {
+    background-color: #f4f4f4;
+    color: black;
+    border: solid 2px #45155b;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  #flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  #namesList {
+    list-style-type: none;
+    padding: 0;
+    border: 1px solid #ddd;
+  }
+  #namesList li div {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+  }
+  #namesList li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 4px;
+    padding: 2px;
+    border-bottom: 1px solid #eee;
+    background-color: white;
+  }
+  #namesList li:last-child {
+    border-bottom: none;
+  }

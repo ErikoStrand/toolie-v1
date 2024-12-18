@@ -1,0 +1,67 @@
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+.button-container > * {
+  display: block;
+  cursor: pointer;
+}
+.moverButton {
+  align-self: flex-start;
+  height: 22px;
+  border-radius: 20px;
+  padding: 4px 6px;
+  background-color: #a62883;
+  fill: #faf8f7;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.mover {
+  flex-grow: 1;
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: move;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: 16px;
+}
+
+.normalButton:hover {
+  fill: #a62883;
+  background-color: #e3dae0;
+  transition: ease-in-out 0.4s;
+}
+.exitButton {
+  height: 18px;
+  border-radius: 20px;
+  padding: 6px 8px;
+  background-color: #db0e00;
+  fill: #faf8f7;
+}
+.exitButton:hover {
+  fill: #681223;
+  transition: ease-in-out 0.2s;
+}
+
+.draggable-img {
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: move;
+}
+
+.normalButton {
+  height: 18px;
+  border-radius: 20px;
+  padding: 6px 6px;
+  background-color: #a62883;
+  fill: #faf8f7;
+}
