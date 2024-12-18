@@ -18,9 +18,7 @@ function populateDropdown() {
     getNamesFromClass();
   }
 }
-function exit() {
-  ipcRenderer.send("close-window");
-}
+
 function getNamesFromClass() {
   const selectedClass = classDropdown.value;
   namesList.innerHTML = "";
@@ -93,6 +91,7 @@ function slumpAName() {
   if (namePool.length > 0) {
     let random = Math.floor(Math.random() * namePool.length);
     document.getElementById("slumpName").textContent = namePool[random];
+    document.getElementById("slumpName").style = "padding: 4px";
   } else {
     document.getElementById("slumpName").textContent = "No names available";
   }
