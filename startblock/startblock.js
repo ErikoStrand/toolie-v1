@@ -134,14 +134,14 @@ function saveNotes() {
   });
 
   const jsonString = JSON.stringify(data, null, 2);
-  fs.writeFileSync("data/notes.json", jsonString, "utf-8");
+  fs.writeFileSync("resources/data/notes.json", jsonString, "utf-8");
 }
 
 function loadNote() {
   const notearea = document.getElementById("notearea");
 
-  if (fs.existsSync("data/notes.json")) {
-    const data = fs.readFileSync("data/notes.json", "utf-8");
+  if (fs.existsSync("resources/data/notes.json")) {
+    const data = fs.readFileSync("resources/data/notes.json", "utf-8");
     const notes = JSON.parse(data);
 
     notearea.innerHTML = "";

@@ -116,27 +116,30 @@ ipcMain.on("play-timer-sound", () => {
 function handlePlaybackError(error) {
   if (error) console.error(`Audio playback error: ${error}`);
 }
-
 function saveLocation(which, position) {
-  const response = fs.readFileSync("data/startup.json", "utf-8");
+  const response = fs.readFileSync("resources/data/startup.json", "utf-8");
   let startup = JSON.parse(response);
   startup[which]["position"] = position;
-  fs.writeFileSync("data/startup.json", JSON.stringify(startup), "utf8");
+  fs.writeFileSync(
+    "resources/data/startup.json",
+    JSON.stringify(startup),
+    "utf8"
+  );
 }
 
 function loadLocation(which) {
-  const response = fs.readFileSync("data/startup.json", "utf-8");
+  const response = fs.readFileSync("resources/data/startup.json", "utf-8");
   let startup = JSON.parse(response);
   return startup[which]["position"];
 }
 
 function loadPath(which) {
-  const response = fs.readFileSync("data/startup.json", "utf-8");
+  const response = fs.readFileSync("resources/data/startup.json", "utf-8");
   let startup = JSON.parse(response);
   return startup[which]["filepath"];
 }
 function loadSize(which) {
-  const response = fs.readFileSync("data/startup.json", "utf-8");
+  const response = fs.readFileSync("resources/data/startup.json", "utf-8");
   let startup = JSON.parse(response);
   return startup[which]["size"];
 }
