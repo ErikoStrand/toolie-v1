@@ -2,7 +2,6 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const fs = require("fs");
 const { exec } = require("child_process");
 const path = require("path");
-const { start } = require("repl");
 
 // Build/Installer stuff ----------------------------
 if (require("electron-squirrel-startup")) {
@@ -26,6 +25,7 @@ function createMainWindow(which) {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
+      preload: path.join(__dirname, "preload.js"),
     },
   });
   mainWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });

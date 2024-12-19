@@ -4,6 +4,7 @@ const { FuseV1Options, FuseVersion } = require("@electron/fuses");
 module.exports = {
   packagerConfig: {
     asar: true,
+    extraResources: [".data/**"],
   },
   rebuildConfig: {},
   makers: [
@@ -14,6 +15,7 @@ module.exports = {
         name: "desktop_toolie",
         description: "The desktop version of the web app Toolie by NTIG",
         setupIcon: "./images/ToolieLogo.ico",
+        icon: "./images/ToolieLogo.ico",
         setupExe: "DesktopToolieInstaller.exe",
         allowToChangeInstallationDirectory: true,
         oneClick: false,
