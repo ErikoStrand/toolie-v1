@@ -1,6 +1,6 @@
 {
   "main": {
-    "position": [864, 362],
+    "position": [765, 414],
     "size": [150, 380],
     "filepath": "index.html"
   },
@@ -20,18 +20,18 @@
     "filepath": "startblock/startblock.html"
   },
   "groupie": {
-    "position": [980, 396],
+    "position": [157, 143],
     "size": [600, 600],
     "filepath": "groupie/groupie.html"
   },
   "namnSlumpare": {
-    "position": [864, 129],
+    "position": [927, 116],
     "size": [250, 900],
-    "filepath": "namnSlumpare/Namns.html"
+    "filepath": "NamnSlumpare/NamnS.html"
   },
   "klassSkapare": {
-    "position": [619, 217],
+    "position": [204, 219],
     "size": [600, 967],
-    "filepath": "klassSkapare/klassSkapare.html"
+    "filepath": "KlassSkapare/klassSkapare.html"
   }
 }
