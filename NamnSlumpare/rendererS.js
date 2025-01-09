@@ -2,6 +2,9 @@
 const classes = getClasses();
 let selectedKlass = [];
 // DOM Elements
+const classDropdown = document.getElementById("classDropdown");
+const namesList = document.getElementById("namesList");
+const addNameBtn = document.getElementById("addNameBtn");
 
 // Populate Dropdown with Classes
 function populateDropdown() {
@@ -68,9 +71,6 @@ function addName() {
   name.value = "";
 }
 
-classDropdown.addEventListener("change", getNamesFromClass);
-populateDropdown();
-
 function slumpAName() {
   const checkboxes = document.querySelectorAll(
     '#namesList input[type="checkbox"]'
@@ -108,3 +108,6 @@ function selectAll() {
     Array.from(checkboxes).map((cb) => (cb.checked = false));
   }
 }
+
+classDropdown.addEventListener("change", getNamesFromClass);
+populateDropdown();
