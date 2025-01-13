@@ -42,7 +42,11 @@ module.exports = {
     },
     {
       name: "@electron-forge/maker-deb",
-      config: {},
+      config: {
+        options: {
+          maintainer: "T4",
+        },
+      },
     },
     {
       name: "@electron-forge/maker-rpm",
