@@ -2,6 +2,22 @@ const fs = require("fs");
 const { ipcRenderer, remote } = require("electron");
 const classesFilePath = "resources/data/classes.json";
 
+const observer = new MutationObserver(() => {
+  const html = document.documentElement;
+  ipcRenderer.send("resize-window", {
+    width: html.scrollWidth,
+    height: html.scrollHeight,
+  });
+});
+
+// Start observing the HTML element instead of body
+observer.observe(document.documentElement, {
+  attributes: true,
+  childList: true,
+  subtree: true,
+  characterData: true,
+});
+
 function exit(which) {
   ipcRenderer.send("close-window", which);
 }

@@ -17,6 +17,7 @@ function createMainWindow(which) {
     y: location[1],
     width: size[0],
     height: size[1],
+    useContentSize: true,
     maximizable: false,
     alwaysOnTop: true,
     transparent: true,
@@ -28,9 +29,22 @@ function createMainWindow(which) {
       preload: path.join(__dirname, "preload.js"),
     },
   });
+  ipcMain.on("resize-window", (event, size) => {
+    if (event.sender === mainWindow.webContents) {
+      mainWindow.setContentSize(size.width, size.height);
+    }
+  });
+  mainWindow.webContents.on("devtools-opened", () => {
+    mainWindow.webContents.openDevTools({ mode: "undocked" });
+  });
   mainWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   mainWindow.setAlwaysOnTop(true, "screen-saver", 1);
   mainWindow.loadFile(loadPath(which));
+
+  // removes listener on close to prevent memory leaks.
+  mainWindow.on("closed", () => {
+    ipcMain.removeAllListeners("resize-window");
+  });
 }
 
 function createWindow(which, width, height) {
@@ -50,6 +64,9 @@ function createWindow(which, width, height) {
       nodeIntegration: true,
       contextIsolation: false,
     },
+  });
+  newWindow.webContents.on("devtools-opened", () => {
+    newWindow.webContents.openDevTools({ mode: "undocked" });
   });
   newWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   newWindow.setAlwaysOnTop(true, "screen-saver", 1);
