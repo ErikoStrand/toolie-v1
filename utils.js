@@ -9,7 +9,6 @@ const observer = new MutationObserver(() => {
     height: html.scrollHeight,
   });
 });
-
 // Start observing the HTML element instead of body
 observer.observe(document.documentElement, {
   attributes: true,
