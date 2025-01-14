@@ -46,7 +46,7 @@
               />
             </svg>
           </div>
-          <section id="tools" style="display: none">
+          <section id="tools" style="display: none" class="button-container">
             <svg
               class="normalButton"
               xmlns="http://www.w3.org/2000/svg"
@@ -163,17 +163,25 @@
   function showTools() {
     const tools = document.getElementById("tools");
     const toolsSvg = document.getElementById("toolsSvg");
-    if (tools.style.display === "block") {
+    const toolIcons = tools.getElementsByTagName("svg");
+
+    if (tools.style.display === "flex") {
       tools.style.display = "none";
       toolsSvg.setAttribute("viewBox", "0 0 640 512");
-
       document.getElementById("toolsPath").setAttribute("d", closedPathD);
-
       boolTools = false;
     } else {
-      tools.style.display = "block";
+      tools.style.display = "flex";
       toolsSvg.setAttribute("viewBox", "0 0 576 512");
       document.getElementById("toolsPath").setAttribute("d", openPathD);
+
+      // Add staggered animation to each tool icon
+      Array.from(toolIcons).forEach((icon, index) => {
+        icon.style.animation = "none";
+        icon.offsetHeight; // Trigger reflow
+        icon.style.animation = `fadeIn 0.5s ease-in forwards ${index * 0.1}s`;
+      });
+
       boolTools = true;
     }
   }
