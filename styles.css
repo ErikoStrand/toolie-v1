@@ -1,10 +1,76 @@
+.tooltip-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  font-size: small;
+  border-radius: 15px;
+  text-align: right;
+  color: white;
+  background-color: #192733;
+  padding: 8px 10px;
+}
+
+.hover-text:hover .tooltip-text {
+  visibility: visible;
+}
+
+.top {
+  top: -40px;
+  left: -50%;
+}
+
+.bottom {
+  top: 25px;
+  left: -50%;
+}
+
+.left {
+  right: 110%;
+}
+
+.right {
+  top: -8px;
+  left: 120%;
+}
+
+.hover-text {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
 .flex-container {
   display: flex;
   flex-direction: row;
+  gap: 8px;
+}
+body {
+  margin: 0px;
+  padding: 0px;
 }
 .button-container > * {
   display: block;
   cursor: pointer;
+}
+#tools2 {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 8px;
+}
+
+#links {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 8px;
+}
+.linkButton {
+  object-fit: cover;
+  width: 34px;
+  border-radius: 10px;
 }
 .moverButton {
   align-self: flex-start;
@@ -67,6 +133,9 @@
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+.overflow-hidden {
+  overflow: hidden;
+}
 .exitClock {
   width: 35px;
   height: 18px;
@@ -80,7 +149,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-left: 16px;
 }
 
 .normalButton:hover {
@@ -88,10 +156,34 @@
   background-color: #e3dae0;
   transition: ease-in-out 0.4s;
 }
+#tools svg {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 .exitButton {
-  height: 18px;
+  height: 24px;
   border-radius: 20px;
-  padding: 6px 8px;
+  padding: 4px 6px;
   background-color: #db0e00;
   fill: #faf8f7;
 }

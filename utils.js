@@ -2,6 +2,16 @@ const fs = require("fs");
 const { ipcRenderer, remote } = require("electron");
 const classesFilePath = "resources/data/classes.json";
 
+const resizeObserver = new ResizeObserver((entries) => {
+  const html = document.documentElement;
+  ipcRenderer.send("resize-window", {
+    width: html.getBoundingClientRect().width,
+    height: html.getBoundingClientRect().height,
+  });
+});
+
+resizeObserver.observe(document.documentElement);
+
 function exit(which) {
   ipcRenderer.send("close-window", which);
 }
