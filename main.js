@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, shell } = require("electron");
 const fs = require("fs");
 const { exec } = require("child_process");
 const path = require("path");
@@ -36,6 +36,10 @@ function createMainWindow(which) {
   });
   mainWindow.webContents.on("devtools-opened", () => {
     mainWindow.webContents.openDevTools({ mode: "undocked" });
+  });
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url);
+    return { action: "deny" };
   });
   mainWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   mainWindow.setAlwaysOnTop(true, "screen-saver", 1);
