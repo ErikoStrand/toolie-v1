@@ -4,10 +4,19 @@ const classesFilePath = "resources/data/classes.json";
 
 const resizeObserver = new ResizeObserver((entries) => {
   const html = document.documentElement;
-  ipcRenderer.send("resize-window", {
-    width: html.getBoundingClientRect().width,
-    height: html.getBoundingClientRect().height,
-  });
+  const rect = html.getBoundingClientRect();
+
+  // Round the values to prevent floating point issues
+  const size = {
+    width: Math.round(rect.width),
+    height: Math.round(rect.height),
+  };
+
+  // Add a minimum size check to prevent disappearing
+  if (size.width < 100) size.width = 100;
+  if (size.height < 100) size.height = 100;
+
+  ipcRenderer.send("resize-window", size);
 });
 
 resizeObserver.observe(document.documentElement);

@@ -8,11 +8,10 @@ if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
-function createMainWindow(which) {
-  //Första main Window med alla knappar
+function createWindow(which) {
   const location = loadLocation(which);
   const size = loadSize(which);
-  const mainWindow = new BrowserWindow({
+  const newWindow = new BrowserWindow({
     x: location[0],
     y: location[1],
     width: size[0],
@@ -30,51 +29,26 @@ function createMainWindow(which) {
     },
   });
   ipcMain.on("resize-window", (event, size) => {
-    if (event.sender === mainWindow.webContents) {
-      mainWindow.setContentSize(size.width, size.height);
+    console.log("Received size:", size); // Debug log
+    if (event.sender === newWindow.webContents) {
+      newWindow.setContentSize(size.width, size.height);
     }
-  });
-  mainWindow.webContents.on("devtools-opened", () => {
-    mainWindow.webContents.openDevTools({ mode: "undocked" });
-  });
-  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
-    shell.openExternal(url);
-    return { action: "deny" };
-  });
-  mainWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
-  mainWindow.setAlwaysOnTop(true, "screen-saver", 1);
-  mainWindow.loadFile(loadPath(which));
-
-  // removes listener on close to prevent memory leaks.
-  mainWindow.on("closed", () => {
-    ipcMain.removeAllListeners("resize-window");
-  });
-}
-
-function createWindow(which, width, height) {
-  const location = loadLocation(which);
-  const size = loadSize(which);
-  const newWindow = new BrowserWindow({
-    x: location[0],
-    y: location[1],
-    width: size[0],
-    height: size[1],
-    maximizable: false,
-    alwaysOnTop: true,
-    transparent: true,
-    titleBarStyle: "hidden",
-    resizable: true,
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
-    },
   });
   newWindow.webContents.on("devtools-opened", () => {
     newWindow.webContents.openDevTools({ mode: "undocked" });
   });
+  newWindow.webContents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url);
+    return { action: "deny" };
+  });
   newWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   newWindow.setAlwaysOnTop(true, "screen-saver", 1);
   newWindow.loadFile(loadPath(which));
+
+  // removes listener on close to prevent memory leaks.
+  newWindow.on("closed", () => {
+    ipcMain.removeAllListeners("resize-window");
+  });
 }
 
 //////////////////////////////////////////////
@@ -85,11 +59,11 @@ ipcMain.handle("getPath", (event, name) => {
 });
 
 app.whenReady().then(() => {
-  createMainWindow("main");
+  createWindow("main");
 
-  ipcMain.on("newWindow", (event, arg, width, height) => {
+  ipcMain.on("newWindow", (event, arg) => {
     console.log(arg);
-    createWindow(arg, width, height);
+    createWindow(arg);
   });
 });
 
