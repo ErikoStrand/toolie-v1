@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <title>Class Names Management</title>
-    <script src="../utils.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles.css" />
     <script defer src="rendererS.js"></script>
     <link rel="stylesheet" href="Namn.css" />
+    <script src="../utils.js"></script>
   </head>
   <body>
     <article class="nofuck">
@@ -62,15 +63,29 @@
           </div>
         </div>
         <p id="slumpName" class="gradientBackground"></p>
-        <div class="default-background checkbox">
-          <input
-            type="checkbox"
-            id="mastercheckbox"
-            onclick="selectAll()"
-          /><span>Välj Alla</span>
+        <div class="default-background checkbox space-between">
+          <label for="mastercheckbox">
+            <input type="checkbox" id="mastercheckbox" onclick="selectAll()" />
+            Välj Alla</label
+          >
+          <button onclick="showNames()">Visa</button>
         </div>
-        <ul id="namesList"></ul>
+        <ul id="namesList" class="show"></ul>
       </section>
     </article>
+    <script>
+      function showNames() {
+        let names = document.getElementById("namesList");
+        if (names.classList.contains("show")) {
+          names.style.display = "none";
+          names.classList.add("hidden");
+          names.classList.remove("show");
+        } else {
+          names.style.display = "block";
+          names.classList.add("show");
+          names.classList.remove("hidden");
+        }
+      }
+    </script>
   </body>
 </html>
