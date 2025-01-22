@@ -30,8 +30,11 @@ button {
   border-radius: 7px;
 }
 
-#loadGroups button {
-  margin-left: 60px;
+#groupsButton button {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center;    /* Vertically center */
+  height: 100vh
 }
 
 select {
