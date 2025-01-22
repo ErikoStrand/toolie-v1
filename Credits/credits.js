@@ -4,12 +4,12 @@ var textArea = document.getElementById("RepoText");
 var repoButton = document.getElementById("getRepoButton");
 
 async function getCommits() {
-  fs.readFile("commits.json", "utf-8", (err, data) => {
+  fs.readFile("resources/data/commit_history.json", "utf-8", (err, data) => {
     if (err) {
       console.error("Failed to load json", err);
       return;
     }
-    textArea.innerHTML = json.parse(`${data.author}: ${data.message}`);
+    console.log(data);
   });
 }
 
