@@ -35,6 +35,7 @@ function createWindow(which) {
     }
   });
   newWindow.webContents.on("devtools-opened", () => {
+    console.log("nånting");
     newWindow.webContents.openDevTools({ mode: "undocked" });
   });
   newWindow.webContents.setWindowOpenHandler(({ url }) => {
