@@ -1,6 +1,11 @@
 [
   {
     "author": "ErikoStrand",
+    "message": "crawler, gets a json of all our commits:\n\nincluding the seperate branches etc.",
+    "time": 1737551801
+  },
+  {
+    "author": "ErikoStrand",
     "message": "kan bara resize, startblock. saves size for next use.\n\netc etc.",
     "time": 1737547755
   },

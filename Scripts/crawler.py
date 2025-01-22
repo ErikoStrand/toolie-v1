@@ -45,7 +45,7 @@ def scrape_github_activity(url):
                 else:
                     break
         
-        time.sleep(1)
+        time.sleep(0.2)
     
     # Save to JSON file
     with open('resources/data/commit_history.json', 'w', encoding='utf-8') as f:
