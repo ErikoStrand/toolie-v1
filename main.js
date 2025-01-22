@@ -21,7 +21,7 @@ function createWindow(which) {
     alwaysOnTop: true,
     transparent: true,
     titleBarStyle: "hidden",
-    resizable: true,
+    resizable: which === "startblock",
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
