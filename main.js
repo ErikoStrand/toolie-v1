@@ -70,9 +70,11 @@ app.whenReady().then(() => {
 ipcMain.on("close-window", (event, which) => {
   const win = BrowserWindow.getFocusedWindow();
   const position = win.getPosition();
+  const size = win.getBounds();
 
   console.log(position, which);
   saveLocation(which, position);
+  saveSize(which, [size["width"], size["height"]]);
   if (win) win.close();
 });
 
@@ -115,6 +117,17 @@ function saveLocation(which, position) {
   const response = fs.readFileSync("resources/data/startup.json", "utf-8");
   let startup = JSON.parse(response);
   startup[which]["position"] = position;
+  fs.writeFileSync(
+    "resources/data/startup.json",
+    JSON.stringify(startup),
+    "utf8"
+  );
+}
+
+function saveSize(which, size) {
+  const response = fs.readFileSync("resources/data/startup.json", "utf-8");
+  let startup = JSON.parse(response);
+  startup[which]["size"] = size;
   fs.writeFileSync(
     "resources/data/startup.json",
     JSON.stringify(startup),
