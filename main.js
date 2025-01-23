@@ -77,6 +77,10 @@ ipcMain.on("close-window", (event, which) => {
   saveSize(which, [size["width"], size["height"]]);
   if (win) win.close();
 });
+ipcMain.on("toggle-fullscreen", () => {
+  const win = BrowserWindow.getFocusedWindow();
+  win.maximize();
+});
 
 ipcMain.on("window-drag", (event) => {
   const win = BrowserWindow.getFocusedWindow();

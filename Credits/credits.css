@@ -3,7 +3,7 @@ body {
   overflow: hidden;
   font-family: Arial, Helvetica, sans-serif;
   /* push down the the wrapper by half the page */
-  margin: 50% 0 0 0;
+  margin: 10% 0 0 0;
   position: relative;
 }
 p {
@@ -51,6 +51,6 @@ h2 {
   }
   to {
     top: -7500px;
-    transform: translateZ(-2500px) rotateX(21deg);
+    transform: translateZ(-1250px) rotateX(21deg);
   }
 }
