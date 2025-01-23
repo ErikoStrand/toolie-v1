@@ -169,6 +169,9 @@ form {
   background: #f4f4f4;
 }
 
-.svg {
+svg {
   display: block;
+  text-align: center;
+  fill: #faf8f7;
+  height: inherit;
 }
