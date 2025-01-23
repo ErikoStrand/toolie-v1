@@ -79,11 +79,19 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4px;
-  background-color: #45155b;
+  padding: 6px;
+  background: rgb(97, 39, 123);
+  background: linear-gradient(
+    183deg,
+    rgba(97, 39, 123, 1) 0%,
+    rgba(97, 39, 123, 1) 17%,
+    rgba(168, 39, 131, 1) 100%
+  );
+  padding: 2px;
+  border-radius: 5px;
 }
 .interactButtons div svg {
-  margin-left: auto;
+  padding: 1px;
 }
 
 #namesList {
@@ -162,5 +170,5 @@ form {
 }
 
 .svg {
-  vertical-align: middle;
+  display: block;
 }

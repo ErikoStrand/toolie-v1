@@ -3,7 +3,7 @@ let selectedKlass = []; // Array to store selected class names
 let groups = []; // Array to store the groups
 let settings = {
   useRandomNames: false, // Flag for using random group names
-  randomLeader: false // Flag for random group leader selection
+  randomLeader: false, // Flag for random group leader selection
 };
 
 // Get DOM elements
@@ -16,7 +16,7 @@ const groupsDiv = document.getElementById("groups");
 const randomGroupNameCheckbox = document.getElementById("randomGroupName");
 const randomLeaderCheckbox = document.getElementById("randomLeader");
 const saveGroupsBtn = document.getElementById("saveGroupsBtn");
-const fileInput = document.getElementById('fileInput');
+const fileInput = document.getElementById("fileInput");
 
 function populateDropdown() {
   classes.forEach((classKey) => {
@@ -79,7 +79,10 @@ function addName() {
 }
 
 function sortNamesIntoGroups() {
-  const numGroups = Math.min(parseInt(numGroupsInput.value) || 0, selectedKlass.length);
+  const numGroups = Math.min(
+    parseInt(numGroupsInput.value) || 0,
+    selectedKlass.length
+  );
   if (numGroups <= 1) return;
 
   const shuffledNames = shuffleArray(selectedKlass.slice());
@@ -91,8 +94,12 @@ function sortNamesIntoGroups() {
     groups[index % numGroups].push(name);
   });
 
-  const groupNames = settings.useRandomNames ? getRandomGroupNames(groups.length) : groups.map((_, index) => `Grupp ${index + 1}`);
-  const leaders = settings.randomLeader ? groups.map(group => Math.floor(Math.random() * group.length)) : groups.map(() => -1);
+  const groupNames = settings.useRandomNames
+    ? getRandomGroupNames(groups.length)
+    : groups.map((_, index) => `Grupp ${index + 1}`);
+  const leaders = settings.randomLeader
+    ? groups.map((group) => Math.floor(Math.random() * group.length))
+    : groups.map(() => -1);
 
   // Store group names and leaders globally to use them when saving
   window.groupNames = groupNames;
@@ -102,7 +109,7 @@ function sortNamesIntoGroups() {
 }
 
 function displayGroups(groups, groupNames = [], leaders = []) {
-  groupsDiv.innerHTML = '';
+  groupsDiv.innerHTML = "";
   const { randomLeader } = settings;
 
   if (groupNames.length === 0) {
@@ -113,32 +120,34 @@ function displayGroups(groups, groupNames = [], leaders = []) {
     const groupName = groupNames[index] || `Grupp ${index + 1}`;
     const leaderIndex = leaders[index];
 
-    const groupDiv = document.createElement('div');
-    groupDiv.innerHTML = `<h2>${groupName}</h2><ul>${group.map((name, i) => `<li>${name}${i === leaderIndex ? ' <svg xmlns="http://www.w3.org/2000/svg" height="12" width="15" viewBox="0 0 640 512"><path fill="#B197FC" d="M372.2 52c0 20.9-12.4 39-30.2 47.2L448 192l104.4-20.9c-5.3-7.7-8.4-17.1-8.4-27.1c0-26.5 21.5-48 48-48s48 21.5 48 48c0 26-20.6 47.1-46.4 48L481 442.3c-10.3 23-33.2 37.7-58.4 37.7l-205.2 0c-25.2 0-48-14.8-58.4-37.7L46.4 192C20.6 191.1 0 170 0 144c0-26.5 21.5-48 48-48s48 21.5 48 48c0 10.1-3.1 19.4-8.4 27.1L192 192 298.1 99.1c-17.7-8.3-30-26.3-30-47.1c0-28.7 23.3-52 52-52s52 23.3 52 52z"/></svg>' : ''}</li>`).join('')}</ul>`;
+    const groupDiv = document.createElement("div");
+    groupDiv.innerHTML = `<h3>${groupName}</h3><ul>${group
+      .map(
+        (name, i) =>
+          `<li>${name}${
+            i === leaderIndex
+              ? ' <svg xmlns="http://www.w3.org/2000/svg" height="12" width="15" viewBox="0 0 640 512"><path fill="#B197FC" d="M372.2 52c0 20.9-12.4 39-30.2 47.2L448 192l104.4-20.9c-5.3-7.7-8.4-17.1-8.4-27.1c0-26.5 21.5-48 48-48s48 21.5 48 48c0 26-20.6 47.1-46.4 48L481 442.3c-10.3 23-33.2 37.7-58.4 37.7l-205.2 0c-25.2 0-48-14.8-58.4-37.7L46.4 192C20.6 191.1 0 170 0 144c0-26.5 21.5-48 48-48s48 21.5 48 48c0 10.1-3.1 19.4-8.4 27.1L192 192 298.1 99.1c-17.7-8.3-30-26.3-30-47.1c0-28.7 23.3-52 52-52s52 23.3 52 52z"/></svg>'
+              : ""
+          }</li>`
+      )
+      .join("")}</ul>`;
     groupsDiv.appendChild(groupDiv);
   });
 }
 
 function getRandomGroupNames(numGroups) {
-  const adjectives = [
-    
+  const initialAdjectives = [
     "The Agile",
-    
     "The Busy",
     "The Critical",
-    
     "The Dopey",
     "The Dutiful",
-  
     "The Exotic",
     "The French",
-    
     "The Gentle",
     "The Greedy",
     "The Hilarious",
     "The Harmless",
-    
-    
     "The Jovial",
     "The Jumpy",
     "The Kooky",
@@ -149,7 +158,6 @@ function getRandomGroupNames(numGroups) {
     "The Majestic",
     "The Naughty",
     "The Nimble",
-  
     "The Phony",
     "The Powerful",
     "The Radiant",
@@ -159,7 +167,7 @@ function getRandomGroupNames(numGroups) {
     "The Wonder",
   ];
 
-  const nouns = [
+  const initialNouns = [
     "Heroes",
     "Villains",
     "Sloths",
@@ -176,21 +184,27 @@ function getRandomGroupNames(numGroups) {
     "Imposters",
     "Tourists",
     "Team",
-
   ];
 
+  let adjectives = initialAdjectives.slice();
+  let nouns = initialNouns.slice();
   const combinedNames = [];
 
-  for (let i = 0; i < adjectives.length; i++) {
-    for (let j = 0; j < nouns.length; j++) {
-      combinedNames.push(`${adjectives[i]} ${nouns[j]}`);
-    }
+  for (let i = 0; i < numGroups; i++) {
+    if (adjectives.length === 0) adjectives = initialAdjectives.slice();
+    if (nouns.length === 0) nouns = initialNouns.slice();
+
+    const adjectiveIndex = Math.floor(Math.random() * adjectives.length);
+    const nounIndex = Math.floor(Math.random() * nouns.length);
+
+    const adjective = adjectives.splice(adjectiveIndex, 1)[0]; // Remove and get the adjective
+    const noun = nouns.splice(nounIndex, 1)[0]; // Remove and get the noun
+
+    combinedNames.push(`${adjective} ${noun}`);
   }
 
-  shuffleArray(combinedNames); // Shuffle the combined names
-  return combinedNames.slice(0, numGroups); // Return the required number of group names
+  return combinedNames;
 }
-
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -207,28 +221,29 @@ function saveGroupsAsJSON() {
   }
 
   // Use globally stored group names and leaders
-  const groupNames = window.groupNames || groups.map((_, index) => `Grupp ${index + 1}`);
+  const groupNames =
+    window.groupNames || groups.map((_, index) => `Grupp ${index + 1}`);
   const leaders = window.leaders || groups.map(() => -1);
 
   const data = { groups, settings, groupNames, leaders };
   const json = JSON.stringify(data, null, 2); // Convert to JSON
-  const blob = new Blob([json], { type: 'application/json' });
+  const blob = new Blob([json], { type: "application/json" });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
+  const a = document.createElement("a");
   a.href = url;
-  a.download = 'groups.json';
+  a.download = "groups.json";
   a.click();
   URL.revokeObjectURL(url);
 }
 
-document.getElementById('loadGroups').addEventListener('click', () => {
-  document.getElementById('fileInput').click();
+document.getElementById("loadGroups").addEventListener("click", () => {
+  document.getElementById("fileInput").click();
 });
 
-document.getElementById('fileInput').addEventListener('change', loadGroups);
+document.getElementById("fileInput").addEventListener("change", loadGroups);
 
 function loadGroups() {
-  const fileInput = document.getElementById('fileInput');
+  const fileInput = document.getElementById("fileInput");
   const file = fileInput.files[0];
   if (!file) return;
 
@@ -238,7 +253,8 @@ function loadGroups() {
       const data = JSON.parse(e.target.result);
       groups = data.groups || [];
       settings = data.settings || {};
-      const groupNames = data.groupNames || groups.map((_, index) => `Grupp ${index + 1}`);
+      const groupNames =
+        data.groupNames || groups.map((_, index) => `Grupp ${index + 1}`);
       const leaders = data.leaders || groups.map(() => -1);
 
       // Store group names and leaders globally
@@ -247,7 +263,7 @@ function loadGroups() {
 
       displayGroups(groups, groupNames, leaders);
     } catch (err) {
-      console.error('Error parsing JSON:', err);
+      console.error("Error parsing JSON:", err);
     }
   };
   reader.readAsText(file);
