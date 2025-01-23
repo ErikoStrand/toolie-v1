@@ -1,6 +1,101 @@
 [
   {
     "author": "ErikoStrand",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1737630988
+  },
+  {
+    "author": "Duwangh",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1737630183
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #38 from ErikoStrand/StarWarsCredits\n\nStar wars credits",
+    "time": 1737630078
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' into StarWarsCredits",
+    "time": 1737630068
+  },
+  {
+    "author": "Duwangh",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1737626510
+  },
+  {
+    "author": "stenkaal",
+    "message": "Changed from T4 to our names",
+    "time": 1737625650
+  },
+  {
+    "author": "stenkaal",
+    "message": "Things are borken fuvck with credits",
+    "time": 1737625528
+  },
+  {
+    "author": "stenkaal",
+    "message": "works, but with alot of commits it doesnt.",
+    "time": 1737624614
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "fuckinh hell bro:\n\nso it took away 8px beacuse scrollbar gets blipepd for legit 2us.\n\nkms.",
+    "time": 1737622230
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Changed to color gradient in navbar",
+    "time": 1737619618
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "fixed missing elements.",
+    "time": 1737618634
+  },
+  {
+    "author": "Duwangh",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1737618396
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1737618029
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "make delay less.",
+    "time": 1737618010
+  },
+  {
+    "author": "stenkaal",
+    "message": "Need animations",
+    "time": 1737552495
+  },
+  {
+    "author": "BergarnJ",
+    "message": "time and save\n\nAdded a second input field with the purpose of containing the time. I also fixed so the save fuction is used when exiting startblock.",
+    "time": 1737552150
+  },
+  {
+    "author": "stenkaal",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1 into StarWarsCredits",
+    "time": 1737552004
+  },
+  {
+    "author": "stenkaal",
+    "message": "Json",
+    "time": 1737551942
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "make delay less.",
+    "time": 1737551843
+  },
+  {
+    "author": "ErikoStrand",
     "message": "crawler, gets a json of all our commits:\n\nincluding the seperate branches etc.",
     "time": 1737551801
   },
