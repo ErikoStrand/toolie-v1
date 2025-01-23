@@ -80,6 +80,7 @@ ipcMain.on("close-window", (event, which) => {
 ipcMain.on("toggle-fullscreen", () => {
   const win = BrowserWindow.getFocusedWindow();
   win.maximize();
+  win.setFullScreen(true);
 });
 
 ipcMain.on("window-drag", (event) => {

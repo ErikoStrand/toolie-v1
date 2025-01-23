@@ -7,7 +7,7 @@ body {
   position: relative;
 }
 p {
-  text-align: center;
+  text-align: l;
 }
 body::after {
   content: "";
@@ -37,11 +37,7 @@ body::after {
   font-weight: bold;
   text-align: justify;
   position: relative;
-  animation: scroll infinite linear forwards;
-}
-h1,
-h2 {
-  text-align: center;
+  animation: scroll var(--scrollDuration) linear forwards;
 }
 
 @keyframes scroll {
@@ -50,7 +46,7 @@ h2 {
     transform: translateZ(0) rotateX(20deg);
   }
   to {
-    top: -7500px;
+    top: var(--scrollDistance);
     transform: translateZ(-1250px) rotateX(21deg);
   }
 }
