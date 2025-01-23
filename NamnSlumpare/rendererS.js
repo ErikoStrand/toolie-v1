@@ -72,25 +72,35 @@ function addName() {
 }
 
 function slumpAName() {
+  let checked = false;
   const checkboxes = document.querySelectorAll(
     '#namesList input[type="checkbox"]'
   );
-
+  const allNamesOfCheckboxes = Array.from(checkboxes).map(
+    (cb) => cb.nextElementSibling.textContent
+  );
   const selectedCheckboxes = Array.from(checkboxes).filter((cb) => cb.checked);
-
   let namePool;
 
   if (selectedCheckboxes.length > 0) {
     namePool = selectedCheckboxes.map(
       (cb) => cb.nextElementSibling.textContent
     );
+    checked = true;
   } else {
     namePool = selectedKlass;
   }
-
   if (namePool.length > 0) {
     let random = Math.floor(Math.random() * namePool.length);
-    document.getElementById("slumpName").textContent = namePool[random];
+    let randomName = namePool[random];
+    document.getElementById("slumpName").textContent = randomName;
+    if (checked) {
+      namePool.splice(namePool.indexOf(randomName), 1);
+      checkboxes[allNamesOfCheckboxes.indexOf(randomName)].checked = false;
+      if (namePool.length <= 0) {
+        document.getElementById("mastercheckbox").checked = false;
+      }
+    }
     document.getElementById("slumpName").style = "padding: 4px";
   } else {
     document.getElementById("slumpName").textContent = "No names available";
