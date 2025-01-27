@@ -129,6 +129,10 @@ ul {
   padding: 15px;
 }
 
+#groups ul li svg {
+  display: inline;
+}
+
 #groups ul {
   border-radius: 15px;
   list-style: none;
