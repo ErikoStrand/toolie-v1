@@ -19,11 +19,11 @@ function expand(button) {
     </svg>
   `;
   button.onclick = function () {
-    collapse(this);
+    shrink(this);
   };
 }
 
-function collapse(button) {
+function shrink(button) {
   const li = button.closest("li");
   li.setAttribute("id", "note");
   addsaveNav.style.display = "flex";
@@ -49,28 +49,46 @@ function addNewNote() {
   let li = document.createElement("li");
   let textdiv = document.createElement("div");
   let buttondiv = document.createElement("div");
-  let input = document.createElement("input");
+  let title_input = document.createElement("input");
+  let time_input = document.createElement("input");
   let textarea = document.createElement("textarea");
   let del_button = document.createElement("button");
   let exp_button = document.createElement("button");
 
-  input.style.fontSize = "1rem";
+  title_input.style.fontSize = "1rem";
+  title_input.style.fontWeight = "bold";
+  time_input.style.fontSize = "1rem";
+  time_input.style.fontWeight = "bold";
   textarea.style.fontSize = "1rem";
 
+  //allows the font-size on the note to be resized
   li.addEventListener("keydown", (event) => {
     if (event.key === "ArrowUp" && event.ctrlKey) {
-      let inputFontSize = parseFloat(window.getComputedStyle(input).fontSize);
+      let title_inputFontSize = parseFloat(
+        window.getComputedStyle(title_input).fontSize
+      );
+      let time_inputFontSize = parseFloat(
+        window.getComputedStyle(time_input).fontSize
+      );
       let textFontSize = parseFloat(window.getComputedStyle(textarea).fontSize);
-      input.style.fontSize = `${inputFontSize + 1}px`;
+
+      title_input.style.fontSize = `${title_inputFontSize + 1}px`;
+      time_input.style.fontSize = `${time_inputFontSize + 1}px`;
       textarea.style.fontSize = `${textFontSize + 1}px`;
 
       console.log("Ctrl + ArrowUp pressed: Font size increased");
       event.preventDefault();
     } else if (event.key === "ArrowDown" && event.ctrlKey) {
-      let inputFontSize = parseFloat(window.getComputedStyle(input).fontSize);
+      let title_inputFontSize = parseFloat(
+        window.getComputedStyle(title_input).fontSize
+      );
+      let time_inputFontSize = parseFloat(
+        window.getComputedStyle(time_input).fontSize
+      );
       let textFontSize = parseFloat(window.getComputedStyle(textarea).fontSize);
 
-      input.style.fontSize = `${inputFontSize - 1}px`;
+      title_input.style.fontSize = `${title_inputFontSize - 1}px`;
+      time_input.style.fontSize = `${time_inputFontSize + 1}px`;
       textarea.style.fontSize = `${textFontSize - 1}px`;
 
       console.log("Ctrl + ArrowUp pressed: Font size increased");
@@ -79,8 +97,10 @@ function addNewNote() {
   });
 
   li.setAttribute("id", "note");
-  input.type = "text";
-  input.setAttribute("placeholder", "Anteckning");
+  title_input.type = "text";
+  time_input.type = "text";
+  title_input.setAttribute("placeholder", "Anteckning");
+  time_input.setAttribute("placeholder", "Tid");
   buttondiv.setAttribute("class", "side-flerp");
   textdiv.setAttribute("class", "textdiv");
   del_button.onclick = function () {
@@ -102,7 +122,8 @@ function addNewNote() {
 
   buttondiv.appendChild(exp_button);
   buttondiv.appendChild(del_button);
-  textdiv.appendChild(input);
+  textdiv.appendChild(title_input);
+  textdiv.appendChild(time_input);
   textdiv.appendChild(textarea);
   li.appendChild(textdiv);
   li.appendChild(buttondiv);
@@ -118,16 +139,19 @@ function del(button) {
   li.remove();
 }
 
+///////////////////////////////////////////////////////////////////////////////
 function saveNotes() {
   const notes = document.querySelectorAll("#note");
 
   //goes through all the elements in the notes object
   const data = Array.from(notes).map((note) => {
-    const input = note.querySelector("input");
+    const title_input = note.querySelector("input:first-of-type");
+    const time_input = note.querySelector("input:nth-of-type(2)");
     const textarea = note.querySelector("textarea");
 
     return {
-      title: input.value.trim(),
+      title: title_input.value.trim(),
+      time: time_input.value.trim(),
 
       textarea: textarea.value.trim(),
     };
@@ -135,6 +159,7 @@ function saveNotes() {
 
   const jsonString = JSON.stringify(data, null, 2);
   fs.writeFileSync("resources/data/notes.json", jsonString, "utf-8");
+  exit("startblock");
 }
 
 function loadNote() {
@@ -151,37 +176,49 @@ function loadNote() {
       const li = document.createElement("li");
       const textdiv = document.createElement("div");
       const buttondiv = document.createElement("div");
-      const input = document.createElement("input");
+      const title_input = document.createElement("input");
+      const time_input = document.createElement("input");
       const textarea = document.createElement("textarea");
       const del_button = document.createElement("button");
       const exp_button = document.createElement("button");
 
-      input.style.fontSize = "1rem";
+      title_input.style.fontSize = "1rem";
+      title_input.style.fontWeight = "bold";
+      time_input.style.fontSize = "1rem";
+      time_input.style.fontWeight = "bold";
       textarea.style.fontSize = "1rem";
 
       li.addEventListener("keydown", (event) => {
         if (event.key === "ArrowUp" && event.ctrlKey) {
-          let inputFontSize = parseFloat(
-            window.getComputedStyle(input).fontSize
+          let title_inputFontSize = parseFloat(
+            window.getComputedStyle(title_input).fontSize
+          );
+          let time_inputFontSize = parseFloat(
+            window.getComputedStyle(time_input).fontSize
           );
           let textFontSize = parseFloat(
             window.getComputedStyle(textarea).fontSize
           );
 
-          input.style.fontSize = `${inputFontSize + 1}px`;
+          title_input.style.fontSize = `${title_inputFontSize + 1}px`;
+          time_input.style.fontSize = `${time_inputFontSize + 1}px`;
           textarea.style.fontSize = `${textFontSize + 1}px`;
 
           console.log("Ctrl + ArrowUp pressed: Font size increased");
           event.preventDefault();
         } else if (event.key === "ArrowDown" && event.ctrlKey) {
-          let inputFontSize = parseFloat(
-            window.getComputedStyle(input).fontSize
+          let title_inputFontSize = parseFloat(
+            window.getComputedStyle(title_input).fontSize
+          );
+          let time_inputFontSize = parseFloat(
+            window.getComputedStyle(time_input).fontSize
           );
           let textFontSize = parseFloat(
             window.getComputedStyle(textarea).fontSize
           );
 
-          input.style.fontSize = `${inputFontSize - 1}px`;
+          title_input.style.fontSize = `${title_inputFontSize - 1}px`;
+          time_input.style.fontSize = `${time_inputFontSize + 1}px`;
           textarea.style.fontSize = `${textFontSize - 1}px`;
 
           console.log("Ctrl + ArrowUp pressed: Font size increased");
@@ -190,10 +227,14 @@ function loadNote() {
       });
 
       li.setAttribute("id", "note");
-      input.type = "text";
-      input.setAttribute("placeholder", "Anteckning");
-      input.value = note.title;
+      title_input.type = "text";
+      title_input.setAttribute("placeholder", "Anteckning");
+      title_input.value = note.title;
+      time_input.type = "text";
+      time_input.setAttribute("placeholder", "Tid");
+      time_input.value = note.time;
       textarea.value = note.textarea;
+
       buttondiv.setAttribute("class", "side-flerp");
       textdiv.setAttribute("class", "textdiv");
 
@@ -217,7 +258,8 @@ function loadNote() {
 
       buttondiv.appendChild(exp_button);
       buttondiv.appendChild(del_button);
-      textdiv.appendChild(input);
+      textdiv.appendChild(title_input);
+      textdiv.appendChild(time_input);
       textdiv.appendChild(textarea);
       li.appendChild(textdiv);
       li.appendChild(buttondiv);
