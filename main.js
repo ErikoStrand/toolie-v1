@@ -6,7 +6,7 @@ function createMainWindow() {
   //Första main Window med alla knappar
   const mainWindow = new BrowserWindow({
     width: 150,
-    height: 380,
+    height: 421,
     maximizable: false,
     alwaysOnTop: true,
     transparent: true,
