@@ -76,7 +76,7 @@ function getClasses() {
   }
 }
 
-// Initialize clock display
+let showSeconds = true;
 displayTime();
 
 function displayTime() {
@@ -89,10 +89,22 @@ function displayTime() {
     hours = hours < 10 ? "0" + hours : hours;
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
-    const timeString = hours + ":" + minutes + ":" + seconds;
+
+    const timeString = showSeconds
+      ? `${hours}:${minutes}:${seconds}`
+      : `${hours}:${minutes}`;
+
     clockElement.innerHTML = timeString;
   }
 }
+if (document.getElementById("clock")) {
+  document.getElementById("clock").addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+    showSeconds = !showSeconds;
+  });
+}
+
+// Keep the rest of the interval timer
 setInterval(displayTime, 1000);
 
 ipcRenderer.on("toggle-klocka", (msg) => {

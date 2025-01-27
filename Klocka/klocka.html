@@ -4,44 +4,49 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <script src="../utils.js"></script>
     <link rel="stylesheet" href="../styles.css" />
     <title>Clock</title>
     <script defer src="../utils.js"></script>
   </head>
   <body>
-    <section id="clockContainer">
-      <svg
-        onclick="exit('klocka')"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 384 512"
-        class="exitClock"
-      >
-        <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-        <path
-          d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
-        />
-      </svg>
-      <div id="bigClock" class="mover gradientBackground"></div>
-    </section>
+    <svg
+      onclick="exit('klocka')"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 384 512"
+      class="exitClock"
+    >
+      <!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+      <path
+        d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+      />
+    </svg>
+    <div id="bigClock" class="mover gradientBackground"></div>
+    <script>
+      displayTime();
+      function displayTime() {
+        var currentDate = new Date();
+        var hours = currentDate.getHours();
+        var minutes = currentDate.getMinutes();
+        var seconds = currentDate.getSeconds();
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        var timeString = hours + ":" + minutes + ":" + seconds;
+        document.getElementById("bigClock").innerHTML = timeString;
+      }
+      setInterval(displayTime, 1000);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document
+          .getElementById("bigClock")
+          .addEventListener("contextmenu", (e) => {
+            console.log("tried right clicking");
+            e.preventDefault();
+          });
+      });
+    </script>
   </body>
 </html>
-
-<script>
-  displayTime();
-  function displayTime() {
-    var currentDate = new Date();
-    var hours = currentDate.getHours();
-    var minutes = currentDate.getMinutes();
-    var seconds = currentDate.getSeconds();
-    hours = hours < 10 ? "0" + hours : hours;
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    var timeString = hours + ":" + minutes + ":" + seconds;
-    document.getElementById("bigClock").innerHTML = timeString;
-  }
-  setInterval(displayTime, 1000);
-</script>
 
 <style>
   *,
@@ -54,8 +59,10 @@
   body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: left;
+    flex-direction: column;
     height: 100vh;
+    max-width: 330px;
     overflow: hidden;
   }
 
