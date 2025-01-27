@@ -2,7 +2,7 @@ const { app, BrowserWindow, ipcMain, shell } = require("electron");
 const fs = require("fs");
 const { exec } = require("child_process");
 const path = require("path");
-
+const windowListeners = new Map();
 // Build/Installer stuff ----------------------------
 if (require("electron-squirrel-startup")) {
   app.quit();
@@ -28,10 +28,23 @@ function createWindow(which) {
       preload: path.join(__dirname, "preload.js"),
     },
   });
-  ipcMain.on("resize-window", (event, size) => {
-    console.log("Received size:", size); // Debug log
+  const resizeListener = (event, size) => {
     if (event.sender === newWindow.webContents) {
       newWindow.setContentSize(size.width, size.height);
+    }
+  };
+  windowListeners.set(newWindow.id, {
+    resize: resizeListener,
+  });
+  ipcMain.on("resize-window", resizeListener);
+
+  newWindow.on("closed", () => {
+    const listeners = windowListeners.get(newWindow.id);
+    if (listeners) {
+      // Remove only this window's resize listener
+      ipcMain.removeListener("resize-window", listeners.resize);
+      // Clean up the listeners map
+      windowListeners.delete(newWindow.id);
     }
   });
   newWindow.webContents.on("devtools-opened", () => {
@@ -45,11 +58,6 @@ function createWindow(which) {
   newWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   newWindow.setAlwaysOnTop(true, "screen-saver", 1);
   newWindow.loadFile(loadPath(which));
-
-  // removes listener on close to prevent memory leaks.
-  newWindow.on("closed", () => {
-    ipcMain.removeAllListeners("resize-window");
-  });
 }
 
 //////////////////////////////////////////////
@@ -71,10 +79,21 @@ app.whenReady().then(() => {
 ipcMain.on("close-window", (event, which) => {
   const win = BrowserWindow.getFocusedWindow();
   const position = win.getPosition();
+  const size = win.getBounds();
 
   console.log(position, which);
   saveLocation(which, position);
-  if (win) win.close();
+  saveSize(which, [size["width"], size["height"]]);
+
+  if (win) {
+    win.removeAllListeners("resize-window");
+    win.close();
+  }
+});
+ipcMain.on("toggle-fullscreen", () => {
+  const win = BrowserWindow.getFocusedWindow();
+  win.maximize();
+  win.setFullScreen(true);
 });
 
 ipcMain.on("window-drag", (event) => {
@@ -116,6 +135,17 @@ function saveLocation(which, position) {
   const response = fs.readFileSync("resources/data/startup.json", "utf-8");
   let startup = JSON.parse(response);
   startup[which]["position"] = position;
+  fs.writeFileSync(
+    "resources/data/startup.json",
+    JSON.stringify(startup),
+    "utf8"
+  );
+}
+
+function saveSize(which, size) {
+  const response = fs.readFileSync("resources/data/startup.json", "utf-8");
+  let startup = JSON.parse(response);
+  startup[which]["size"] = size;
   fs.writeFileSync(
     "resources/data/startup.json",
     JSON.stringify(startup),

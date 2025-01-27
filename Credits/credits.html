@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="credits.css" />
+    <title>Credits</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="scroll-text" id="text-container">
+        <h1>DESKTOP TOOLIE</h1>
+        <h2>
+          Long before time, a teacher named Tobias Lindberg called out to Sten,
+          Leonard, Alexander, Oliwier, Matti and Erik, to create something
+          magnificent... This is that story.
+        </h2>
+      </div>
+    </div>
+  </body>
+  <script src="credits.js"></script>
+  <script>
+    toggleFullscreen();
+    function toggleFullscreen() {
+      const { ipcRenderer } = require("electron");
+      ipcRenderer.send("toggle-fullscreen");
+    }
+  </script>
+</html>

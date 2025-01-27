@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 /out
+resources/data/startup.json
+resources/data/startup.json

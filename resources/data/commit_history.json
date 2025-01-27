@@ -1,0 +1,1192 @@
+[
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1737630988
+  },
+  {
+    "author": "Duwangh",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1737630183
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #38 from ErikoStrand/StarWarsCredits\n\nStar wars credits",
+    "time": 1737630078
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' into StarWarsCredits",
+    "time": 1737630068
+  },
+  {
+    "author": "Duwangh",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1737626510
+  },
+  {
+    "author": "stenkaal",
+    "message": "Changed from T4 to our names",
+    "time": 1737625650
+  },
+  {
+    "author": "stenkaal",
+    "message": "Things are borken fuvck with credits",
+    "time": 1737625528
+  },
+  {
+    "author": "stenkaal",
+    "message": "works, but with alot of commits it doesnt.",
+    "time": 1737624614
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "fuckinh hell bro:\n\nso it took away 8px beacuse scrollbar gets blipepd for legit 2us.\n\nkms.",
+    "time": 1737622230
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Changed to color gradient in navbar",
+    "time": 1737619618
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "fixed missing elements.",
+    "time": 1737618634
+  },
+  {
+    "author": "Duwangh",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1737618396
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1737618029
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "make delay less.",
+    "time": 1737618010
+  },
+  {
+    "author": "stenkaal",
+    "message": "Need animations",
+    "time": 1737552495
+  },
+  {
+    "author": "BergarnJ",
+    "message": "time and save\n\nAdded a second input field with the purpose of containing the time. I also fixed so the save fuction is used when exiting startblock.",
+    "time": 1737552150
+  },
+  {
+    "author": "stenkaal",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1 into StarWarsCredits",
+    "time": 1737552004
+  },
+  {
+    "author": "stenkaal",
+    "message": "Json",
+    "time": 1737551942
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "make delay less.",
+    "time": 1737551843
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "crawler, gets a json of all our commits:\n\nincluding the seperate branches etc.",
+    "time": 1737551801
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "kan bara resize, startblock. saves size for next use.\n\netc etc.",
+    "time": 1737547755
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Do you remember?, when i was...",
+    "time": 1737547439
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1 into Startblock-sprint-23/1",
+    "time": 1737538637
+  },
+  {
+    "author": "BergarnJ",
+    "message": "made input bold",
+    "time": 1737538587
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "ah yes.",
+    "time": 1737538119
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "all windows get rezied, when they change size.\n\nif you manually change it by dragging it doesnt snap to html content size.",
+    "time": 1737537376
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "can hide names, removes selected when slump.",
+    "time": 1737535211
+  },
+  {
+    "author": "BergarnJ",
+    "message": "made the right schoolsoft link.",
+    "time": 1737535067
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "made the right schoolsoft link.",
+    "time": 1737013424
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "pink :3",
+    "time": 1736933139
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #37 from ErikoStrand/startupReword\n\nStartup reword",
+    "time": 1736932806
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "tooltips for programs now.",
+    "time": 1736932614
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "animation, schoolsoft link and classroom link.\n\nneed to change schoolsoft link to the right one.",
+    "time": 1736931519
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "resizes if gets smaller but if you tresize manhually:\n\nit bugs.",
+    "time": 1736861175
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "gotta hide overflow.",
+    "time": 1736860927
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "chaning and hiding them works with button.\n\nsize dybamiucally changes.",
+    "time": 1736860423
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "should be resizeing, dev tools pop out.",
+    "time": 1736857943
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1736856530
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1736755704
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Update README.md",
+    "time": 1736429167
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Update README.md",
+    "time": 1736429152
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Update README.md",
+    "time": 1736429129
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Update README.md",
+    "time": 1736428841
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #36 from ErikoStrand/packingnumber100\n\nPackingnumber100",
+    "time": 1736428701
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Create README.md",
+    "time": 1736428650
+  },
+  {
+    "author": "stenkaal",
+    "message": "Create Test.txt\n\nJust a test",
+    "time": 1736428002
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "creating a installer works, finally:\n\n3 hours for a capital letter in filepath, thats funny.",
+    "time": 1736412871
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "works, but loading classes or groups crashes.",
+    "time": 1734602451
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "works but data doesnt come with it.",
+    "time": 1734598753
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "bro",
+    "time": 1734595845
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "what, why doesnt toolie-eclectron start?!",
+    "time": 1734529000
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "seems to work:\n\nadded package and package-log from stens packing.",
+    "time": 1734528571
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "thank god.",
+    "time": 1734528381
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #35 from ErikoStrand/revert-34-fuckingworkpleasegodhelpmeplease\n\nRevert \"Fuckingworkpleasegodhelpmeplease\"",
+    "time": 1734528275
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Revert \"Fuckingworkpleasegodhelpmeplease\"",
+    "time": 1734528265
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #34 from ErikoStrand/fuckingworkpleasegodhelpmeplease\n\nFuckingworkpleasegodhelpmeplease",
+    "time": 1734528064
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "yes plase!",
+    "time": 1734528023
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "ah yes.",
+    "time": 1734527704
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "yes yes here we go.",
+    "time": 1734527579
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'Packaging' of https://github.com/ErikoStrand/toolie-v1 into Packaging",
+    "time": 1734526526
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1 into Packaging",
+    "time": 1734526117
+  },
+  {
+    "author": "stenkaal",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1 into Packaging",
+    "time": 1734520940
+  },
+  {
+    "author": "stenkaal",
+    "message": "Fixed vulns and added ypdates",
+    "time": 1734438770
+  },
+  {
+    "author": "stenkaal",
+    "message": "Alegedly added desktop shortcut and other things yippie",
+    "time": 1734438561
+  },
+  {
+    "author": "stenkaal",
+    "message": "Build Testing",
+    "time": 1734349516
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "yes yes here we go.",
+    "time": 1734347739
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "jhajajjajajaj. alex mr weirdo.",
+    "time": 1734347665
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1734347550
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #33 from ErikoStrand/groupie\n\nAdded randomized group names and centered save and load buttons to ma…",
+    "time": 1734346988
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "dawd",
+    "time": 1734341060
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "saves location, when closing loads it.\n\nclould save size.",
+    "time": 1734341034
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1734340571
+  },
+  {
+    "author": "Duwangh",
+    "message": "Added randomized group names and centered save and load buttons to make it look nicer :)",
+    "time": 1734338844
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #32 from ErikoStrand/startblockflärp\n\nRemoved unnessecary",
+    "time": 1734338763
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Removed unnessecary\n\nRemoved some unessecary constants",
+    "time": 1734338730
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #31 from ErikoStrand/startblockflärp\n\nFixed some things",
+    "time": 1734338328
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Fixed some things\n\nWith no help whatsoever I miraculously fixed the scrollbar so that it only appears in the notearea and the sideflerp has been moved into the note itself.",
+    "time": 1734337810
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "opacity",
+    "time": 1734335143
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "fixed spelling to grupp.",
+    "time": 1734334315
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1734334248
+  },
+  {
+    "author": "Duwangh",
+    "message": "Stein here",
+    "time": 1734334221
+  },
+  {
+    "author": "Duwangh",
+    "message": "Merge branch 'main' of http://github.com/ErikoStrand/toolie-v1",
+    "time": 1733909322
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "whaat.",
+    "time": 1733907922
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #30 from ErikoStrand/Import\n\nGjort klart importeriing av klasser",
+    "time": 1733907868
+  },
+  {
+    "author": "Gramte",
+    "message": "fixade ljud längd",
+    "time": 1733907720
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "Gjort klart importeriing av klasser",
+    "time": 1733907517
+  },
+  {
+    "author": "BergarnJ",
+    "message": "stuff in mötr-",
+    "time": 1733905274
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "stuff in mötr-",
+    "time": 1733904702
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "klocka instant.",
+    "time": 1733902561
+  },
+  {
+    "author": "stenkaal",
+    "message": "Forge packaging dependencies",
+    "time": 1733837025
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #29 from ErikoStrand/startblock2\n\nStartblock2",
+    "time": 1733835564
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Made some changes",
+    "time": 1733835498
+  },
+  {
+    "author": "Duwangh",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1733835490
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "so kawaii borders, nya.",
+    "time": 1733831665
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "slumpa",
+    "time": 1733830564
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "crazy desisn for namn slumpare.",
+    "time": 1733830479
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "tailwind works.",
+    "time": 1733823225
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "tailwind.",
+    "time": 1733822532
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1733821642
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1733821634
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "On top fixes",
+    "time": 1733821265
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "ape shit.",
+    "time": 1733820931
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "wiped.",
+    "time": 1733819866
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "everything fucking works.",
+    "time": 1733819760
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #28 from ErikoStrand/Klasskapare02\n\nKlasskapare02",
+    "time": 1733819095
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' into Klasskapare02",
+    "time": 1733819088
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #27 from ErikoStrand/groupie\n\nYou can now load saved json files. The json file now also stores who …",
+    "time": 1733818904
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' into groupie",
+    "time": 1733818896
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Merge branch 'startblock2' of https://github.com/ErikoStrand/toolie-v1 into startblock2",
+    "time": 1733818582
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #26 from ErikoStrand/startblock2\n\nStartblock2",
+    "time": 1733818530
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' into startblock2",
+    "time": 1733818522
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "export button for classes.",
+    "time": 1733818179
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "sak.",
+    "time": 1733816744
+  },
+  {
+    "author": "Gramte",
+    "message": "clock.",
+    "time": 1733748949
+  },
+  {
+    "author": "Gramte",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1733747801
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "colors and clock on main.",
+    "time": 1733747446
+  },
+  {
+    "author": "Duwangh",
+    "message": "You can now load saved json files. The json file now also stores who is the group leader and the group names for each group. (take a shot for every mention of group in this explanation)",
+    "time": 1733747237
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Changed height",
+    "time": 1733747001
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1 into startblock2",
+    "time": 1733746341
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Merge branch 'startblock2' of https://github.com/ErikoStrand/toolie-v1 into startblock2",
+    "time": 1733746113
+  },
+  {
+    "author": "stenkaal",
+    "message": "fixing sizes.",
+    "time": 1733745895
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "saker, ikoner, size of window, etc.",
+    "time": 1733745749
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "fixing sizes.",
+    "time": 1733744689
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #25 from ErikoStrand/ResponsiveResolution\n\nResolution in argument form",
+    "time": 1733744210
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' into ResponsiveResolution",
+    "time": 1733744204
+  },
+  {
+    "author": "Gramte",
+    "message": "Resolution in argument form",
+    "time": 1733744085
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "removed.",
+    "time": 1733743870
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #24 from ErikoStrand/movewindowreworkthing\n\nadded navbar to each program, fixed timer.",
+    "time": 1733743772
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "added navbar to each program, fixed timer.",
+    "time": 1733743724
+  },
+  {
+    "author": "Gramte",
+    "message": "fix chanbge on namn slumpare.",
+    "time": 1733737942
+  },
+  {
+    "author": "Gramte",
+    "message": "Merge pull request #23 from ErikoStrand/VadSom\n\nLaggt till cursor blir pointer över mainKnappar",
+    "time": 1733737248
+  },
+  {
+    "author": "Gramte",
+    "message": "Laggt till cursor blir pointer över mainKnappar",
+    "time": 1733737202
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "Ändra ordning på meny knappar tog bort test!",
+    "time": 1733735876
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1 into Klasskapare02",
+    "time": 1733735530
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "buttonfs fix, logo fix, hover fix.",
+    "time": 1733735502
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "Gjort klart klass redigerare!",
+    "time": 1733735310
+  },
+  {
+    "author": "Gramte",
+    "message": "dwadawd",
+    "time": 1733735283
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "dwadawd",
+    "time": 1733735172
+  },
+  {
+    "author": "Gramte",
+    "message": "fix chanbge on namn slumpare.",
+    "time": 1733734885
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1733734539
+  },
+  {
+    "author": "stenkaal",
+    "message": "Merge pull request #22 from ErikoStrand/ClickThroughWindow\n\nClick Through Window",
+    "time": 1733734427
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #22 from ErikoStrand/ClickThroughWindow\n\nClick Through Window",
+    "time": 1733733863
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' into ClickThroughWindow",
+    "time": 1733733847
+  },
+  {
+    "author": "stenkaal",
+    "message": "Click Through Window",
+    "time": 1733733757
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "fixed logos to be circle with white svg.",
+    "time": 1733733739
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "fix alex things, weird fucking stuff.",
+    "time": 1733733032
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "fix alex things, weird fucking stuff.",
+    "time": 1733732969
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "checkmarks: see comments below:\n\nalex you funny man you funny funny man, you add code to get element that you didnt before and now the oens in mine brokey so i remove mine and it works, also removed duplicate from your sine you dont need to get it inside the function because they are global so there you go i fixed your problem mr alex man thank you and no thank you!",
+    "time": 1733731406
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "fix chanbge on namn slumpare.",
+    "time": 1733488079
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1733487801
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #21 from ErikoStrand/Klasskapare02\n\nFörsökte mitt bästa iallafall",
+    "time": 1733487780
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' into Klasskapare02",
+    "time": 1733487772
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "Försökte mitt bästa iallafall",
+    "time": 1733487598
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #20 from ErikoStrand/groupie\n\nYou can now save groups to a JSON file and attempted to do the custom…",
+    "time": 1733487497
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' into groupie",
+    "time": 1733487490
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #19 from ErikoStrand/startblock2\n\nStartblock2",
+    "time": 1733487453
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' into startblock2",
+    "time": 1733487440
+  },
+  {
+    "author": "Gramte",
+    "message": "SVG OUTLINE",
+    "time": 1733487228
+  },
+  {
+    "author": "BergarnJ",
+    "message": "don't know",
+    "time": 1733486550
+  },
+  {
+    "author": "Duwangh",
+    "message": "You can now save groups to a JSON file and attempted to do the custom window stuff in main. Will refine this alongside doing some CSS next week.",
+    "time": 1733486173
+  },
+  {
+    "author": "Gramte",
+    "message": "Timer Nu Najs att Använda Och fungerande",
+    "time": 1733485018
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Made some visual changes\n\nHave changed some things visually, aren't finished though and can't decide om a color that would be sutiable.",
+    "time": 1733405644
+  },
+  {
+    "author": "Gramte",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1733404996
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "no clue!",
+    "time": 1733388521
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "dont ask",
+    "time": 1733387436
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #18 from ErikoStrand/startblock2\n\nStartblock2",
+    "time": 1733385364
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Removed some comments",
+    "time": 1733311167
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Merge branch 'startblock2' of https://github.com/ErikoStrand/toolie-v1 into startblock2",
+    "time": 1733310939
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #17 from ErikoStrand/erikfixartobiaskravp-namnslumparen\n\nredesign namnslumpare as one should!:",
+    "time": 1733310712
+  },
+  {
+    "author": "stenkaal",
+    "message": "jag vet inte",
+    "time": 1733296823
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #17 from ErikoStrand/erikfixartobiaskravp-namnslumparen\n\nredesign namnslumpare as one should!:",
+    "time": 1733216365
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "redesign namnslumpare as one should!:",
+    "time": 1733216342
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #16 from ErikoStrand/startblock2\n\nComments",
+    "time": 1733212808
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #16 from ErikoStrand/startblock2\n\nComments",
+    "time": 1733139518
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' into startblock2",
+    "time": 1733139510
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "Klassskapare Klar (Osäker ifall funktion fungerar)",
+    "time": 1733139320
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Comments\n\nChanged some of the comments",
+    "time": 1733128226
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "added foldfer for data jsons yes yes.,",
+    "time": 1732884294
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #15 from ErikoStrand/startblock2\n\nSave and load",
+    "time": 1732883300
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "dwadad",
+    "time": 1732883269
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #12 from ErikoStrand/groupie\n\nRedone it to be closer to the name randomizer while still retaining f…",
+    "time": 1732880734
+  },
+  {
+    "author": "Duwangh",
+    "message": "Redone it to be closer to the name randomizer while still retaining functionality fron previous versions. CSS is yet to be fully complete.",
+    "time": 1732880628
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #11 from ErikoStrand/eriktakesoverstensmainmenureword\n\nmain menu thjings.",
+    "time": 1732879937
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Save and load\n\nYou can now save and load the notes that have been written.\nYou HAVE TO use the save button to save ANY CHANGES WHATSOEVER in the json file,\nif you leave before saving you will LOSE ALL CHANGES MADE.",
+    "time": 1732872790
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "main menu thjings.",
+    "time": 1732869480
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #10 from ErikoStrand/MenuReMainWork\n\nMenu re main work",
+    "time": 1732868276
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Eureka\n\nIt works finally, it's been many moons since I last had success to this pedigree. It brings me joy to finally make something of worth.",
+    "time": 1732866098
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #9 from ErikoStrand/StartBlock\n\nStart block",
+    "time": 1732865836
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Saving function\n\ntrying to make the saving function to work",
+    "time": 1732865814
+  },
+  {
+    "author": "stenkaal",
+    "message": "jag vet inte",
+    "time": 1732798304
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #8 from ErikoStrand/namnslumparerework\n\nNamnslumparerework",
+    "time": 1732791763
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Expand update\n\nI made the expanded note the apropriate size that it should be.",
+    "time": 1732628640
+  },
+  {
+    "author": "stenkaal",
+    "message": "smol",
+    "time": 1732624278
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "basically done.",
+    "time": 1732623443
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "now just weird dropdown.",
+    "time": 1732615230
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "alex gotta fix his shit.",
+    "time": 1732614182
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #7 from ErikoStrand/Groupie\n\nChanged the input (doesn't work yet) and made the choice between numb…",
+    "time": 1732612559
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #7 from ErikoStrand/Groupie\n\nChanged the input (doesn't work yet) and made the choice between numb…",
+    "time": 1732612167
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "added klasskapare in menu",
+    "time": 1732612121
+  },
+  {
+    "author": "Duwangh",
+    "message": "Changed the input (doesn't work yet) and made the choice between number of group or members per group more cohesive",
+    "time": 1732612103
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #6 from ErikoStrand/KlassSkapare\n\nKlassskapare Klar (Osäker ifall funktion fungerar)",
+    "time": 1732611733
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' into KlassSkapare",
+    "time": 1732611724
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "Klassskapare Klar (Osäker ifall funktion fungerar)",
+    "time": 1732609516
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Changes\n\nMade an expand and shrink function",
+    "time": 1732538796
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #5 from ErikoStrand/timer\n\nTimer",
+    "time": 1732536475
+  },
+  {
+    "author": "stenkaal",
+    "message": "åpdoawåpojdwpoakdåowakåpdoka button for leonard.",
+    "time": 1732525107
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "new swag alert sound.",
+    "time": 1732523073
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "timer basically works yah yahhh.",
+    "time": 1732522039
+  },
+  {
+    "author": "BergarnJ",
+    "message": "From and button\n\nI added a form around the noteArea and a button for it",
+    "time": 1732283144
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "åpdoawåpojdwpoakdåowakåpdoka button for leonard.",
+    "time": 1732277177
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #4 from ErikoStrand/StartBlock\n\nStart block",
+    "time": 1732276842
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #3 from ErikoStrand/Groupie\n\nGroupie",
+    "time": 1732276788
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' into Groupie",
+    "time": 1732276779
+  },
+  {
+    "author": "BergarnJ",
+    "message": "Tiny changes",
+    "time": 1732276164
+  },
+  {
+    "author": "Duwangh",
+    "message": "Added smth I guess????",
+    "time": 1732275909
+  },
+  {
+    "author": "Duwangh",
+    "message": "Added rudimentary CSS",
+    "time": 1732273259
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "click to close fuck draging",
+    "time": 1732266950
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge branch 'main' of https://github.com/ErikoStrand/toolie-v1",
+    "time": 1732263453
+  },
+  {
+    "author": "Alexxxsss",
+    "message": "klocka mvp klar",
+    "time": 1732194817
+  },
+  {
+    "author": "BergarnJ",
+    "message": "A lot of things are done",
+    "time": 1732194781
+  },
+  {
+    "author": "Duwangh",
+    "message": "Attempted a JSON save function (It is not finished because of a typeError I've yet to fix I'll get to it) This included making a preload.js file and altering main.js",
+    "time": 1732190863
+  },
+  {
+    "author": "Duwangh",
+    "message": "Changed group names and put a hard cap on group member / group size to 14 (I am really funny)",
+    "time": 1732181766
+  },
+  {
+    "author": "Duwangh",
+    "message": "MVP Featureset According to project requirements",
+    "time": 1732179418
+  },
+  {
+    "author": "Duwangh",
+    "message": "Added all the current files from main and integrated the group randomizer into it",
+    "time": 1732175408
+  },
+  {
+    "author": "BergarnJ",
+    "message": "The beginning\n\nI have, with some minor assistance, made a start to startblock",
+    "time": 1732109403
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "la till madg del.",
+    "time": 1732108781
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "Merge pull request #1 from ErikoStrand/NamnSlumpare\n\nSkrivit kod för namnslumparen med html, css och",
+    "time": 1732108512
+  },
+  {
+    "author": "Magd-AL",
+    "message": "Skrivit kod för namnslumparen med html, css och\njavascript",
+    "time": 1732108476
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "very beautiful",
+    "time": 1732108359
+  },
+  {
+    "author": "Duwangh",
+    "message": "Added basic files to a folder named \"Groupie\" and a function in main.js to ensure functionality",
+    "time": 1732108096
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "added easy way to add new window,\n\ngotta find how to style and etc ykykykykykykkykyk",
+    "time": 1732108028
+  },
+  {
+    "author": "BergarnJ",
+    "message": "please working",
+    "time": 1732107206
+  },
+  {
+    "author": "Magd-AL",
+    "message": "please working",
+    "time": 1732106784
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "please working",
+    "time": 1732095535
+  },
+  {
+    "author": "stenkaal",
+    "message": "Docker försök",
+    "time": 1732024479
+  },
+  {
+    "author": "Duwangh",
+    "message": "first commit",
+    "time": 1732007065
+  },
+  {
+    "author": "stenkaal",
+    "message": "first commit",
+    "time": 1731504684
+  },
+  {
+    "author": "ErikoStrand",
+    "message": "first commit",
+    "time": 1731503365
+  }
+]
