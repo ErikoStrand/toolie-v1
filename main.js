@@ -3,6 +3,7 @@ const fs = require("fs");
 const { exec } = require("child_process");
 const path = require("path");
 const windowListeners = new Map();
+const windows = new Map();
 // Build/Installer stuff ----------------------------
 if (require("electron-squirrel-startup")) {
   app.quit();
@@ -58,6 +59,7 @@ function createWindow(which) {
   newWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   newWindow.setAlwaysOnTop(true, "screen-saver", 1);
   newWindow.loadFile(loadPath(which));
+  windows.set(which, newWindow);
 }
 
 //////////////////////////////////////////////
@@ -85,6 +87,11 @@ ipcMain.on("close-window", (event, which) => {
   saveLocation(which, position);
   saveSize(which, [size["width"], size["height"]]);
 
+  if (which === "klocka") {
+    windows.delete(which);
+    windows.get("main").webContents.send("toggle-klocka", true);
+  }
+
   if (win) {
     win.removeAllListeners("resize-window");
     win.close();
@@ -98,6 +105,7 @@ ipcMain.on("toggle-fullscreen", () => {
 
 ipcMain.on("window-drag", (event) => {
   const win = BrowserWindow.getFocusedWindow();
+
   if (win) win.dragMove();
 });
 

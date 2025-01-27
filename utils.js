@@ -75,18 +75,41 @@ function getClasses() {
     return [];
   }
 }
+
+// Initialize clock display
 displayTime();
+
 function displayTime() {
-  if (document.getElementById("clock")) {
-    var currentDate = new Date();
-    var hours = currentDate.getHours();
-    var minutes = currentDate.getMinutes();
-    var seconds = currentDate.getSeconds();
+  const clockElement = document.getElementById("clock");
+  if (clockElement) {
+    const currentDate = new Date();
+    let hours = currentDate.getHours();
+    let minutes = currentDate.getMinutes();
+    let seconds = currentDate.getSeconds();
     hours = hours < 10 ? "0" + hours : hours;
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
-    var timeString = hours + ":" + minutes + ":" + seconds;
-    document.getElementById("clock").innerHTML = timeString;
+    const timeString = hours + ":" + minutes + ":" + seconds;
+    clockElement.innerHTML = timeString;
   }
 }
 setInterval(displayTime, 1000);
+
+ipcRenderer.on("toggle-klocka", (msg) => {
+  console.log("Ipc Toggle");
+  toggleClock();
+});
+
+function toggleClock() {
+  //DEN HÄRA GÖMMER/VISAR KLOCKAN
+  console.log("Toggle Clock");
+  const clockElement = document.getElementById("clock");
+  if (clockElement) {
+    if (clockElement.style.display === "none") {
+      console.log("Toggle Visible");
+      clockElement.style.display = "block"; // Show the clock
+    } else {
+      clockElement.style.display = "none"; // Hide the clock
+    }
+  }
+}
