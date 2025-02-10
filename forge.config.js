@@ -5,7 +5,7 @@ module.exports = {
   packagerConfig: {
     asar: true,
     extraResource: ["./resources/data/"],
-    icon: "images/ToolieLogo.ico", // Ensure this path points to the correct .ico file
+    icon: "resources/data/images/ToolieLogo.ico", // Ensure this path points to the correct .ico file
   },
   rebuildConfig: {},
   makers: [
@@ -15,8 +15,8 @@ module.exports = {
         authors: "T4 from NTI Gymnasium Sodertalje",
         name: "desktop_toolie",
         description: "The desktop version of the web app Toolie by NTIG",
-        setupIcon: "images/ToolieLogo.ico",
-        icon: "images/ToolieLogo.ico",
+        setupIcon: "resources/data/images/ToolieLogo.ico",
+        icon: "resources/data/images/ToolieLogo.ico",
         setupExe: "DesktopToolieInstaller.exe",
         allowToChangeInstallationDirectory: true,
         oneClick: false,
@@ -31,7 +31,7 @@ module.exports = {
       name: "@electron-forge/maker-dmg",
       config: {
         format: "APFS",
-        icon: "images/ToolieLogo.ico",
+        icon: "resources/data/images/ToolieLogo.ico",
         name: "desktop_toolie",
         authors: "T4 from NTI Gymnasium Sodertalje",
         description: "The desktop version of the web app Toolie by NTIG",
