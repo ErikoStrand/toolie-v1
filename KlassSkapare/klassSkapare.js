@@ -185,7 +185,7 @@ function importClass() {
     const importedData = event.target.result;
 
     //const fs = require("fs");
-    const classesFilePath = "data/classes.json";
+    const classesFilePath = "resources/data/classes.json";
 
     fs.writeFileSync(classesFilePath, importedData, "utf-8"); //RITA
 
