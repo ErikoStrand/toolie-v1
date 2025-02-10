@@ -40,7 +40,7 @@
       <div>
         <h1>Importera Grupper</h1>
         <input
-          class="padding-down"
+          class="padding-down defaultInput"
           type="file"
           id="avatar"
           name="avatar"
@@ -50,26 +50,51 @@
         <h1>Skapa Grupper</h1>
         <div class="form-group">
           <label for="className">Grupp namn:</label><br />
-          <input type="text" id="className" placeholder="Skriv Class Name" />
+          <input
+            type="text"
+            id="className"
+            class="defaultInput"
+            placeholder="Skriv Class Name"
+          />
         </div>
         <div class="form-group">
           <label for="studentName">Lägg Student:</label><br />
-          <input type="text" id="studentName" placeholder="Enter Elev Name" />
-          <button onclick="addStudents()">Add</button>
+          <input
+            type="text"
+            id="studentName"
+            class="defaultInput"
+            placeholder="Enter Elev Name"
+          />
+          <button onclick="addStudents()" class="defaultButton">Add</button>
         </div>
         <ul id="studentList"></ul>
-        <button class="padding-down" onclick="saveClass()">Spara Grupp</button>
+        <button
+          class="padding-down"
+          onclick="saveClass()"
+          class="defaultButton"
+        >
+          Spara Grupp
+        </button>
       </div>
       <h1>Redigera Grupper</h1>
-      <select id="classDropdown"></select>
+      <select id="classDropdown" class="defaultInput"></select>
       <h2 id="class-name"></h2>
       <ul id="namesList"></ul>
       <span>
-        <input class="defaultInput" type="text" id="nameAdd" />
+        <input
+          class="defaultInput"
+          type="text"
+          class="defaultInput"
+          id="nameAdd"
+        />
         <button class="defaultButton" onclick="addName()">Addera</button>
       </span>
-      <button onclick="saveEditedClass()">Spara Grupp</button>
-      <button onclick="deleteClass()">Radera Grupp</button>
+      <button onclick="saveEditedClass()" class="defaultButton">
+        Spara Grupp
+      </button>
+      <button onclick="deleteClass()" class="defaultButton">
+        Radera Grupp
+      </button>
     </section>
   </body>
 </html>

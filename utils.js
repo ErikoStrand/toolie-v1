@@ -5,7 +5,7 @@ const classesFilePath = "resources/data/classes.json";
 const resizeObserver = new ResizeObserver((entries) => {
   const html = document.documentElement;
   const rect = html.getBoundingClientRect();
-
+  console.log(rect);
   // Round the values to prevent floating point issues
   const size = {
     width: Math.round(rect.width),

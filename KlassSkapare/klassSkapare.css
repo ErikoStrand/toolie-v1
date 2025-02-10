@@ -9,6 +9,21 @@ button {
   padding: 10px;
   font-size: 16px;
 }
+.defaultInput {
+  flex: 1; /* Allow input to grow and shrink */
+  min-width: 0; /* Prevent input from overflowing */
+  width: 100%; /* Take full available width */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+}
+
+/* Adjust button to not shrink */
+.defaultButton2 {
+  flex-shrink: 0; /* Prevent button from shrinking */
+}
+#studentList {
+  max-height: 300px;
+  overflow-y: scroll;
+}
 button {
   cursor: pointer;
 }
