@@ -114,7 +114,7 @@ function getAudioPath() {
   // If in development, use current directory
   const basePath = app.isPackaged
     ? path.dirname(app.getPath("exe"))
-    : __dirname;
+    : "resources/data/";
 
   return path.join(basePath, "alert.wav");
 }
