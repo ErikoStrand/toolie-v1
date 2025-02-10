@@ -21,7 +21,7 @@ button {
   flex-shrink: 0; /* Prevent button from shrinking */
 }
 #studentList {
-  max-height: 300px;
+  max-height: 150px;
   overflow-y: scroll;
 }
 button {
@@ -45,7 +45,7 @@ h1 {
   padding: 0px;
   border: 1px solid #ddd;
   margin: 0px;
-  max-height: 340px;
+  max-height: 200px;
   overflow-y: auto;
 }
 
@@ -105,5 +105,5 @@ ul {
 }
 
 .padding-down {
-  margin-bottom: 35px;
+  margin-bottom: 12px;
 }
